@@ -1,0 +1,61 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Listado de Agentes</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-actions">
+                <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
+                  Nuevo</button>
+              </div>
+              <table id="agentesTable" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>IP</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Ubicación</th>
+                    <th>Estado-IP</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let agenteData of agentesData">
+                    <td>{{ agenteData.ID }}</td>
+                    <td>{{ agenteData.IP }}</td>
+                    <td>{{ agenteData.Nombre }}</td>
+                    <td>{{ agenteData.Rol }}</td>
+                    <td>{{ agenteData.Ubicacion }}</td>
+                    <td>{{ agenteData.EstadoIP }}</td>
+                    <td>
+                      <div class="btn-actions">
+                        <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)"><i
+                            class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteAgente(agenteData)"><i
+                            class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>IP</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Ubicación</th>
+                    <th>Estado-IP</th>
+                    <th>Acciones</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

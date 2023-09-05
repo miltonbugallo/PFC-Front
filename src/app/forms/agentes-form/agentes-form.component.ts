@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agentes-form',
@@ -7,4 +8,22 @@ import { Component } from '@angular/core';
 })
 export class AgentesFormComponent {
 
+  constructor(
+    public dialogRef: MatDialogRef<AgentesFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public agenteData: any
+  ) {} 
+
+  ngOnInit(){
+    if(!this.agenteData){
+      this.agenteData = { ID: '', IP: '', Nombre: '', Rol: '', Ubicacion: '', EstadoIP: '' }
+    }
+  }
+
+  guardarCambios() {
+    this.dialogRef.close(this.agenteData);
+  }
+
+  cancelarEdicion() {
+    this.dialogRef.close();
+  }
 }
