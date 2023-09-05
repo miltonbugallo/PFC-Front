@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SwitchsFormComponent } from 'src/app/forms/switchs-form/switchs-form.component';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
+import { SwitchsService } from 'src/app/services/switchs.service';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
@@ -11,20 +12,10 @@ declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 })
 export class SwitchsComponent implements OnInit {
 
-  constructor(private datatableService: DataTableConfigService, private dialog: MatDialog) { }
+  constructor(private datatableService: DataTableConfigService, private dialog: MatDialog,
+    private switchService: SwitchsService) { }
 
-  switchesData = [
-    { ID: "1", IP: '10.255.255', Condicion: 'Encendido', Nombre: 'Switch 1', Sector: 'Oficina Santa Fe', Estado: 'Asignado' },
-    { ID: "2", IP: '10.123.255', Condicion: 'Encendido', Nombre: 'Switch 2', Sector: 'Oficina Rosario', Estado: 'Asignado' },
-    { ID: "3", IP: '20.255.200', Condicion: 'Apagado', Nombre: 'Switch 3', Sector: 'Oficina Santa Fe', Estado: 'Sin Asignar' },
-    { ID: "4", IP: '10.254.254', Condicion: 'Encendido', Nombre: 'Switch 4', Sector: 'Oficina Bs As', Estado: 'Asignado' },
-    { ID: "5", IP: '100.255.255', Condicion: 'Apagado', Nombre: 'Switch 5', Sector: 'Oficina IT', Estado: 'Sin Asignar' },
-    { ID: "1", IP: '10.255.255', Condicion: 'Encendido', Nombre: 'Switch 1', Sector: 'Oficina Santa Fe', Estado: 'Asignado' },
-    { ID: "2", IP: '10.123.255', Condicion: 'Encendido', Nombre: 'Switch 2', Sector: 'Oficina Rosario', Estado: 'Asignado' },
-    { ID: "3", IP: '20.255.200', Condicion: 'Apagado', Nombre: 'Switch 3', Sector: 'Oficina Santa Fe', Estado: 'Sin Asignar' },
-    { ID: "4", IP: '10.254.254', Condicion: 'Encendido', Nombre: 'Switch 4', Sector: 'Oficina Bs As', Estado: 'Asignado' },
-    { ID: "5", IP: '100.255.255', Condicion: 'Apagado', Nombre: 'Switch 5', Sector: 'Oficina IT', Estado: 'Sin Asignar' }
-  ];
+  switchesData = this.switchService.obtenerSwitchs()
 
   ngOnInit() {
     const datatableConfig = this.datatableService.getDatatableConfig();

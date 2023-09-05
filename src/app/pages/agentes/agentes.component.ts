@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AgentesFormComponent } from 'src/app/forms/agentes-form/agentes-form.component';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
+import { AgentesService } from '../../services/agentes.service';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
@@ -11,13 +12,10 @@ declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 })
 export class AgentesComponent implements OnInit{
 
-  constructor(private datatableService: DataTableConfigService, private dialog: MatDialog) { }
+  constructor(private datatableService: DataTableConfigService, private dialog: MatDialog,
+    private agenteService: AgentesService) { }
 
-  agentesData = [
-    { ID: "1", IP: '10.255.255', Nombre: 'Milton', Rol: 'Usuario', Ubicacion: 'Secretaria', EstadoIP: 'Asignada' },
-    { ID: "2", IP: '20.255.255', Nombre: 'Joaco', Rol: 'Usuario', Ubicacion: 'IT', EstadoIP: 'Asignada' },
-    { ID: "3", IP: '30.255.255', Nombre: 'Miguel', Rol: 'Usuario', Ubicacion: 'Ministerio', EstadoIP: 'Asignada' },
-  ];
+  agentesData = this.agenteService.obtenerAgentes()
 
   ngOnInit() {
     const datatableConfig = this.datatableService.getDatatableConfig();
