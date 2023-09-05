@@ -1,0 +1,64 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Listado de Switchs</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-actions">
+              <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
+                Nuevo</button>
+            </div>
+            <table id="switchTable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Condición</th>
+                  <th>Nombre</th>
+                  <th>Sector</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let switchData of switchesData">
+                  <td>{{ switchData.ID }}</td>
+                  <td>{{ switchData.IP }}</td>
+                  <td
+                    [ngClass]="{'encendido': switchData.Condicion === 'Encendido', 'apagado': switchData.Condicion === 'Apagado'}">
+                    {{ switchData.Condicion }}
+                  </td>
+                  <td>{{ switchData.Nombre }}</td>
+                  <td>{{ switchData.Sector }}</td>
+                  <td>{{ switchData.Estado }}</td>
+                  <td>
+                    <div class="btn-actions">
+                      <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(switchData)"><i
+                          class="fas fa-edit"></i></button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteSwitch(switchData)"><i
+                          class="fas fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Condición</th>
+                  <th>Nombre</th>
+                  <th>Sector</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
