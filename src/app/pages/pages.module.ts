@@ -8,13 +8,17 @@ import { SwitchsComponent } from './switchs/switchs.component';
 import { SwitchsFormComponent } from '../forms/switchs-form/switchs-form.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AgentesComponent } from './agentes/agentes.component';
+import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     PagesComponent,
     SwitchsComponent,
-    SwitchsFormComponent
+    SwitchsFormComponent,
+    AgentesComponent,
+    AgentesFormComponent
   ],
   imports: [
     CommonModule,
