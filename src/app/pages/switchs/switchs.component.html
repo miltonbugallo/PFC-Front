@@ -25,15 +25,15 @@
               </thead>
               <tbody>
                 <tr *ngFor="let switchData of switchesData">
-                  <td>{{ switchData.ID }}</td>
-                  <td>{{ switchData.IP }}</td>
+                  <td>{{ switchData.id }}</td>
+                  <td>{{ switchData.ip }}</td>
                   <td
-                    [ngClass]="{'encendido': switchData.Condicion === 'Encendido', 'apagado': switchData.Condicion === 'Apagado'}">
-                    {{ switchData.Condicion }}
+                    [ngClass]="{'encendido': switchData.condicion === condicionSwitch.Encendido, 'apagado': switchData.condicion === condicionSwitch.Apagado}">
+                    {{ switchData.condicion }}
                   </td>
-                  <td>{{ switchData.Nombre }}</td>
-                  <td>{{ switchData.Sector }}</td>
-                  <td>{{ switchData.Estado }}</td>
+                  <td>{{ switchData.nombre }}</td>
+                  <td>{{ switchData.sector }}</td>
+                  <td>{{ switchData.estado }}</td>
                   <td>
                     <div class="btn-actions">
                       <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(switchData)"><i

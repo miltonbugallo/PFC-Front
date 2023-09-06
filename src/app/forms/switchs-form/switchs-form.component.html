@@ -3,30 +3,30 @@
     <form #switchForm="ngForm" (ngSubmit)="guardarCambios()" novalidate>
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="text" id="id" name="id" [(ngModel)]="switchData.ID" class="form-control" required>
+            <input type="text" id="id" name="id" [(ngModel)]="switchData.id" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="ip">IP</label>
-            <input type="text" id="ip" name="ip" [(ngModel)]="switchData.IP" class="form-control" required>
+            <input type="text" id="ip" name="ip" [(ngModel)]="switchData.ip" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="condicion">Condición</label>
-            <select id="condicion" name="condicion" [(ngModel)]="switchData.Condicion" class="form-control" required>
-                <option value="Encendido">Encendido</option>
-                <option value="Apagado">Apagado</option>
+            <select id="condicion" name="condicion" [(ngModel)]="switchData.condicion" class="form-control" required>
+                <option value={{condicionSwitch.Encendido}}>Encendido</option>
+                <option value={{condicionSwitch.Apagado}}>Apagado</option>
             </select>
         </div>
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" [(ngModel)]="switchData.Nombre" class="form-control" required>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="switchData.nombre" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="sector">Sector</label>
-            <input type="text" id="sector" name="sector" [(ngModel)]="switchData.Sector" class="form-control" required>
+            <input type="text" id="sector" name="sector" [(ngModel)]="switchData.sector" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="estado">Estado</label>
-            <input type="text" id="estado" name="estado" [(ngModel)]="switchData.Estado" class="form-control" required>
+            <input type="text" id="estado" name="estado" [(ngModel)]="switchData.estado" class="form-control" required>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>
