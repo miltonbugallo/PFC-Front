@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CondicionSwitch } from 'src/app/models/condicionSwitch';
+import { ConexionSwitch } from 'src/app/models/conexionSwitch';
 import { switchModel } from 'src/app/models/switchModel';
 
 @Component({
@@ -15,11 +15,11 @@ export class SwitchsFormComponent {
     @Inject(MAT_DIALOG_DATA) public switchData: switchModel
   ) {} 
 
-  condicionSwitch: any = CondicionSwitch
+  conexionSwitch: any = ConexionSwitch
 
   ngOnInit(){
     if(!this.switchData){
-      this.switchData = { id: '', ip: '', condicion: CondicionSwitch.SinDato, nombre: '', sector: '', estado: '' }
+      this.switchData = { id: '', ip: '', marca: '', modelo: '', sector: '', conexion: ConexionSwitch.SinDato }
     }
   }
 

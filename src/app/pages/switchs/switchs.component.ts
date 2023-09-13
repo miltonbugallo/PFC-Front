@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SwitchsFormComponent } from 'src/app/forms/switchs-form/switchs-form.component';
-import { CondicionSwitch } from 'src/app/models/condicionSwitch';
+import { ConexionSwitch } from 'src/app/models/conexionSwitch';
 import { switchModel } from 'src/app/models/switchModel';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
 import { SwitchsService } from 'src/app/services/switchs.service';
@@ -21,7 +21,7 @@ export class SwitchsComponent implements OnInit {
   ) { }
 
   public switchesData: switchModel[] = []
-  condicionSwitch: any = CondicionSwitch
+  conexionSwitch: any = ConexionSwitch
 
   ngOnInit() {
     const datatableConfig = this.datatableService.getDatatableConfig();

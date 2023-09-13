@@ -57,7 +57,7 @@ export class AgentesComponent implements OnInit{
 
   guardarCambios(datosActualizados: any) {
     // Lógica para guardar los cambios en el backend o actualizar los datos originales
-    const index = this.agentesData.findIndex((data) => data.ID === datosActualizados.ID);
+    const index = this.agentesData.findIndex((data) => data.id === datosActualizados.id);
     if (index !== -1) {
       this.agentesData[index] = datosActualizados;
     }

@@ -9,9 +9,9 @@ export class AgentesService {
 
 
   agentesData = [
-    { ID: "1", IP: '10.255.255', Nombre: 'Milton', Rol: 'Usuario', Ubicacion: 'Secretaria', EstadoIP: 'Asignada' },
-    { ID: "2", IP: '20.255.255', Nombre: 'Joaco', Rol: 'Usuario', Ubicacion: 'IT', EstadoIP: 'Asignada' },
-    { ID: "3", IP: '30.255.255', Nombre: 'Miguel', Rol: 'Usuario', Ubicacion: 'Ministerio', EstadoIP: 'Asignada' },
+    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
+    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
+    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
   ];
 
   obtenerAgentes() {

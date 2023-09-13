@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { switchModel } from '../models/switchModel';
-import { CondicionSwitch } from '../models/condicionSwitch';
+import { ConexionSwitch } from '../models/conexionSwitch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,16 +11,11 @@ export class SwitchsService {
 
   public switchesData: switchModel[] = 
   [
-    { id: "1", ip: '10.255.255', condicion: CondicionSwitch.Encendido, nombre: 'Switch 1', sector: 'Oficina Santa Fe', estado: 'Asignado' },
-    { id: "2", ip: '10.123.255', condicion: CondicionSwitch.Encendido, nombre: 'Switch 2', sector: 'Oficina Rosario', estado: 'Asignado' },
-    { id: "3", ip: '20.255.200', condicion: CondicionSwitch.Apagado, nombre: 'Switch 3', sector: 'Oficina Santa Fe', estado: 'Sin Asignar' },
-    { id: "4", ip: '10.254.254', condicion: CondicionSwitch.Encendido, nombre: 'Switch 4', sector: 'Oficina Bs As', estado: 'Asignado' },
-    { id: "5", ip: '100.255.255', condicion: CondicionSwitch.Apagado, nombre: 'Switch 5', sector: 'Oficina IT', estado: 'Sin Asignar' },
-    { id: "1", ip: '10.255.255', condicion: CondicionSwitch.Encendido, nombre: 'Switch 1', sector: 'Oficina Santa Fe', estado: 'Asignado' },
-    { id: "2", ip: '10.123.255', condicion: CondicionSwitch.Encendido, nombre: 'Switch 2', sector: 'Oficina Rosario', estado: 'Asignado' },
-    { id: "3", ip: '20.255.200', condicion: CondicionSwitch.Apagado, nombre: 'Switch 3', sector: 'Oficina Santa Fe', estado: 'Sin Asignar' },
-    { id: "4", ip: '10.254.254', condicion: CondicionSwitch.Encendido, nombre: 'Switch 4', sector: 'Oficina Bs As', estado: 'Asignado' },
-    { id: "5", ip: '100.255.255', condicion: CondicionSwitch.Apagado, nombre: 'Switch 5', sector: 'Oficina IT', estado: 'Sin Asignar' }
+    { id: "1", ip: '10.255.255', marca: 'Switch 1', modelo: 'TP-Link 1' , sector: 'Secretaria', conexion: ConexionSwitch.Encendido },
+    { id: "2", ip: '20.255.255', marca: 'Switch 2', modelo: 'TP-Link 2' , sector: 'IT', conexion: ConexionSwitch.Encendido },
+    { id: "3", ip: '30.255.255', marca: 'Switch 3', modelo: 'TP-Link 3' , sector: 'Ministerio', conexion: ConexionSwitch.Apagado },
+    { id: "4", ip: '40.255.255', marca: 'Switch 4', modelo: 'TP-Link 4' , sector: 'Secretaria', conexion: ConexionSwitch.Encendido },
+    { id: "5", ip: '50.255.255', marca: 'Switch 5', modelo: 'TP-Link 5' , sector: 'Area Comercio', conexion: ConexionSwitch.Apagado },
   ];
   
   private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
