@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AgentesComponent } from './agentes/agentes.component';
 import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.component';
+import { IpsComponent } from './ips/ips.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.compone
     SwitchsComponent,
     SwitchsFormComponent,
     AgentesComponent,
-    AgentesFormComponent
+    AgentesFormComponent,
+    IpsComponent
   ],
   imports: [
     CommonModule,

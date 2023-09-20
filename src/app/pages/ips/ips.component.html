@@ -1,0 +1,76 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de IPs duplicadas</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="ipsTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Agentes</th>
+                                    <th>Dispositivos</th>
+                                    <th>Switches</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ipData of ipsData">
+                                    <td>{{ ipData.id }}</td>
+                                    <td>{{ ipData.ip }}</td>
+                                    <td>{{ ipData.agentes.length ? ipData.agentes.join(' - ') : '-' }}</td>
+                                    <td>{{ ipData.dispositivos.length ? ipData.dispositivos.join(' - ') : '-' }}</td>
+                                    <td>{{ ipData.switches.length ? ipData.switches.join(' - ') : '-' }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Agentes</th>
+                                    <th>Dispositivos</th>
+                                    <th>Switches</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de agentes sin equipo</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="agentesSinEquipoTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Agente</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
+                                    <td>{{ agenteSinEquipoData.id }}</td>
+                                    <td>{{ agenteSinEquipoData.ip }}</td>
+                                    <td>{{ agenteSinEquipoData.agente }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Agente</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

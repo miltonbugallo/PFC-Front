@@ -6,14 +6,16 @@ import { PagesComponent } from './pages.component';
 import { SwitchsComponent } from './switchs/switchs.component';
 import { NopageFoundComponent } from '../nopage-found/nopage-found.component';
 import { AgentesComponent } from './agentes/agentes.component';
+import { IpsComponent } from './ips/ips.component';
 
 const routes: Routes = [
   {
     path: 'dashboard', component: PagesComponent,
     children: [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
-      { path: 'switchs', component: SwitchsComponent, data: { titulo: 'Switchs' } },
-      { path: 'agentes', component: AgentesComponent, data: { titulo: 'Agentes' } }
+      { path: 'switches', component: SwitchsComponent, data: { titulo: 'Switches' } },
+      { path: 'agentes', component: AgentesComponent, data: { titulo: 'Agentes' } },
+      { path: 'ips', component: IpsComponent, data: { titulo: 'Ips' } }
     ]
   },
   { path: '**', component: NopageFoundComponent, }
