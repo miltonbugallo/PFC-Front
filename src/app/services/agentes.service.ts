@@ -13,9 +13,9 @@ export class AgentesService {
 
 
   agentesData = [
-    { id: "1", ip: '10.255.255', nombre: 'Milton', rol: 'Usuario', ubicacion: 'Secretaria', estadoIP: CondicionIP.Asignada },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', rol: 'Usuario', ubicacion: 'IT', estadoIP: CondicionIP.Asignada },
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', rol: 'Usuario', ubicacion: 'Ministerio', estadoIP: CondicionIP.SinAsignar },
+    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
+    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
+    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
   ];
 
   private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend

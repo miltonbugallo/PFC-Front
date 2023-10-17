@@ -1,10 +1,10 @@
-import { CondicionSwitch } from "./condicionSwitch";
+import { ConexionSwitch } from "./conexionSwitch";
 
 export interface switchModel {
     id: string;
     ip: string;
-    condicion: CondicionSwitch;
-    nombre: string;
+    marca: string;
+    modelo: string;
     sector: string;
-    estado: string
+    conexion: ConexionSwitch;
 }

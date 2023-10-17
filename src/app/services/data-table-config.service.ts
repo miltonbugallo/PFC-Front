@@ -29,8 +29,9 @@ export class DataTableConfigService {
         },
         buttons: {
           print: "Imprimir",
-          colvis: "Mostrar/Ocultar columnas"
-        }
+          colvis: "Ver/Ocultar columnas"
+        },
+        zeroRecords: "No se encontraron datos para mostrar",
       }
     };
     return Object.assign(options);

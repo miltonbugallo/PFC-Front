@@ -1,32 +1,25 @@
-<h2 mat-dialog-title class="modal-title">{{ agenteData ? 'Editar Agente' : 'Agregar Agente' }}</h2>
+<h2 mat-dialog-title class="modal-title">{{ agenteData.id != ''  ? 'Editar Agente' : 'Agregar Agente' }}</h2>
 <div mat-dialog-content>
     <form #switchForm="ngForm" (ngSubmit)="guardarCambios()" novalidate>
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="text" id="id" name="id" [(ngModel)]="agenteData.ID" class="form-control" required>
+            <input type="text" id="id" name="id" [(ngModel)]="agenteData.id" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="ip">IP</label>
-            <input type="text" id="ip" name="ip" [(ngModel)]="agenteData.IP" class="form-control" required>
+            <input type="text" id="ip" name="ip" [(ngModel)]="agenteData.ip" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" [(ngModel)]="agenteData.Nombre" class="form-control" required>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="agenteData.nombre" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="rol">Rol</label>
-            <input type="text" id="rol" name="rol" [(ngModel)]="agenteData.Rol" class="form-control" required>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" [(ngModel)]="agenteData.apellido" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="ubicacion">Ubicación</label>
-            <input type="text" id="ubicacion" name="ubicacion" [(ngModel)]="agenteData.Ubicacion" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="estadoIP">Estado-IP</label>
-            <select id="estadoIP" name="estadoIP" [(ngModel)]="agenteData.estadoIP" class="form-control" required>
-                <option value={{condicionIP.Asignada}}>Asignada</option>
-                <option value={{condicionIP.SinAsignar}}>Sin Asignar</option>
-            </select>
+            <label for="sector">Sector</label>
+            <input type="text" id="sector" name="sector" [(ngModel)]="agenteData.sector" class="form-control" required>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>

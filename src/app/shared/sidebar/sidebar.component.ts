@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
 
     this.menuItems = [
-        { titulo: 'Switchs', url: 'switchs', icono: 'fa fa-cubes' },
+        { titulo: 'Switches', url: 'switches', icono: 'fa fa-cubes' },
         { titulo: 'Agentes', url: 'agentes', icono: 'fa fa-users' },
         { titulo: 'Dispositivos', url: 'dispositivos', icono: 'fa-solid fa-laptop-code' },
         { titulo: 'Ips - Agentes Sin Equipo', url: 'ipsDuplicadasAgentesSinEquipo', icono: 'fa fa-copy' },

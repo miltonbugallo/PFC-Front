@@ -16,10 +16,10 @@
                 <tr>
                   <th>ID</th>
                   <th>IP</th>
-                  <th>Condición</th>
-                  <th>Nombre</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
                   <th>Sector</th>
-                  <th>Estado</th>
+                  <th>Conexión</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -27,13 +27,13 @@
                 <tr *ngFor="let switchData of switchesData">
                   <td>{{ switchData.id }}</td>
                   <td>{{ switchData.ip }}</td>
-                  <td 
-                    [ngClass]="{'condicionEncendido': switchData.condicion === condicionSwitch.Encendido, 'condicionApagado': switchData.condicion === condicionSwitch.Apagado}">
-                    {{ switchData.condicion }}
-                  </td>
-                  <td>{{ switchData.nombre }}</td>
+                  <td>{{ switchData.marca }}</td>
+                  <td>{{ switchData.modelo }}</td>
                   <td>{{ switchData.sector }}</td>
-                  <td>{{ switchData.estado }}</td>
+                  <td
+                    [ngClass]="{'encendido': switchData.conexion === conexionSwitch.Encendido, 'apagado': switchData.conexion === conexionSwitch.Apagado}">
+                    {{ switchData.conexion }}
+                  </td>
                   <td>
                     <div class="btn-actions">
                       <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(switchData)"><i
@@ -48,10 +48,10 @@
                 <tr>
                   <th>ID</th>
                   <th>IP</th>
-                  <th>Condición</th>
-                  <th>Nombre</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
                   <th>Sector</th>
-                  <th>Estado</th>
+                  <th>Conexión</th>
                   <th>Acciones</th>
                 </tr>
               </tfoot>

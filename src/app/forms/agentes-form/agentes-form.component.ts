@@ -18,7 +18,7 @@ export class AgentesFormComponent {
 
   ngOnInit(){
     if(!this.agenteData){
-      this.agenteData = { id: '', ip: '', nombre: '', rol: '', ubicacion: '', estadoIP: CondicionIP.SinDato }
+      this.agenteData = { id: '', ip: '', nombre: '', apellido: '', sector: ''}
     }
   }
 
