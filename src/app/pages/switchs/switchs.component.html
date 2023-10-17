@@ -11,7 +11,7 @@
               <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
                 Nuevo</button>
             </div>
-            <table id="switchTable" class="table table-bordered table-striped">
+            <table id="switchTable" class="table table-bordered table-striped centrado">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -27,8 +27,8 @@
                 <tr *ngFor="let switchData of switchesData">
                   <td>{{ switchData.id }}</td>
                   <td>{{ switchData.ip }}</td>
-                  <td
-                    [ngClass]="{'encendido': switchData.condicion === condicionSwitch.Encendido, 'apagado': switchData.condicion === condicionSwitch.Apagado}">
+                  <td 
+                    [ngClass]="{'condicionEncendido': switchData.condicion === condicionSwitch.Encendido, 'condicionApagado': switchData.condicion === condicionSwitch.Apagado}">
                     {{ switchData.condicion }}
                   </td>
                   <td>{{ switchData.nombre }}</td>

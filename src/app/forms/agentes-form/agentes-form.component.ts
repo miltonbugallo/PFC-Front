@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CondicionIP } from 'src/app/models/condicionIP';
 
 @Component({
   selector: 'app-agentes-form',
@@ -13,9 +14,11 @@ export class AgentesFormComponent {
     @Inject(MAT_DIALOG_DATA) public agenteData: any
   ) {} 
 
+  condicionIP: any = CondicionIP
+
   ngOnInit(){
     if(!this.agenteData){
-      this.agenteData = { ID: '', IP: '', Nombre: '', Rol: '', Ubicacion: '', EstadoIP: '' }
+      this.agenteData = { id: '', ip: '', nombre: '', rol: '', ubicacion: '', estadoIP: CondicionIP.SinDato }
     }
   }
 

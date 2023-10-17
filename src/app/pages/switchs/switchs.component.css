@@ -1,9 +1,19 @@
-.encendido {
-  color: green;
+.condicionApagado{
+  background-color: red;
+  border-radius: 10px; /* Controla el radio de los bordes para crear un rectángulo redondeado */
+  padding: 10px; /* Agrega espaciado interno para que el texto no quede pegado a los bordes */
+  color: white; /* Color del texto */
+  font-weight: bold; /* Puedes aplicar negrita al texto para hacerlo más visible */
+  display: inline-block; /* Hace que el elemento sea en línea para que se ajuste automáticamente al contenido */
 }
 
-.apagado {
-  color: red;
+.condicionEncendido{
+  background-color: green;
+  border-radius: 10px; /* Controla el radio de los bordes para crear un rectángulo redondeado */
+  padding: 10px; /* Agrega espaciado interno para que el texto no quede pegado a los bordes */
+  color: white; /* Color del texto */
+  font-weight: bold; /* Puedes aplicar negrita al texto para hacerlo más visible */
+  display: inline-block; /* Hace que el elemento sea en línea para que se ajuste automáticamente al contenido */
 }
 
 /* Estilos para los botones de acciones */
@@ -20,4 +30,8 @@
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 10px; /* Ajustar este valor según el espacio deseado entre el botón y la tabla */
+}
+
+.centrado{
+  text-align: center;
 }

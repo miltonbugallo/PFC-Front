@@ -11,7 +11,7 @@
                 <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
                   Nuevo</button>
               </div>
-              <table id="agentesTable" class="table table-bordered table-striped">
+              <table id="agentesTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -25,12 +25,12 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let agenteData of agentesData">
-                    <td>{{ agenteData.ID }}</td>
-                    <td>{{ agenteData.IP }}</td>
-                    <td>{{ agenteData.Nombre }}</td>
-                    <td>{{ agenteData.Rol }}</td>
-                    <td>{{ agenteData.Ubicacion }}</td>
-                    <td>{{ agenteData.EstadoIP }}</td>
+                    <td>{{ agenteData.id }}</td>
+                    <td>{{ agenteData.ip }}</td>
+                    <td>{{ agenteData.nombre }}</td>
+                    <td>{{ agenteData.rol }}</td>
+                    <td>{{ agenteData.ubicacion }}</td>
+                    <td>{{ agenteData.estadoIP }}</td>
                     <td>
                       <div class="btn-actions">
                         <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)"><i

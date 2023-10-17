@@ -1,0 +1,76 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Listado de IPs Duplicadas</h3>
+          </div>
+          <div class="card-body">
+            <table id="ipsDuplicadasTable" class="table table-bordered table-striped centrado">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Agentes</th>
+                  <th>Dispositivos</th>
+                  <th>Switches</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ipDuplicadaData of ipsDuplicadasData">
+                  <td>{{ ipDuplicadaData.id }}</td>
+                  <td>{{ ipDuplicadaData.ip }}</td>
+                  <td>{{ ipDuplicadaData.agentes.length > 0 ? ipDuplicadaData.agentes.join(', ') : '-' }}</td>
+                  <td>{{ ipDuplicadaData.dispositivos.length > 0 ? ipDuplicadaData.dispositivos.join(', ') : '-' }}</td>
+                  <td>{{ ipDuplicadaData.switches.length > 0 ? ipDuplicadaData.switches.join(', ') : '-' }}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Agentes</th>
+                  <th>Dispositivos</th>
+                  <th>Switches</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Listado de Agentes Sin Equipo</h3>
+          </div>
+          <div class="card-body">
+            <table id="agentesSinEquipoTable" class="table table-bordered table-striped centrado">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Agente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
+                  <td>{{ agenteSinEquipoData.id }}</td>
+                  <td>{{ agenteSinEquipoData.ip }}</td>
+                  <td>{{ agenteSinEquipoData.agente }}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>IP</th>
+                  <th>Agente</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

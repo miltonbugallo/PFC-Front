@@ -17,6 +17,9 @@ export class SidebarComponent implements OnInit {
     this.menuItems = [
         { titulo: 'Switchs', url: 'switchs', icono: 'fa fa-cubes' },
         { titulo: 'Agentes', url: 'agentes', icono: 'fa fa-users' },
+        { titulo: 'Dispositivos', url: 'dispositivos', icono: 'fa-solid fa-laptop-code' },
+        { titulo: 'Ips - Agentes Sin Equipo', url: 'ipsDuplicadasAgentesSinEquipo', icono: 'fa fa-copy' },
+        { titulo: 'Estadísticas', url: 'estadisticas', icono: 'fa-solid fa-chart-line' },
         { titulo: 'Logout', url: 'login', icono: 'fas fa-sign-out-alt' },
       ]
   }
