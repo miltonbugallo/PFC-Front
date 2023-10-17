@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AgentesComponent } from './agentes/agentes.component';
 import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.component';
 import { IpsDuplicadasAgentesSinEquipoComponent } from './ips-duplicadas-agentes-sin-equipo/ips-duplicadas-agentes-sin-equipo.component';
+import { DispositivosComponent } from './dispositivos/dispositivos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { IpsDuplicadasAgentesSinEquipoComponent } from './ips-duplicadas-agentes
     SwitchsFormComponent,
     AgentesComponent,
     AgentesFormComponent,
-    IpsDuplicadasAgentesSinEquipoComponent
+    IpsDuplicadasAgentesSinEquipoComponent,
+    DispositivosComponent
   ],
   imports: [
     CommonModule,

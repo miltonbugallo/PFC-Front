@@ -1,0 +1,63 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Dispositivos</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="dispositivosTable" class="table table-bordered table-striped centrado">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Dispositivo</th>
+                                    <th>Sistema Operativo</th>
+                                    <th>RAM</th>
+                                    <th>Agente</th>
+                                    <th>Sector</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dispositivoData of dispositivosData">
+                                    <td>{{ dispositivoData.id }}</td>
+                                    <td>{{ dispositivoData.ip }}</td>
+                                    <td>{{ dispositivoData.dispositivo }}</td>
+                                    <td [ngClass]="getClaseParaSistemaOperativo(dispositivoData.sistemaOperativo)">
+                                        {{ dispositivoData.sistemaOperativo }}
+                                    </td>
+                                    <td [ngClass]="getClaseParaRAM(dispositivoData.ram)">
+                                        {{ dispositivoData.ram }}
+                                    </td>
+                                    <td>{{ dispositivoData.agente }}</td>
+                                    <td>{{ dispositivoData.sector }}</td>
+                                    <td
+                                        [ngClass]="getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram)">
+                                        {{ getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram) ===
+                                        'condicionCorrecto' ? 'Correcto' :
+                                        getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram) ===
+                                        'condicionAlerta' ? 'Alerta' : 'Verificar' }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Dispositivo</th>
+                                    <th>Sistema Operativo</th>
+                                    <th>RAM</th>
+                                    <th>Agente</th>
+                                    <th>Sector</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

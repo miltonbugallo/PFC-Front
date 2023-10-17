@@ -7,6 +7,7 @@ import { SwitchsComponent } from './switchs/switchs.component';
 import { NopageFoundComponent } from '../nopage-found/nopage-found.component';
 import { AgentesComponent } from './agentes/agentes.component';
 import { IpsDuplicadasAgentesSinEquipoComponent } from './ips-duplicadas-agentes-sin-equipo/ips-duplicadas-agentes-sin-equipo.component';
+import { DispositivosComponent } from './dispositivos/dispositivos.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'switches', component: SwitchsComponent, data: { titulo: 'Switchs' } },
       { path: 'agentes', component: AgentesComponent, data: { titulo: 'Agentes' } },
       { path: 'ipsDuplicadasAgentesSinEquipo', component: IpsDuplicadasAgentesSinEquipoComponent, data: { titulo: 'IPs Duplicadas - Agentes Sin Equipo' } },
+      { path: 'dispositivos', component: DispositivosComponent, data: { titulo: 'Dispositivos' } }
     ]
   },
   { path: '**', component: NopageFoundComponent, }
