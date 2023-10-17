@@ -31,7 +31,7 @@
                   <td>{{ switchData.modelo }}</td>
                   <td>{{ switchData.sector }}</td>
                   <td
-                    [ngClass]="{'encendido': switchData.conexion === conexionSwitch.Encendido, 'apagado': switchData.conexion === conexionSwitch.Apagado}">
+                    [ngClass]="{'condicionEncendido': switchData.conexion === conexionSwitch.Encendido, 'condicionApagado': switchData.conexion === conexionSwitch.Apagado}">
                     {{ switchData.conexion }}
                   </td>
                   <td>

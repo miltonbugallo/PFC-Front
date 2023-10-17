@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'dashboard', component: PagesComponent,
     children: [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
-      { path: 'switchs', component: SwitchsComponent, data: { titulo: 'Switchs' } },
+      { path: 'switches', component: SwitchsComponent, data: { titulo: 'Switchs' } },
       { path: 'agentes', component: AgentesComponent, data: { titulo: 'Agentes' } },
       { path: 'ipsDuplicadasAgentesSinEquipo', component: IpsDuplicadasAgentesSinEquipoComponent, data: { titulo: 'IPs Duplicadas - Agentes Sin Equipo' } },
     ]

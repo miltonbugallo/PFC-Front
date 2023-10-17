@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CondicionIP } from '../models/condicionIP';
 import { HttpClient } from '@angular/common/http';
 import { agenteModel } from '../models/agenteModel';
 import { Observable } from 'rxjs';
