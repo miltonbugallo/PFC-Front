@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="hold-transition login-page">
+    <div class="login-box animate__animated animate__backInLeft">
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Ingrese su datos para entrar al sistema</p>
+
+                <form (ngSubmit)="login()">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" formControlName="password" #password
+                            placeholder="Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock" style="color: rgb(48, 37, 37);"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-outline-secondary btn-block">Ingresar</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+</div>

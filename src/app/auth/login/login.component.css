@@ -1,0 +1,9 @@
+.login-card-body,
+.login-box {
+    background-position: center center;
+    background-size: cover;
+    color: black
+}
+.cursor{
+cursor: pointer;
+}

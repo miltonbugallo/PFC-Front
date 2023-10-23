@@ -1,0 +1,76 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown"
+                        aria-expanded="false">
+                        Seleccione una opción
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <span class="dropdown-item" data-option-id="option1">Cantidad de agentes por sector</span>
+                        <span class="dropdown-item" data-option-id="option2">Memorias RAM</span>
+                        <span class="dropdown-item" data-option-id="option3">Sistemas Operativos</span>
+                    </div>
+                </div>
+                <div class="card card-danger" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Estadistica 1</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown"
+                        aria-expanded="false">
+                        Seleccione una opción
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <span class="dropdown-item" data-option-id="option1">Cantidad de agentes por sector</span>
+                        <span class="dropdown-item" data-option-id="option2">Memorias RAM</span>
+                        <span class="dropdown-item" data-option-id="option3">Sistemas Operativos</span>
+                    </div>
+                </div>
+                <div class="card card-success" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Estadistica 2</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <script>
+    // Agregar un manejador de eventos a los elementos del menú desplegable
+    $(".dropdown-item").click(function(e) {
+        var optionText = $(this).text(); // Obtener el texto de la opción seleccionada
+        $("#dropdownMenuButton1").text(optionText); // Actualizar el botón con el texto seleccionado
+    });
+</script> -->
+
+<!-- <script>
+    // Función para cargar estadísticas
+    function cargarEstadistica(optionId) {
+        // Realiza la lógica necesaria para cargar la estadística con el optionId
+        console.log("Opción seleccionada: " + optionId);
+        // Aquí puedes implementar la lógica para cargar la estadística correspondiente
+    }
+
+    // Agregar un manejador de eventos a los elementos del menú desplegable
+    $(".dropdown-item").click(function(e) {
+        var optionId = $(this).data("option-id");
+        cargarEstadistica(optionId);
+    });
+
+    // Activar la funcionalidad del menú desplegable
+    $('.dropdown-toggle').dropdown();
+</script> -->

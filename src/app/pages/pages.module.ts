@@ -12,6 +12,7 @@ import { AgentesComponent } from './agentes/agentes.component';
 import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.component';
 import { IpsDuplicadasAgentesSinEquipoComponent } from './ips-duplicadas-agentes-sin-equipo/ips-duplicadas-agentes-sin-equipo.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DispositivosComponent } from './dispositivos/dispositivos.component';
     AgentesComponent,
     AgentesFormComponent,
     IpsDuplicadasAgentesSinEquipoComponent,
-    DispositivosComponent
+    DispositivosComponent,
+    EstadisticasComponent
   ],
   imports: [
     CommonModule,
