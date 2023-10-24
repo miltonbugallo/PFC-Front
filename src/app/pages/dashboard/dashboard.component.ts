@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { agenteModel } from 'src/app/models/agenteModel';
+import { ConexionSwitch } from 'src/app/models/conexionSwitch';
+import { switchModel } from 'src/app/models/switchModel';
+import { AgentesService } from 'src/app/services/agentes.service';
+import { DataTableConfigService } from 'src/app/services/data-table-config.service';
+import { SwitchsService } from 'src/app/services/switchs.service';
+declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
   selector: 'app-dashboard',
@@ -7,4 +14,46 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+ 
+  constructor(
+    private datatableService: DataTableConfigService,
+    private switchService: SwitchsService,
+    private agenteService: AgentesService
+  ) { }
+
+  public agentesData: agenteModel[] = []
+  public switchesData: switchModel[] = []
+  conexionSwitch: any = ConexionSwitch
+  titulo1 = "Cantidad de agentes por sector";
+  titulo2 = "Cantidad total de agentes y dispositivos";
+
+  ngOnInit() {
+    const baseDatatableConfig = this.datatableService.getDatatableConfig();
+    
+    const customConfig = {
+      buttons: [],
+      searching: false,
+      paging: false,
+    };
+  
+    const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
+    $(function () {
+      $("#switchTable").DataTable(customtableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
+    });
+    $(function () {
+      $("#agentesTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
+    });
+    this.obtenerSwitches()
+    this.obtenerAgentes()
+  }
+
+  obtenerAgentes(){
+    this.agentesData = this.agenteService.obtenerAgentes()
+    this.agentesData = this.agentesData.slice(0, 5);
+  }
+
+  obtenerSwitches() {
+    this.switchesData = this.switchService.obtenerSwitchs()
+    this.switchesData = this.switchesData.slice(0, 5);
+  }
 }

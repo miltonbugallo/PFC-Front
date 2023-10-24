@@ -16,7 +16,7 @@ export class BreadcrumbsComponent {
   this.tituloSubs$ = this.getArgumentos().subscribe(({titulo})=>{
 
     this.titulo = titulo;
-    document.title = `AdminLte - ${titulo}`;
+    document.title = `ProyectoPFC - ${titulo}`;
 
   })
  }

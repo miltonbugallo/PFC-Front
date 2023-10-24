@@ -1,1 +1,110 @@
-<p>dashboard works!</p>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-danger" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">{{titulo1}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <app-grafico-agentes></app-grafico-agentes>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-success" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">{{titulo2}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <app-grafico-cantidad-total></app-grafico-cantidad-total>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Agentes</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="agentesTable" class="table table-bordered table-striped centrado">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Sector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let agenteData of agentesData">
+                                    <td>{{ agenteData.id }}</td>
+                                    <td>{{ agenteData.ip }}</td>
+                                    <td>{{ agenteData.nombre }}</td>
+                                    <td>{{ agenteData.apellido }}</td>
+                                    <td>{{ agenteData.sector }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Sector</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Switchs</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="switchTable" class="table table-bordered table-striped centrado">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Sector</th>
+                                    <th>Conexión</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let switchData of switchesData">
+                                    <td>{{ switchData.id }}</td>
+                                    <td>{{ switchData.ip }}</td>
+                                    <td>{{ switchData.marca }}</td>
+                                    <td>{{ switchData.modelo }}</td>
+                                    <td>{{ switchData.sector }}</td>
+                                    <td
+                                        [ngClass]="{'condicionEncendido': switchData.conexion === conexionSwitch.Encendido, 'condicionApagado': switchData.conexion === conexionSwitch.Apagado}">
+                                        {{ switchData.conexion }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>IP</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Sector</th>
+                                    <th>Conexión</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

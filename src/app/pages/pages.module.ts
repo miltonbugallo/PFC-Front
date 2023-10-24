@@ -13,6 +13,12 @@ import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.compone
 import { IpsDuplicadasAgentesSinEquipoComponent } from './ips-duplicadas-agentes-sin-equipo/ips-duplicadas-agentes-sin-equipo.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GraficoAgentesComponent } from '../graficas/grafico-agentes/grafico-agentes.component';
+import { GraficoRamComponent } from '../graficas/grafico-ram/grafico-ram.component';
+import { GraficoSOComponent } from '../graficas/grafico-so/grafico-so.component';
+import { GraficoCantidadTotalComponent } from '../graficas/grafico-cantidad-total/grafico-cantidad-total.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
     AgentesFormComponent,
     IpsDuplicadasAgentesSinEquipoComponent,
     DispositivosComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    GraficoAgentesComponent,
+    GraficoRamComponent,
+    GraficoSOComponent,
+    GraficoCantidadTotalComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +42,8 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
     SharedModule,
     FormsModule,
     MatDialogModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   exports: [
     DashboardComponent,
