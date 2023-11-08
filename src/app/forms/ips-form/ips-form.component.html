@@ -1,0 +1,17 @@
+<h2 mat-dialog-title class="modal-title">{{ titulo }}</h2>
+<div mat-dialog-content>
+  <form [formGroup]="ipsForm" (ngSubmit)="guardarCambios()">
+    <!-- <div class="form-group">
+      <label for="id">ID</label>
+      <input type="text" id="id" name="id" formControlName="id" class="form-control">
+    </div> -->
+    <div class="form-group">
+      <label for="ip">IP</label>
+      <input [ngClass]="ipsForm.get('ip')?.hasError('required') && ipsForm.get('ip')?.touched ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList">
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="ipsForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </form>
+</div>

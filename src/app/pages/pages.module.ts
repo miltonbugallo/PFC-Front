@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { SwitchsComponent } from './switchs/switchs.component';
 import { SwitchsFormComponent } from '../forms/switchs-form/switchs-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AgentesComponent } from './agentes/agentes.component';
 import { AgentesFormComponent } from '../forms/agentes-form/agentes-form.component';
@@ -18,7 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraficoAgentesComponent } from '../graficas/grafico-agentes/grafico-agentes.component';
 import { GraficoRamComponent } from '../graficas/grafico-ram/grafico-ram.component';
 import { GraficoSOComponent } from '../graficas/grafico-so/grafico-so.component';
-import { GraficoCantidadTotalComponent } from '../graficas/grafico-cantidad-total/grafico-cantidad-total.component';
+import { GraficoIpsConflictivasComponent } from '../graficas/grafico-ips-conflictivas/grafico-ips-conflictivas.component';
+import { IpsComponent } from './ips/ips.component';
+import { IpsFormComponent } from '../forms/ips-form/ips-form.component';
+import { AlertasComponent } from './alertas/alertas.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { GraficoCantidadTotalComponent } from '../graficas/grafico-cantidad-tota
     GraficoAgentesComponent,
     GraficoRamComponent,
     GraficoSOComponent,
-    GraficoCantidadTotalComponent
+    GraficoIpsConflictivasComponent,
+    IpsComponent,
+    IpsFormComponent,
+    AlertasComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +49,8 @@ import { GraficoCantidadTotalComponent } from '../graficas/grafico-cantidad-tota
     FormsModule,
     MatDialogModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DashboardComponent,

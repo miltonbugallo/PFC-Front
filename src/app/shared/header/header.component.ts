@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertasService } from 'src/app/services/alertas.service';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  
+  constructor( private alertasService: AlertasService){}
 
+  alertasData = this.alertasService.obtenerAlertas()
 }

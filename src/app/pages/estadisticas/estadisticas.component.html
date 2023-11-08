@@ -6,10 +6,10 @@
                     <label for="estadisticas1" style="margin-right: 10px;">Selecciona una opción:</label>
                     <select id="estadisticas1" (change)="actualizarEstadistica('estadisticas1')">
                         <option value="seleccionar" disabled selected></option>
-                        <option value="graficoAgentes1">Agentes por sector</option>
+                        <option value="graficoAgentes1">Agentes con/sin equipos</option>
                         <option value="graficoRAM1">Memorias RAM</option>
                         <option value="graficoSO1">Sistemas Operativos</option>
-                        <option value="graficoCantidadTotal1">Cantidad de agentes/equipos</option>
+                        <option value="graficoIpsConflictivas1">Cantidad Ips conflictivas</option>
                     </select>
                 </div>
                 <div class="card card-danger" style="margin-top: 20px;">
@@ -20,7 +20,7 @@
                         <app-grafico-agentes *ngIf="mostrarGraficoAgentes1"></app-grafico-agentes>
                         <app-grafico-ram *ngIf="mostrarGraficoRam1"></app-grafico-ram>
                         <app-grafico-so *ngIf="mostrarGraficoSO1"></app-grafico-so>
-                        <app-grafico-cantidad-total *ngIf="mostrarGraficoCantidadTotal1"></app-grafico-cantidad-total>
+                        <app-grafico-ips-conflictivas *ngIf="mostrarGraficoIpsConflictivas1"></app-grafico-ips-conflictivas>
                     </div>
                 </div>
             </div>
@@ -29,10 +29,10 @@
                     <label for="estadisticas2" style="margin-right: 10px;">Selecciona una opción:</label>
                     <select id="estadisticas2" (change)="actualizarEstadistica('estadisticas2')">
                         <option value="seleccionar" disabled selected></option>
-                        <option value="graficoAgentes2">Agentes por sector</option>
+                        <option value="graficoAgentes2">Agentes con/sin equipos</option>
                         <option value="graficoRAM2">Memorias RAM</option>
                         <option value="graficoSO2">Sistemas Operativos</option>
-                        <option value="graficoCantidadTotal2">Cantidad de agentes/equipos</option>
+                        <option value="graficoIpsConflictivas2">Cantidad Ips conflictivas</option>
                     </select>
                 </div>
                 <div class="card card-success" style="margin-top: 20px;">
@@ -43,7 +43,7 @@
                         <app-grafico-agentes *ngIf="mostrarGraficoAgentes2"></app-grafico-agentes>
                         <app-grafico-ram *ngIf="mostrarGraficoRam2"></app-grafico-ram>
                         <app-grafico-so *ngIf="mostrarGraficoSO2"></app-grafico-so>
-                        <app-grafico-cantidad-total *ngIf="mostrarGraficoCantidadTotal2"></app-grafico-cantidad-total>
+                        <app-grafico-ips-conflictivas *ngIf="mostrarGraficoIpsConflictivas2"></app-grafico-ips-conflictivas>
                     </div>
                 </div>
             </div>

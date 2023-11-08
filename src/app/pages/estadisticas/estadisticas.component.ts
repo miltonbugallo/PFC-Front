@@ -13,8 +13,8 @@ export class EstadisticasComponent {
   mostrarGraficoRam2: boolean = false;
   mostrarGraficoSO1: boolean = false;
   mostrarGraficoSO2: boolean = false;
-  mostrarGraficoCantidadTotal1: boolean = false;
-  mostrarGraficoCantidadTotal2: boolean = false;
+  mostrarGraficoIpsConflictivas1: boolean = false;
+  mostrarGraficoIpsConflictivas2: boolean = false;
   titulo1: string = 'Estadistica 1';
   titulo2: string = 'Estadistica 2';
 
@@ -22,13 +22,13 @@ export class EstadisticasComponent {
     this.mostrarGraficoAgentes1 = false;
     this.mostrarGraficoRam1 = false;
     this.mostrarGraficoSO1 = false;
-    this.mostrarGraficoCantidadTotal1 = false;
+    this.mostrarGraficoIpsConflictivas1 = false;
   }
   ocultarEstadisticas2(){
     this.mostrarGraficoAgentes2 = false;
     this.mostrarGraficoRam2 = false;
     this.mostrarGraficoSO2 = false;
-    this.mostrarGraficoCantidadTotal2 = false;
+    this.mostrarGraficoIpsConflictivas2 = false;
   }
 
 
@@ -53,10 +53,10 @@ export class EstadisticasComponent {
           this.mostrarGraficoSO1 = true;
           this.titulo1 = "Sistemas Operativos";
           break;
-        case 'graficoCantidadTotal1':
+        case 'graficoIpsConflictivas1':
           this.ocultarEstadisticas1();
-          this.mostrarGraficoCantidadTotal1 = true;
-          this.titulo1 = "Cantidad total de agentes y dispositivos";
+          this.mostrarGraficoIpsConflictivas1 = true;
+          this.titulo1 = "Cantidad Ips conflictivas";
           break;
       }
     }
@@ -77,10 +77,10 @@ export class EstadisticasComponent {
           this.mostrarGraficoSO2 = true;
           this.titulo2 = "Sistemas Operativos";
           break;
-        case 'graficoCantidadTotal2':
+        case 'graficoIpsConflictivas2':
           this.ocultarEstadisticas2();
-          this.mostrarGraficoCantidadTotal2 = true;
-          this.titulo2 = "Cantidad total de agentes y dispositivos";
+          this.mostrarGraficoIpsConflictivas2 = true;
+          this.titulo2 = "Cantidad Ips conflictivas";
           break;
       }
     }

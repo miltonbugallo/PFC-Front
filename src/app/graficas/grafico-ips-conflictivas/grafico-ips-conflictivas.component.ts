@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
-  selector: 'app-grafico-cantidad-total',
-  templateUrl: './grafico-cantidad-total.component.html',
-  styleUrls: ['./grafico-cantidad-total.component.css']
+  selector: 'app-grafico-ips-conflictivas',
+  templateUrl: './grafico-ips-conflictivas.component.html',
+  styleUrls: ['./grafico-ips-conflictivas.component.css']
 })
-export class GraficoCantidadTotalComponent {
+export class GraficoIpsConflictivasComponent {
   single: any = []
 
   // options
@@ -19,7 +19,7 @@ export class GraficoCantidadTotalComponent {
   }
 
   ngOnInit(): void {
-    this.single = this.estadisticasService.cargarGraficoCantidadTotal();
+    this.single = this.estadisticasService.cargarGraficoIpsConflictivas();
   }
 
 }

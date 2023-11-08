@@ -1,29 +1,34 @@
-<h2 mat-dialog-title class="modal-title">{{ agenteData.id != ''  ? 'Editar Agente' : 'Agregar Agente' }}</h2>
+<h2 mat-dialog-title class="modal-title">{{ titulo }}</h2>
 <div mat-dialog-content>
-    <form #switchForm="ngForm" (ngSubmit)="guardarCambios()" novalidate>
-        <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" id="id" name="id" [(ngModel)]="agenteData.id" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="ip">IP</label>
-            <input type="text" id="ip" name="ip" [(ngModel)]="agenteData.ip" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" [(ngModel)]="agenteData.nombre" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" [(ngModel)]="agenteData.apellido" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="sector">Sector</label>
-            <input type="text" id="sector" name="sector" [(ngModel)]="agenteData.sector" class="form-control" required>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
-        </div>
-    </form>
+  <form [formGroup]="agenteForm" (ngSubmit)="guardarCambios()">
+    <!-- <div class="form-group">
+      <label for="id">ID</label>
+      <input type="text" id="id" name="id" formControlName="id" class="form-control">
+    </div> -->
+    <div class="form-group">
+      <label for="ip">IP</label>
+      <input [ngClass]="agenteForm.get('ip')?.hasError('required') && agenteForm.get('ip')?.touched ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList">
+      <datalist id="ipsList">
+        <option *ngFor="let ip of ips" [value]="ip"></option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input [ngClass]="agenteForm.get('nombre')?.hasError('required') && agenteForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="apellido">Apellido</label>
+      <input [ngClass]="agenteForm.get('apellido')?.hasError('required') && agenteForm.get('apellido')?.touched ? 'error' : ''" type="text" id="apellido" name="apellido" formControlName="apellido" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="sector">Sector</label>
+      <select [ngClass]="agenteForm.get('sector')?.hasError('required') && agenteForm.get('sector')?.touched ? 'error' : ''" id="sector" name="sector" formControlName="sector" class="form-control">
+        <option *ngFor="let sector of sectores" [value]="sector.nombre">{{ sector.nombre }}</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="agenteForm.invalid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+  </form>
 </div>

@@ -46,21 +46,16 @@ export class EstadisticasService {
     ];
   }
 
-  cargarGraficoCantidadTotal(){
+  cargarGraficoIpsConflictivas(){
     return [
       {
-        "name": "Agentes",
+        "name": "Ips duplicadas",
         "value": 250
       },
       {
-        "name": "Dispositivos",
+        "name": "Ips correctas",
         "value": 100
-      },
-      {
-        "name": "Switches",
-        "value": 25
-      },
-  
+      },  
     ];
   }
 

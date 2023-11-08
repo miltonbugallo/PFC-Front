@@ -1,35 +1,40 @@
-<h2 mat-dialog-title class="modal-title">{{ switchData.id != '' ? 'Editar Switch' : 'Agregar Switch' }}</h2>
+<h2 mat-dialog-title class="modal-title">{{ titulo }}</h2>
 <div mat-dialog-content>
-    <form #switchForm="ngForm" (ngSubmit)="guardarCambios()" novalidate>
-        <div class="form-group">
+    <form [formGroup]="switchForm" (ngSubmit)="guardarCambios()">
+        <!-- <div class="form-group">
             <label for="id">ID</label>
             <input type="text" id="id" name="id" [(ngModel)]="switchData.id" class="form-control" required>
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="ip">IP</label>
-            <input type="text" id="ip" name="ip" [(ngModel)]="switchData.ip" class="form-control" required>
-        </div>
+            <input [ngClass]="switchForm.get('ip')?.hasError('required') && switchForm.get('ip')?.touched ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList">
+            <datalist id="ipsList">
+              <option *ngFor="let ip of ips" [value]="ip"></option>
+            </datalist>
+          </div>
         <div class="form-group">
             <label for="marca">Marca</label>
-            <input type="text" id="marca" name="marca" [(ngModel)]="switchData.marca" class="form-control" required>
+            <input [ngClass]="switchForm.get('marca')?.hasError('required') && switchForm.get('marca')?.touched ? 'error' : ''" type="text" id="marca" name="marca" formControlName="marca" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="modelo">Modelo</label>
-            <input type="text" id="modelo" name="modelo" [(ngModel)]="switchData.modelo" class="form-control" required>
+            <input [ngClass]="switchForm.get('modelo')?.hasError('required') && switchForm.get('modelo')?.touched ? 'error' : ''" type="text" id="modelo" name="modelo" formControlName="modelo" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="sector">Sector</label>
-            <input type="text" id="sector" name="sector" [(ngModel)]="switchData.sector" class="form-control" required>
-        </div>
+            <select [ngClass]="switchForm.get('sector')?.hasError('required') && switchForm.get('sector')?.touched ? 'error' : ''" id="sector" name="sector" formControlName="sector" class="form-control">
+              <option *ngFor="let sector of sectores" [value]="sector">{{ sector }}</option>
+            </select>
+          </div>
         <div class="form-group">
             <label for="conexion">Conexión</label>
-            <select id="conexion" name="conexion" [(ngModel)]="switchData.conexion" class="form-control" required>
+            <select [ngClass]="switchForm.get('conexion')?.hasError('required') && switchForm.get('conexion')?.touched ? 'error' : ''" id="conexion" name="conexion" formControlName="conexion" class="form-control" required>
                 <option value={{conexionSwitch.Encendido}}>Encendido</option>
                 <option value={{conexionSwitch.Apagado}}>Apagado</option>
             </select>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="switchForm.invalid">Guardar</button>
             <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
         </div>
     </form>

@@ -13,18 +13,14 @@
     <li class="nav-item dropdown">
       <a class="badge-warning squared-badge" style="margin-right: 10px; text-decoration: none;" data-toggle="dropdown" href="#">
         <i class="far fa-bell"i></i>
-        <span style="margin-left: 5px; text-decoration: none;">15</span>
+        <span style="margin-left: 5px; text-decoration: none;">{{alertasData.length}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <ul>
-          <li class="dropdown-item">Alerta 1</li>
-          <li class="dropdown-item">Alerta 2</li>
-          <li class="dropdown-item">Alerta 3</li>
-          <li class="dropdown-item">Alerta 4</li>
-          <li class="dropdown-item">Alerta 5</li>
+          <li *ngFor="let alerta of alertasData.slice(0, 5)" class="dropdown-item">{{ alerta.alerta }}</li>
         </ul>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">Ver todas</a>
+        <a href="./dashboard/alertas" class="dropdown-item dropdown-footer">Ver todas</a>
       </div>
     </li>
   </ul>

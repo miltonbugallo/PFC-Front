@@ -4,36 +4,30 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Listado de Agentes</h3>
+              <h3 class="card-title">Listado de Ips</h3>
             </div>
             <div class="card-body">
               <div class="table-actions">
                 <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
-                  Nuevo</button>
+                  Nueva</button>
               </div>
-              <table id="agentesTable" class="table table-bordered table-striped centrado">
+              <table id="ipsTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
                     <th>ID</th>
                     <th>IP</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Sector</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let agenteData of agentesData">
-                    <td>{{ agenteData.id }}</td>
-                    <td>{{ agenteData.ip }}</td>
-                    <td>{{ agenteData.nombre }}</td>
-                    <td>{{ agenteData.apellido }}</td>
-                    <td>{{ agenteData.sector.nombre }}</td>
+                  <tr *ngFor="let ipData of ipsData">
+                    <td>{{ ipData.id }}</td>
+                    <td>{{ ipData.ip }}</td>
                     <td>
                       <div class="btn-actions">
-                        <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)"><i
+                        <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(ipData)"><i
                             class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteAgente(agenteData)"><i
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteIp(ipData)"><i
                             class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -43,9 +37,6 @@
                   <tr>
                     <th>ID</th>
                     <th>IP</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Sector</th>
                     <th>Acciones</th>
                   </tr>
                 </tfoot>

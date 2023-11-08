@@ -15,7 +15,7 @@ export class GraficoRamComponent {
   gradient = false;
   showLegend = false;
   showXAxisLabel = true;
-  xAxisLabel = 'Cantidad Memoria RAM';
+  xAxisLabel = 'Rango Memoria RAM';
   showYAxisLabel = true;
   yAxisLabel = 'Cantidad equipos';
 

@@ -12,51 +12,9 @@ export class AgentesService {
 
 
   public agentesData: agenteModel[]= [
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
-    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: 'IT'},
-    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: 'Ministerio' },
+    { id: "1", ip: '10.255.255', nombre: 'Milton', apellido: 'Bugallo', sector: {nombre:'Sector 1'} },
+    { id: "2", ip: '20.255.255', nombre: 'Joaco', apellido: 'Luengo', sector: {nombre:'Sector 1'}},
+    { id: "3", ip: '30.255.255', nombre: 'Miguel', apellido: 'Robledo', sector: {nombre:'Sector 1'} },
   ];
 
   private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
@@ -64,6 +22,10 @@ export class AgentesService {
   obtenerAgentes() {
     return this.agentesData
   }
+
+  // obtenerAgentes(): Observable<agenteModel[]> {
+  //   return this.http.get<agenteModel[]>(this.url);
+  // }
 
   agregarAgente(agenteNuevo: agenteModel): Observable<boolean> {
     return this.http.post<boolean>(this.url, agenteNuevo);

@@ -15,12 +15,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
 
     this.menuItems = [
+        { titulo: 'Ips', url: 'ips', icono: 'fas fa-network-wired' },
         { titulo: 'Switches', url: 'switches', icono: 'fa fa-cubes' },
         { titulo: 'Agentes', url: 'agentes', icono: 'fa fa-users' },
         { titulo: 'Dispositivos', url: 'dispositivos', icono: 'fa-solid fa-laptop-code' },
         { titulo: 'Ips - Agentes Sin Equipo', url: 'ipsDuplicadasAgentesSinEquipo', icono: 'fa fa-copy' },
         { titulo: 'Estadísticas', url: 'estadisticas', icono: 'fa-solid fa-chart-line' },
-        { titulo: 'Logout', url: 'login', icono: 'fas fa-sign-out-alt' }, //Corregir
+        { titulo: 'Logout', url: '/login', icono: 'fas fa-sign-out-alt' },
       ]
   }
 
