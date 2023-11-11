@@ -43,7 +43,7 @@ export class DashboardComponent {
     $(function () {
       $("#agentesTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
-    this.obtenerSwitches()
+    //this.obtenerSwitches()
     //this.obtenerAgentes()
   }
 
@@ -52,8 +52,8 @@ export class DashboardComponent {
   //   this.agentesData = this.agentesData.slice(0, 5);
   // }
 
-  obtenerSwitches() {
-    this.switchesData = this.switchService.obtenerSwitchs()
-    this.switchesData = this.switchesData.slice(0, 5);
-  }
+  // obtenerSwitches() {
+  //   this.switchesData = this.switchService.obtenerSwitchs()
+  //   this.switchesData = this.switchesData.slice(0, 5);
+  // }
 }

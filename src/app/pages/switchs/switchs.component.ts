@@ -20,47 +20,55 @@ export class SwitchsComponent implements OnInit {
     private switchService: SwitchsService
   ) { }
 
-  public switchesData: switchModel[] = []
+  public switchesData: any[] = []
   conexionSwitch: any = ConexionSwitch
 
   ngOnInit() {
+    this.obtenerSwitches()
+    console.log(this.switchesData)
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#switchTable").DataTable(datatableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
     });
-    this.obtenerSwitches()
   }
 
   obtenerSwitches() {
-    this.switchesData = this.switchService.obtenerSwitchs()
-    // this.switchService.obtenerSwitch()
-    //   .subscribe((switches: any) => {
-    //     this.switchesData = switches;
-    //   });
+    this.switchService.getSwitchesFicticios().subscribe((switchs) => {
+      this.switchesData = switchs;
+    });
+
+    // this.switchService.getSwitches().subscribe((switchs) => {
+    //   this.switchesData = switchs;
+    // });
   }
 
-  deleteSwitch(switchData: any) {
-    // Encuentra el índice del elemento en el array switchesData y elimínalo
-    const index = this.switchesData.indexOf(switchData);
-    if (index !== -1) {
-      this.switchesData.splice(index, 1);
-    }
+  crearSwitch(nuevoSwitch: any) {
 
-    // this.switchService.deleteSwitch(switchDelete)
-    //   .subscribe(result => {
-    //     if (result) {
-    //       console.log('Switch editado exitosamente.');
-    //       this.switchesData = this.switchService.obtenerSwitchs()
+    this.switchService.crearSwitch(nuevoSwitch).subscribe((respuesta) => {
+      console.log('Switch creado:', respuesta);
+      // Puedes realizar acciones después de crear el agente
+      this.obtenerSwitches(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
+    });
+  }
 
-    //     } else {
-    //       console.error('Error al editar el switch.');
-    //     }
-    //   });
+  actualizarSwitch(switchData: any) {
+    this.switchService.actualizarSwitch(switchData).subscribe((respuesta) => {
+      console.log('Switch actualizado:', respuesta);
+      // Puedes realizar acciones después de actualizar el agente
+      this.obtenerSwitches(); // Por ejemplo, actualizar la lista de agentes después de la actualización
+    });
+  }
 
+  deleteSwitch(id: number) {
+    this.switchService.eliminarSwitch(id).subscribe((respuesta) => {
+      console.log('Switch eliminado:', respuesta);
+      // Puedes realizar acciones después de eliminar el agente
+      this.obtenerSwitches(); // Por ejemplo, actualizar la lista de agentes después de la eliminación
+    });
   }
 
   // Función para abrir el formulario de edición/agregado en un modal
-  abrirFormulario(switchData?: switchModel) {
+  abrirFormulario(switchData?: any) {
     const dialogConfig: MatDialogConfig = {
       data: switchData || null // Pasamos null cuando no hay datos para editar
     };
@@ -68,53 +76,20 @@ export class SwitchsComponent implements OnInit {
     const dialogRef = this.dialog.open(SwitchsFormComponent, dialogConfig);
 
     // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
-    dialogRef.afterClosed().subscribe((datosActualizados: switchModel) => {
+    dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo switch
+        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo Switch
         if (switchData) {
-          // Se editó un switch existente
-          this.editarSwitch(datosActualizados); // Lógica para guardar los cambios
+            // Se editó un Switch existente
+          this.actualizarSwitch(datosActualizados); // Lógica para guardar los cambios
+          
         } else {
-          // Se agregó un nuevo switch
-          this.agregarNuevoSwitch(datosActualizados); // Lógica para agregar el nuevo switch
+          // Se agregó un nuevo Switch
+          this.crearSwitch(datosActualizados); // Lógica para agregar el nuevo Switch
         }
       }
     });
   }
 
-  editarSwitch(switchEditado: switchModel) {
-    // Lógica para guardar los cambios en el backend o actualizar los datos originales
-    const index = this.switchesData.findIndex((data) => data.id === switchEditado.id);
-    if (index !== -1) {
-      this.switchesData[index] = switchEditado;
-    }
-    // this.switchService.editarSwitch(switchEditado)
-    //   .subscribe(result => {
-    //     if (result) {
-    //       console.log('Switch editado exitosamente.');
-    //       this.switchesData = this.switchService.obtenerSwitchs()
-
-    //     } else {
-    //       console.error('Error al editar el switch.');
-    //     }
-    //   });
-
-  }
-
-  agregarNuevoSwitch(nuevoSwitch: switchModel) {
-    // Lógica para agregar el nuevo switch al array switchesData
-    this.switchesData.push(nuevoSwitch)
-
-    // this.switchService.agregarSwitch(nuevoSwitch)
-    //   .subscribe(result => {
-    //     if (result) {
-    //       console.log('Switch agregado exitosamente.');
-    //          this.switchesData = this.switchService.obtenerSwitchs()
-    //     } else {
-    //       console.error('Error al agregar el switch.');
-    //     }
-    //   });
-
-  }
-
+  
 }

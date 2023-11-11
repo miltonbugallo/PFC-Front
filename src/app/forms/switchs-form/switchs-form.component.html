@@ -1,36 +1,42 @@
 <h2 mat-dialog-title class="modal-title">{{ titulo }}</h2>
 <div mat-dialog-content>
     <form [formGroup]="switchForm" (ngSubmit)="guardarCambios()">
-        <!-- <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" id="id" name="id" [(ngModel)]="switchData.id" class="form-control" required>
-        </div> -->
         <div class="form-group">
             <label for="ip">IP</label>
-            <input [ngClass]="switchForm.get('ip')?.hasError('required') && switchForm.get('ip')?.touched ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList">
+            <input type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
             <datalist id="ipsList">
-              <option *ngFor="let ip of ips" [value]="ip"></option>
+              <option *ngFor="let ip of ips" [value]="ip.direccion">{{ip.direccion}}</option>
             </datalist>
           </div>
         <div class="form-group">
             <label for="marca">Marca</label>
-            <input [ngClass]="switchForm.get('marca')?.hasError('required') && switchForm.get('marca')?.touched ? 'error' : ''" type="text" id="marca" name="marca" formControlName="marca" class="form-control" required>
+            <input [ngClass]="switchForm.get('marca')?.hasError('required') && switchForm.get('marca')?.touched ? 'error' : ''" type="text" id="marca" name="marca" formControlName="marca" class="form-control" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="modelo">Modelo</label>
-            <input [ngClass]="switchForm.get('modelo')?.hasError('required') && switchForm.get('modelo')?.touched ? 'error' : ''" type="text" id="modelo" name="modelo" formControlName="modelo" class="form-control" required>
+            <input [ngClass]="switchForm.get('modelo')?.hasError('required') && switchForm.get('modelo')?.touched ? 'error' : ''" type="text" id="modelo" name="modelo" formControlName="modelo" class="form-control" autocomplete="off">
         </div>
         <div class="form-group">
+          <label for="etiqueta">Etiqueta</label>
+          <input [ngClass]="switchForm.get('etiqueta')?.hasError('required') && switchForm.get('etiqueta')?.touched ? 'error' : ''" type="text" id="etiqueta" name="etiqueta" formControlName="etiqueta" class="form-control" autocomplete="off">
+      </div>
+        <div class="form-group">
+            <label for="agenteSwitch">Agente</label>
+            <select [ngClass]="switchForm.get('agenteSwitch')?.hasError('required') && switchForm.get('agenteSwitch')?.touched ? 'error' : ''"  id="agenteSwitch" name="agenteSwitch" formControlName="agenteSwitch" class="form-control" autocomplete="off">
+              <option *ngFor="let agenteSwitch of agentes" [value]="agenteSwitch.id" [selected]="agenteSwitch.id === switchForm.get('agenteSwitch')?.value">{{ agenteSwitch.nombre + ' ' + agenteSwitch.apellido }}</option>
+            </select>
+          </div>
+        <div class="form-group">
             <label for="sector">Sector</label>
-            <select [ngClass]="switchForm.get('sector')?.hasError('required') && switchForm.get('sector')?.touched ? 'error' : ''" id="sector" name="sector" formControlName="sector" class="form-control">
-              <option *ngFor="let sector of sectores" [value]="sector">{{ sector }}</option>
+            <select id="sector" name="sector" formControlName="sector" class="form-control" autocomplete="off">
+              <option *ngFor="let sector of sectores" [value]="sector.id" [selected]="sector.id === switchForm.get('sector')?.value">{{ sector.nombre }}</option>
             </select>
           </div>
         <div class="form-group">
             <label for="conexion">Conexión</label>
-            <select [ngClass]="switchForm.get('conexion')?.hasError('required') && switchForm.get('conexion')?.touched ? 'error' : ''" id="conexion" name="conexion" formControlName="conexion" class="form-control" required>
-                <option value={{conexionSwitch.Encendido}}>Encendido</option>
-                <option value={{conexionSwitch.Apagado}}>Apagado</option>
+            <select [ngClass]="switchForm.get('conexion')?.hasError('required') && switchForm.get('conexion')?.touched ? 'error' : ''" id="conexion" name="conexion" formControlName="conexion" class="form-control">
+              <option [value]="conexionSwitch.Encendido" [selected]="switchForm.get('conexion')?.value === conexionSwitch.Encendido">Encendido</option>
+              <option [value]="conexionSwitch.Apagado" [selected]="switchForm.get('conexion')?.value === conexionSwitch.Apagado">Apagado</option>
             </select>
         </div>
         <div class="modal-footer">

@@ -14,22 +14,24 @@
             <table id="switchTable" class="table table-bordered table-striped centrado">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Marca</th>
                   <th>Modelo</th>
                   <th>Sector</th>
+                  <th>Agente</th>
+                  <th>Etiqueta</th>
                   <th>Conexión</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let switchData of switchesData">
-                  <td>{{ switchData.id }}</td>
-                  <td>{{ switchData.ip }}</td>
+                  <td>{{ switchData.ip.direccion }}</td>
                   <td>{{ switchData.marca }}</td>
                   <td>{{ switchData.modelo }}</td>
-                  <td>{{ switchData.sector }}</td>
+                  <td>{{ switchData.sector.nombre }}</td>
+                  <td>{{ switchData.agente.nombre + ' ' + switchData.agente.apellido }}</td>
+                  <td>{{ switchData.etiqueta }}</td>
                   <td
                     [ngClass]="{'condicionEncendido': switchData.conexion === conexionSwitch.Encendido, 'condicionApagado': switchData.conexion === conexionSwitch.Apagado}">
                     {{ switchData.conexion }}
@@ -38,7 +40,7 @@
                     <div class="btn-actions">
                       <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(switchData)"><i
                           class="fas fa-edit"></i></button>
-                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteSwitch(switchData)"><i
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteSwitch(switchData.id)"><i
                           class="fas fa-trash"></i></button>
                     </div>
                   </td>
@@ -46,11 +48,12 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Marca</th>
                   <th>Modelo</th>
                   <th>Sector</th>
+                  <th>Agente</th>
+                  <th>Etiqueta</th>
                   <th>Conexión</th>
                   <th>Acciones</th>
                 </tr>

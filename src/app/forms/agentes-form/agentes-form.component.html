@@ -3,7 +3,7 @@
   <form [formGroup]="agenteForm" (ngSubmit)="guardarCambios()">
     <div class="form-group">
       <label for="ip">IP</label>
-      <input [ngClass]="agenteForm.get('ip')?.hasError('incorrect') ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
+      <input type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
       <datalist id="ipsList">
         <option *ngFor="let ip of ips" [value]="ip.direccion">{{ip.direccion}}</option>
       </datalist>

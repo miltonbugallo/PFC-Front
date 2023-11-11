@@ -1,47 +1,150 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { agenteModel } from '../models/agenteModel';
+import { Observable, forkJoin, map, of } from 'rxjs';
+import { sectorModel } from '../models/sectorModel';
+import { ipModel } from '../models/ipModel';
+import { LoginService } from './login.service';
 import { switchModel } from '../models/switchModel';
 import { ConexionSwitch } from '../models/conexionSwitch';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SwitchsService {
 
-  public switchesData: switchModel[] = 
-  [
-    { id: "1", ip: '10.255.255', marca: 'Switch 1', modelo: 'TP-Link 1' , sector: 'Sector 1', conexion: ConexionSwitch.Encendido },
-    { id: "2", ip: '20.255.255', marca: 'Switch 2', modelo: 'TP-Link 2' , sector: 'Sector 1', conexion: ConexionSwitch.Encendido },
-    { id: "3", ip: '30.255.255', marca: 'Switch 3', modelo: 'TP-Link 3' , sector: 'Sector 1', conexion: ConexionSwitch.Apagado },
-    { id: "4", ip: '40.255.255', marca: 'Switch 4', modelo: 'TP-Link 4' , sector: 'Sector 1', conexion: ConexionSwitch.Encendido },
-    { id: "5", ip: '50.255.255', marca: 'Switch 5', modelo: 'TP-Link 5' , sector: 'Sector 1', conexion: ConexionSwitch.Apagado },
-  ];
+  constructor(private http: HttpClient, public loginService: LoginService) { }
+
+  private apiUrl = 'http://localhost:250/api/switches';
+  private token = this.loginService.getToken(); 
+
+  //Datos pruebas
+
+    getSwitchesFicticios(): Observable<switchModel[]> {
+      const switchesFicticiosData = [
+        {
+          id: 1,
+          marca: "Marca1",
+          modelo: "Modelo1",
+          estadoConexion: true,
+          sector: {
+            id: 1,
+            nombre: "Sector 1"
+          },
+          agente: {
+            id: 1,
+            nombre: "Milton",
+            apellido: "Bugallo"
+          },
+          etiqueta: "SW01",
+          ipadress: {
+            id: 1,
+            direccion: "IP 1"
+          }
+        }
+      
+      ];
   
-  private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
+      // Aplicar el mapeo a cada elemento de la lista
+      const switchesFicticiosMapeados = switchesFicticiosData.map(switchs => this.mapSwitch(switchs));
+  
+      return of(switchesFicticiosMapeados);
+    }
 
 
-  constructor(private http: HttpClient) { }
 
-  obtenerSwitchs(){
-    return this.switchesData
+  // Datos reales
+  getSwitch(): Observable<switchModel[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+      map((data) => {
+        return data.map((switchs) => this.mapSwitch(switchs));
+      })
+    );
+  }
+
+  private mapSwitch(switchs: any): switchModel {
+    return {
+      id: switchs.id,
+      ip: this.mapIP(switchs.ipadress),
+      marca: switchs.marca,
+      modelo: switchs.modelo,
+      sector: this.mapSector(switchs.sector),
+      conexion: switchs.estadoConexion == true ? ConexionSwitch.Encendido : ConexionSwitch.Apagado,
+      agente: switchs.agente,
+      etiqueta: switchs.etiqueta
+    };
+  }
+
+  private mapSector(sector: any): sectorModel {
+    return {
+      id: sector.id,
+      nombre: sector.nombre,
+    };
+  }
+
+  private mapIP(ipadress: any): ipModel {
+    return {
+      id: ipadress.id,
+      direccion: ipadress.direccion,
+    };
+  }
+
+  crearSwitch(switchs: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+      marca: switchs.marca,
+      modelo: switchs.modelo,
+      etiqueta: switchs.etiqueta,
+      estadoConexion: switchs.conexionSwitch == ConexionSwitch.Encendido ? true : false,
+      sector: switchs.sector ? `/api/sectors/${switchs.sector}` : null,
+      agente: switchs.agente ? `/api/agentes/${switchs.agente}` : null,
+      ipAdress: switchs.ip ? { direccion: `/api/ip_adresses/${switchs.ip}` } : null,
+    };
+    console.log(requestBody)
+
+    // Realizamos la solicitud POST
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+    return this.http.post(`${this.apiUrl}/agregar-switch`, JSON.stringify(requestBody), { headers });
   }
 
 
-  agregarSwitch(switchNuevo: switchModel): Observable<boolean> {
-    return this.http.post<boolean>(this.url, switchNuevo);
+  eliminarSwitch(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.delete(`${this.apiUrl}/eliminar-switch/${id}`, { headers });
   }
 
-  //Editar
-  editarSwitch(switchEditar: switchModel): Observable<boolean> {
-    const editUrl = `${this.url}/${switchEditar.id}`;
-    return this.http.put<boolean>(editUrl, switchEditar);
-  }
+  actualizarSwitch(switchs: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+      marca: switchs.marca,
+      modelo: switchs.modelo,
+      etiqueta: switchs.etiqueta,
+      estadoConexion: switchs.conexionSwitch == ConexionSwitch.Encendido ? true : false,
+      sector: switchs.sector ? `/api/sectors/${switchs.sector}` : null,
+      agente: switchs.agente ? `/api/agentes/${switchs.agente}` : null,
+      ipAdress: switchs.ip ? { direccion: `/api/ip_adresses/${switchs.ip}` } : null,
+    };
+    console.log(requestBody)
 
-  //Delete
-  deleteSwitch(switchDelete: switchModel): Observable<boolean> {
-    const deleteUrl = `${this.url}/${switchDelete.id}`;
-    return this.http.delete<boolean>(deleteUrl);
+    // Realizamos la solicitud PATCH
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/merge-patch+json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.patch(`${this.apiUrl}/actualizar-switch/${switchs.id}`, JSON.stringify(requestBody), { headers });
   }
+  
 
 }
