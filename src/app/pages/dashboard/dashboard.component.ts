@@ -25,7 +25,7 @@ export class DashboardComponent {
   public switchesData: switchModel[] = []
   conexionSwitch: any = ConexionSwitch
   titulo1 = "Cantidad de agentes por sector";
-  titulo2 = "Cantidad total de agentes y dispositivos";
+  titulo2 = "Cantidad ips conflictivas y correctas";
 
   ngOnInit() {
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
@@ -44,13 +44,13 @@ export class DashboardComponent {
       $("#agentesTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
     this.obtenerSwitches()
-    this.obtenerAgentes()
+    //this.obtenerAgentes()
   }
 
-  obtenerAgentes(){
-    this.agentesData = this.agenteService.obtenerAgentes()
-    this.agentesData = this.agentesData.slice(0, 5);
-  }
+  // obtenerAgentes(){
+  //   this.agentesData = this.agenteService.obtenerAgentes()
+  //   this.agentesData = this.agentesData.slice(0, 5);
+  // }
 
   obtenerSwitches() {
     this.switchesData = this.switchService.obtenerSwitchs()

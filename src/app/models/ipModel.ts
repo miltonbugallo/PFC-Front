@@ -1,4 +1,4 @@
 export interface ipModel {
-    id: string;
-    ip: string;
+    id: number;
+    direccion: string;
 }

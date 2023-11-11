@@ -3,7 +3,6 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AgentesFormComponent } from 'src/app/forms/agentes-form/agentes-form.component';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
 import { AgentesService } from '../../services/agentes.service';
-import { agenteModel } from 'src/app/models/agenteModel';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
@@ -16,22 +15,50 @@ export class AgentesComponent implements OnInit{
   constructor(private datatableService: DataTableConfigService, private dialog: MatDialog,
     private agenteService: AgentesService) { }
 
-  agentesData = this.agenteService.obtenerAgentes()
+  agentesData:any[] = []
   
 
   ngOnInit() {
+    this.obtenerAgentes()
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
   }
 
-  deleteAgente(agenteData: any) {
-    // Encuentra el índice del elemento en el array agentesData y elimínalo
-    const index = this.agentesData.indexOf(agenteData);
-    if (index !== -1) {
-      this.agentesData.splice(index, 1);
-    }
+  obtenerAgentes() {
+    this.agenteService.getAgentesFicticios().subscribe((agentes) => {
+      this.agentesData = agentes;
+    });
+
+    // this.agenteService.getAgentes().subscribe((agentes) => {
+    //   this.agentesData = agentes;
+    // });
+  }
+
+  crearAgente(nuevoAgente: any) {
+
+    this.agenteService.crearAgente(nuevoAgente).subscribe((respuesta) => {
+      console.log('Agente creado:', respuesta);
+      // Puedes realizar acciones después de crear el agente
+      this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
+    });
+  }
+
+  actualizarAgente(agente: any) {
+    this.agenteService.actualizarAgente(agente).subscribe((respuesta) => {
+      console.log('Agente actualizado:', respuesta);
+      // Puedes realizar acciones después de actualizar el agente
+      this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de la actualización
+    });
+  }
+
+  eliminarAgente(id: number) {
+    this.agenteService.eliminarAgente(id).subscribe((respuesta) => {
+      console.log('Agente eliminado:', respuesta);
+      // Puedes realizar acciones después de eliminar el agente
+      this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de la eliminación
+    });
   }
 
   // Función para abrir el formulario de edición/agregado en un modal
@@ -45,29 +72,18 @@ export class AgentesComponent implements OnInit{
     // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
     dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo switch
+        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo agente
         if (agenteData) {
-          // Se editó un switch existente
-          this.guardarCambios(datosActualizados); // Lógica para guardar los cambios
+            // Se editó un agente existente
+          this.actualizarAgente(datosActualizados); // Lógica para guardar los cambios
+          
         } else {
-          // Se agregó un nuevo switch
-          this.agregarNuevoAgente(datosActualizados); // Lógica para agregar el nuevo switch
+          // Se agregó un nuevo agente
+          this.crearAgente(datosActualizados); // Lógica para agregar el nuevo agente
         }
       }
     });
   }
 
-  guardarCambios(datosActualizados: agenteModel) {
-    // Lógica para guardar los cambios en el backend o actualizar los datos originales
-    const index = this.agentesData.findIndex((data) => data.id === datosActualizados.id);
-    if (index !== -1) {
-      this.agentesData[index] = datosActualizados;
-    }
-  }
-
-  agregarNuevoAgente(nuevoAgente: any) {
-    // Lógica para agregar el nuevo switch al array switchesData
-    this.agentesData.push(nuevoAgente)
-  }
-
+  
 }

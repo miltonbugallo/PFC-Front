@@ -1,4 +1,6 @@
 import { ConexionSwitch } from "./conexionSwitch";
+import { ipModel } from "./ipModel";
+import { sectorModel } from "./sectorModel";
 
 export interface switchModel {
     id: string;
@@ -7,4 +9,10 @@ export interface switchModel {
     modelo: string;
     sector: string;
     conexion: ConexionSwitch;
+    // agente: {
+    //     id: number,
+    //     nombre: "string",
+    //     apellido: "string"
+    //   };
+    // etiqueta: string
 }

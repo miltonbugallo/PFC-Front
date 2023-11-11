@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AgentesFormComponent } from 'src/app/forms/agentes-form/agentes-form.component';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
-import { AgentesService } from '../../services/agentes.service';
 import { IpsService } from 'src/app/services/ips.service';
 import { IpsFormComponent } from 'src/app/forms/ips-form/ips-form.component';
 import { ipModel } from 'src/app/models/ipModel';

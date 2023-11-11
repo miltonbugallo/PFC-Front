@@ -14,7 +14,6 @@
               <table id="agentesTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
-                    <th>ID</th>
                     <th>IP</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -24,16 +23,15 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let agenteData of agentesData">
-                    <td>{{ agenteData.id }}</td>
-                    <td>{{ agenteData.ip }}</td>
+                    <td>{{ agenteData.ip.direccion || '-' }}</td>
                     <td>{{ agenteData.nombre }}</td>
                     <td>{{ agenteData.apellido }}</td>
-                    <td>{{ agenteData.sector.nombre }}</td>
+                    <td>{{ agenteData.sector?.nombre || '-' }}</td>
                     <td>
                       <div class="btn-actions">
                         <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)"><i
                             class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteAgente(agenteData)"><i
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarAgente(agenteData.id)"><i
                             class="fas fa-trash"></i></button>
                       </div>
                     </td>
@@ -41,7 +39,6 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>ID</th>
                     <th>IP</th>
                     <th>Nombre</th>
                     <th>Apellido</th>

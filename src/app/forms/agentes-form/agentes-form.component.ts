@@ -1,8 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { agenteModel } from 'src/app/models/agenteModel';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { sectorModel } from 'src/app/models/sectorModel';
+import { AgentesService } from 'src/app/services/agentes.service';
+import { ipModel } from 'src/app/models/ipModel';
+import { SectoresService } from 'src/app/services/sectores.service';
+import { IpsService } from 'src/app/services/ips.service';
 
 @Component({
   selector: 'app-agentes-form',
@@ -10,9 +13,12 @@ import { sectorModel } from 'src/app/models/sectorModel';
   styleUrls: ['./agentes-form.component.css']
 })
 export class AgentesFormComponent {
-  sectores: sectorModel[] = [{nombre: 'Sector 1'}, {nombre: 'Sector 2'}, {nombre: 'Sector 3'}];
-  sectorNuevo: sectorModel = {nombre: ''};
-  ips: string[] = ['IP 1', 'IP 2', 'IP 3', 'IP 4'];
+  
+  //Codigo prueba, eliminar cuando se conecte al backend
+  sectores: sectorModel[] = [{id: 1,nombre: 'Sector 1'}, {id:2, nombre: 'Sector 2'}, {id: 3, nombre: 'Sector 3'}];
+  ips: ipModel[] = [{id:1, direccion:'IP 1'}, {id:2, direccion:'IP 2'}, {id:3, direccion:'IP 3'}];
+
+  //Codigo real
   agenteForm: FormGroup;
   originalData: any;
   titulo = "Agregar agente";
@@ -20,48 +26,68 @@ export class AgentesFormComponent {
   constructor(
     public dialogRef: MatDialogRef<AgentesFormComponent>,
     @Inject(MAT_DIALOG_DATA) public agenteData: any,
-    private fb: FormBuilder
+    private fb: FormBuilder, public agentesService: AgentesService, public sectoresService: SectoresService,
+    public ipsService: IpsService
   ) {
     this.originalData = { ...agenteData };
     this.agenteForm = this.fb.group({
-      id: ['', Validators.required],
-      ip: ['', Validators.required],
+      ip: [''],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      sector: ['', Validators.required],
+      sector: [''],
     });
     if(this.agenteData != null){
       this.esEditar();
     }
     else {
-      this.agenteData = {id: '', ip: '', nombre: '', apellido: '', sector: {nombre:''}}
+      this.agenteData = {id: null, ip: {direccion: ''}, nombre: '', apellido: '', sector: {nombre:''}}
     }
     
+  }
+
+  // Descomentar al conectar al back
+  // ngOnInit() {
+  //   this.obtenerSectores();
+  //   this.obtenerIps();
+  // }
+
+  obtenerSectores() {
+    this.sectoresService.getSectores().subscribe((sectores) => {
+      this.sectores = sectores;
+    });
+  }
+
+  obtenerIps() {
+    this.ipsService.getIps().subscribe((ips) => {
+      // Mapear los modelos de IP antes de asignarlos a la propiedad ips
+      this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
+    });
   }
 
   esEditar(){
     this.titulo = "Editar agente";
     this.agenteForm.patchValue({
-      id: this.agenteData.id,
-      ip: this.agenteData.ip,
+      ip: this.agenteData.ip.direccion,
       nombre: this.agenteData.nombre,
       apellido: this.agenteData.apellido,
-      sector: this.agenteData.sector.nombre,
+      sector: this.agenteData.sector.id,
     });
   }
   
 
   guardarCambios() {
     if (this.agenteForm.valid) {
-      
-      this.sectorNuevo.nombre = this.agenteForm.get('sector')?.value
-      const agenteActualizado: agenteModel = {
-        id: this.agenteForm.get('id')?.value,
-        ip: this.agenteForm.get('ip')?.value,
+      const inputValue = this.agenteForm.get('ip')?.value;
+      const matchingOption = this.ips.find(ip => ip.direccion === inputValue);
+  
+      const agenteActualizado: any = {
+        id: this.agenteData.id,
+        ip: matchingOption ? matchingOption.id : null,
         nombre: this.agenteForm.get('nombre')?.value,
         apellido: this.agenteForm.get('apellido')?.value,
-        sector: this.sectorNuevo,
+        sector: this.agenteForm.get('sector')?.value === '' ? null : this.agenteForm.get('sector')?.value,
       };
+  
       this.dialogRef.close(agenteActualizado);
     }
   }
@@ -70,4 +96,5 @@ export class AgentesFormComponent {
     this.agenteData = { ...this.originalData };
     this.dialogRef.close();
   }
+
 }

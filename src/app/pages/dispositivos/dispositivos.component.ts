@@ -38,20 +38,17 @@ export class DispositivosComponent {
   getClaseParaSistemaOperativo(sistemaOperativo: string): string {
     if (sistemaOperativo === 'Windows 10') {
       return 'correcto';
-    } else if (sistemaOperativo === 'Linux 10') {
-      return 'alerta';
     } else {
-      return 'verificar';
+      return 'alerta';
     }
   }
 
   getClaseParaRAM(ram: number): string {
     if (ram >= 12) {
       return 'correcto';
-    } else if (ram < 6) {
+    } 
+    else {
       return 'alerta';
-    } else {
-      return 'verificar';
     }
   }
 
@@ -64,10 +61,8 @@ export class DispositivosComponent {
   
     if (sistemaOperativoClass === 'correcto' && ramClass === 'correcto') {
       clase.push('condicionCorrecto');
-    } else if (sistemaOperativoClass === 'alerta' || ramClass === 'alerta') {
-      clase.push('condicionAlerta');
     } else {
-      clase.push('condicionVerificar');
+      clase.push('condicionAlerta');
     }
   
     return clase.join(' ');

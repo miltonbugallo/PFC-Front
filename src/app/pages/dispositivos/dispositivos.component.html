@@ -36,9 +36,7 @@
                                     <td
                                         [ngClass]="getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram)">
                                         {{ getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram) ===
-                                        'condicionCorrecto' ? 'Correcto' :
-                                        getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram) ===
-                                        'condicionAlerta' ? 'Alerta' : 'Verificar' }}
+                                        'condicionCorrecto' ? 'Correcto' : 'Alerta' }}
                                     </td>
                                 </tr>
                             </tbody>

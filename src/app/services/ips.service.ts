@@ -8,35 +8,29 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IpsService {
 
-
+  private apiUrl = 'http://localhost:250/api/ipaddress'; // Reemplaza con la URL de tu backend
+  private token = 'TU_TOKEN'; // Reemplaza con tu token de autorización
   constructor(private http: HttpClient) { }
   
   public ipsData: ipModel[]= [
-    { id: "1", ip: '10.255.255'},
-    { id: "2", ip: '20.255.255'},
-    { id: "3", ip: '30.255.255'},
+    { id: 1, direccion: '10.255.255'},
+    { id: 2, direccion: '20.255.255'},
+    { id: 3, direccion: '30.255.255'},
   ];
-
-  private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
-  
 
   obtenerIps() {
     return this.ipsData
   }
 
-  agregarIp(ipNueva: ipModel): Observable<boolean> {
-    return this.http.post<boolean>(this.url, ipNueva);
+  getIps(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
-  //Editar
-  editarIp(ipEditar: ipModel): Observable<boolean> {
-    const editUrl = `${this.url}/${ipEditar.id}`;
-    return this.http.put<boolean>(editUrl, ipEditar);
+  mapIPModel(ipModel: any): ipModel {
+    return {
+      id: ipModel.id,
+      direccion: ipModel.direccion,
+    };
   }
 
-  //Delete
-  deleteIp(ipDelete: ipModel): Observable<boolean> {
-    const deleteUrl = `${this.url}/${ipDelete.id}`;
-    return this.http.delete<boolean>(deleteUrl);
-  }
 }

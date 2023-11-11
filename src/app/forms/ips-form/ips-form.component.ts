@@ -44,7 +44,7 @@ export class IpsFormComponent {
     if (this.ipsForm.valid) {
       const ipActualizada: ipModel = {
         id: this.ipsForm.get('id')?.value,
-        ip: this.ipsForm.get('ip')?.value,
+        direccion: this.ipsForm.get('ip')?.value,
       };
       this.dialogRef.close(ipActualizada);
     }
