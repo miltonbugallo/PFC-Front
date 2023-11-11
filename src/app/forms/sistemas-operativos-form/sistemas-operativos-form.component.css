@@ -1,0 +1,18 @@
+::ng-deep .mat-mdc-dialog-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000 !important;
+    width: 400px;
+    height: auto;
+  }
+
+  .modal-title {
+    text-align: center;
+  }
+
+  .error
+  {
+    border:1px solid rgb(255, 0, 0);
+  }

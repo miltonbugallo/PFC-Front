@@ -10,6 +10,8 @@ import { DispositivosComponent } from './dispositivos/dispositivos.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { IpsComponent } from './ips/ips.component';
 import { AlertasComponent } from './alertas/alertas.component';
+import { SistemasOperativosComponent } from './sistemas-operativos/sistemas-operativos.component';
+import { SectoresComponent } from './sectores/sectores.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'ipsDuplicadasAgentesSinEquipo', component: IpsDuplicadasAgentesSinEquipoComponent, data: { titulo: 'IPs Duplicadas - Agentes Sin Equipo' } },
       { path: 'dispositivos', component: DispositivosComponent, data: { titulo: 'Dispositivos' } },
       { path: 'estadisticas', component: EstadisticasComponent, data: { titulo: 'Estadisticas' } },
+      { path: 'sistemasOperativos', component: SistemasOperativosComponent, data: { titulo: 'Sistemas Operativos' } },
+      { path: 'sectores', component: SectoresComponent, data: { titulo: 'Sectores' } },
       { path: 'alertas', component: AlertasComponent, data: { titulo: 'Alertas' } },
 
     ]

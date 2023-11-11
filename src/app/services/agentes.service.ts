@@ -4,16 +4,17 @@ import { agenteModel } from '../models/agenteModel';
 import { Observable, forkJoin, map, of } from 'rxjs';
 import { sectorModel } from '../models/sectorModel';
 import { ipModel } from '../models/ipModel';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgentesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  private apiUrl = 'http://localhost:250/api/agentes'; // Reemplaza con la URL de tu backend
-  private token = 'TU_TOKEN'; // Reemplaza con tu token de autorización
+  private apiUrl = 'http://localhost:250/api/agentes';
+  private token = this.loginService.getToken(); 
 
   //Datos pruebas
 
@@ -46,9 +47,13 @@ export class AgentesService {
     }
 
 
+
   // Datos reales
   getAgentePorId(id: number): Observable<agenteModel> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+    return this.http.get<any>(`${this.apiUrl}/${id}`, {headers}).pipe(
       map((agente) => {
         return this.mapAgente(agente);
       })
@@ -56,7 +61,11 @@ export class AgentesService {
   }  
 
   getAgentes(): Observable<agenteModel[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
       map((data) => {
         return data.map((agente) => this.mapAgente(agente));
       })
@@ -101,7 +110,6 @@ export class AgentesService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-
     return this.http.post(`${this.apiUrl}/agregar-agente`, JSON.stringify(requestBody), { headers });
   }
 
@@ -124,13 +132,13 @@ export class AgentesService {
       ipAdress: agente.ip ? { direccion: `/api/ip_adresses/${agente.ip}` } : null,
     };
 
-    // Realizamos la solicitud PUT
+    // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/merge-patch+json',
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.put(`${this.apiUrl}/actualizar-agente/${agente.id}`, JSON.stringify(requestBody), { headers });
+    return this.http.patch(`${this.apiUrl}/actualizar-agente/${agente.id}`, JSON.stringify(requestBody), { headers });
   }
   
 

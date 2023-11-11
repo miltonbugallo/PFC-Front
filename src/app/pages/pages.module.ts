@@ -22,6 +22,10 @@ import { GraficoIpsConflictivasComponent } from '../graficas/grafico-ips-conflic
 import { IpsComponent } from './ips/ips.component';
 import { IpsFormComponent } from '../forms/ips-form/ips-form.component';
 import { AlertasComponent } from './alertas/alertas.component';
+import { SistemasOperativosComponent } from './sistemas-operativos/sistemas-operativos.component';
+import { SectoresComponent } from './sectores/sectores.component';
+import { SistemasOperativosFormComponent } from '../forms/sistemas-operativos-form/sistemas-operativos-form.component';
+import { SectoresFormComponent } from '../forms/sectores-form/sectores-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { AlertasComponent } from './alertas/alertas.component';
     GraficoIpsConflictivasComponent,
     IpsComponent,
     IpsFormComponent,
-    AlertasComponent
+    AlertasComponent,
+    SistemasOperativosComponent,
+    SistemasOperativosFormComponent,
+    SectoresComponent,
+    SectoresFormComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,49 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Listado de Sistemas Operativos</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-actions">
+                <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
+                  Nuevo</button>
+              </div>
+              <table id="soTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Version</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let soData of sosData">
+                    <td>{{ soData.nombre }}</td>
+                    <td>{{ soData.version }}</td>
+                    <td>
+                      <div class="btn-actions">
+                        <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(soData)"><i
+                            class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteSO(soData.id)"><i
+                            class="fas fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Version</th>
+                    <th>Acciones</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
