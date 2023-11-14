@@ -12,6 +12,7 @@ import { IpsComponent } from './ips/ips.component';
 import { AlertasComponent } from './alertas/alertas.component';
 import { SistemasOperativosComponent } from './sistemas-operativos/sistemas-operativos.component';
 import { SectoresComponent } from './sectores/sectores.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
       { path: 'sectores', component: SectoresComponent, data: { titulo: 'Sectores' } },
       { path: 'alertas', component: AlertasComponent, data: { titulo: 'Alertas' } },
 
-    ]
+    ], canActivate: [AuthGuard]
   }
 ]
 

@@ -29,16 +29,23 @@ export class LoginService {
     return this.http.post(`${this.apiUrl}/login`, JSON.stringify(loginData));
   }
 
-  setToken(token: string | null): void {
+  setToken(token: string): void {
     this.token = token;
+    localStorage.setItem('auth_token', token);
   }
 
   getToken(): string | null {
-    return this.token;
+    return this.token || localStorage.getItem('auth_token');
   }
 
-  deleteToken() {
+  deleteToken(): void {
     this.token = null;
+    localStorage.removeItem('auth_token');
   }
 
+  isAuthenticated(): boolean {
+    return !!this.getToken();
+  }
 }
+
+
