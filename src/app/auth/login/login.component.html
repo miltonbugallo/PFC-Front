@@ -29,11 +29,11 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-outline-secondary btn-block">Ingresar</button>
+                            <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Ingresar</button>
                         </div>
                         <!-- /.col -->
                         <div *ngIf="incorrectCredentials" class="text-danger mt-2">
-                            Credenciales incorrectas, intente de nuevo.
+                            {{error}}
                         </div>
                     </div>
                 </form>

@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = 'tu_url_del_backend'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://localhost:250/api';
   private token:  string | null = null;
 
   constructor(private http: HttpClient) {}
@@ -15,7 +15,7 @@ export class LoginService {
   loginFalso(user: string, pass: string): Observable<any> {
     const fakeResponse = {
       user: user,
-      token: '123456'
+      token: ['123456','987654']
     };
     return of(fakeResponse);
   }

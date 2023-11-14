@@ -11,12 +11,13 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   incorrectCredentials = false;
+  error: string = '';
 
   constructor(private router: Router, private formBuilder: FormBuilder, public loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$")]],
-        password: ['', Validators.required]
-    });
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]],
+      password: ['', Validators.required]
+  });
 }
 
 login() {
@@ -29,14 +30,17 @@ login() {
           response => {
               if (response.user && response.token) {
                 // Almacena el token utilizando el método setAuthToken
-                  this.loginService.setToken(response.token);
+                  this.loginService.setToken(response.token[0]);
                   this.router.navigate(['/dashboard']);
               } else {
                 this.incorrectCredentials = true;
+                this.error = "Credenciales incorrectas, intente de nuevo"
               }
           },
           error => {
               console.error('Error en la solicitud al servidor', error);
+              this.incorrectCredentials = true;
+              this.error = "Error en el servidor, intente de nuevo"
           }
       );
   }
