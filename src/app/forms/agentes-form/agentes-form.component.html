@@ -3,18 +3,18 @@
   <form [formGroup]="agenteForm" (ngSubmit)="guardarCambios()">
     <div class="form-group">
       <label for="ip">IP</label>
-      <input type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
+      <input [value]="agenteData.ip.id !== -1 ? agenteData.ip.direccion : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
       <datalist id="ipsList">
         <option *ngFor="let ip of ips" [value]="ip.direccion">{{ip.direccion}}</option>
       </datalist>
     </div>
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input [ngClass]="agenteForm.get('nombre')?.hasError('required') && agenteForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control">
+      <input [ngClass]="agenteForm.get('nombre')?.hasError('required') && agenteForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="apellido">Apellido</label>
-      <input [ngClass]="agenteForm.get('apellido')?.hasError('required') && agenteForm.get('apellido')?.touched ? 'error' : ''" type="text" id="apellido" name="apellido" formControlName="apellido" class="form-control">
+      <input [ngClass]="agenteForm.get('apellido')?.hasError('required') && agenteForm.get('apellido')?.touched ? 'error' : ''" type="text" id="apellido" name="apellido" formControlName="apellido" class="form-control" autocomplete="off">
     </div>
     <div class="form-group">
       <label for="sector">Sector</label>

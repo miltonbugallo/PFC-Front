@@ -38,6 +38,25 @@ export class AgentesService {
           ipadress: {id: 2,
             direccion: 'IP 2',} 
         },
+        {
+          id: 3,
+          nombre: 'Nombre3',
+          apellido: 'Apellido3',
+          ipadress: {id: 3,
+            direccion: 'IP 3',} 
+        },
+        {
+          id: 4,
+          nombre: 'Nombre4',
+          apellido: 'Apellido4',
+          sector: { id: 2,
+            nombre: 'Sector 2' }
+        },
+        {
+          id: 5,
+          nombre: 'Nombre5',
+          apellido: 'Apellido5',
+        },
       ];
   
       // Aplicar el mapeo a cada elemento de la lista
@@ -45,20 +64,6 @@ export class AgentesService {
   
       return of(agentesFicticiosMapeados);
     }
-
-
-
-  // Datos reales
-  getAgentePorId(id: number): Observable<agenteModel> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-    return this.http.get<any>(`${this.apiUrl}/${id}`, {headers}).pipe(
-      map((agente) => {
-        return this.mapAgente(agente);
-      })
-    );
-  }  
 
   getAgentes(): Observable<agenteModel[]> {
     const headers = new HttpHeaders({
@@ -75,10 +80,10 @@ export class AgentesService {
   private mapAgente(agente: any): agenteModel {
     return {
       id: agente.id,
-      ip: this.mapIP(agente.ipadress),
+      ip: agente.ipadress ? this.mapIP(agente.ipadress) : {id:-1, direccion:''},
       nombre: agente.nombre,
       apellido: agente.apellido,
-      sector: this.mapSector(agente.sector),
+      sector: agente.sector ? this.mapSector(agente.sector) : {id:-1, nombre:''},
     };
   }
 
@@ -131,7 +136,6 @@ export class AgentesService {
       sector: agente.sector ? `/api/sectors/${agente.sector}` : null,
       ipAdress: agente.ip ? { direccion: `/api/ip_adresses/${agente.ip}` } : null,
     };
-
     // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
       'Content-Type': 'application/merge-patch+json',

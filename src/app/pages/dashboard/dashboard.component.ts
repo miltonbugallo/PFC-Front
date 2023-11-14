@@ -43,17 +43,27 @@ export class DashboardComponent {
     $(function () {
       $("#agentesTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
-    //this.obtenerSwitches()
-    //this.obtenerAgentes()
+    this.obtenerSwitches()
+    this.obtenerAgentes()
   }
 
-  // obtenerAgentes(){
-  //   this.agentesData = this.agenteService.obtenerAgentes()
-  //   this.agentesData = this.agentesData.slice(0, 5);
-  // }
+  obtenerAgentes() {
+    this.agenteService.getAgentesFicticios().subscribe((agentes) => {
+      this.agentesData = agentes;
+    });
 
-  // obtenerSwitches() {
-  //   this.switchesData = this.switchService.obtenerSwitchs()
-  //   this.switchesData = this.switchesData.slice(0, 5);
-  // }
+    // this.agenteService.getAgentes().subscribe((agentes) => {
+    //   this.agentesData = agentes;
+    // });
+  }
+
+  obtenerSwitches() {
+    this.switchService.getSwitchesFicticios().subscribe((switchs) => {
+      this.switchesData = switchs;
+    });
+
+    // this.switchService.getSwitches().subscribe((switchs) => {
+    //   this.switchesData = switchs;
+    // });
+  }
 }

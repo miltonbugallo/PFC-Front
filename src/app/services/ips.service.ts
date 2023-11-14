@@ -1,29 +1,36 @@
 import { Injectable } from '@angular/core';
 import { ipModel } from '../models/ipModel';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ipAddressModel } from '../models/ipAddressModel';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IpsService {
 
-  private apiUrl = 'http://localhost:250/api/ipaddress'; // Reemplaza con la URL de tu backend
-  private token = 'TU_TOKEN'; // Reemplaza con tu token de autorización
-  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost:250/api/ipaddress';
+  private token = this.loginService.getToken(); 
+
+  constructor(private http: HttpClient, public loginService: LoginService) { }
   
   public ipsData: ipModel[]= [
-    { id: 1, direccion: '10.255.255'},
-    { id: 2, direccion: '20.255.255'},
-    { id: 3, direccion: '30.255.255'},
+    { id: 1, direccion: 'IP 1'},
+    { id: 2, direccion: 'IP 2'},
+    { id: 3, direccion: 'IP 3'},
   ];
 
   obtenerIps() {
     return this.ipsData
   }
 
-  getIps(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+  getIps(): Observable<ipAddressModel[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers })
   }
 
   mapIPModel(ipModel: any): ipModel {

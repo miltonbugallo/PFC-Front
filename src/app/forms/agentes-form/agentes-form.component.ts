@@ -15,9 +15,8 @@ import { IpsService } from 'src/app/services/ips.service';
 export class AgentesFormComponent {
   
   //Codigo prueba, eliminar cuando se conecte al backend
-  sectores: sectorModel[] = [{id: 1,nombre: 'Sector 1'}, {id:2, nombre: 'Sector 2'}, {id: 3, nombre: 'Sector 3'}];
-  ips: ipModel[] = [{id:1, direccion:'IP 1'}, {id:2, direccion:'IP 2'}, {id:3, direccion:'IP 3'}];
-
+  sectores: sectorModel[] = [];
+  ips: ipModel[] = [];
   //Codigo real
   agenteForm: FormGroup;
   originalData: any;
@@ -45,23 +44,24 @@ export class AgentesFormComponent {
     
   }
 
-  // Descomentar al conectar al back
-  // ngOnInit() {
-  //   this.obtenerSectores();
-  //   this.obtenerIps();
-  // }
+  
+  ngOnInit() {
+    this.obtenerSectores();
+    this.obtenerIps();
+  }
 
   obtenerSectores() {
-    this.sectoresService.getSectores().subscribe((sectores) => {
-      this.sectores = sectores;
-    });
+      this.sectores = this.sectoresService.obtenerSectores();
+    // this.sectoresService.getSectores().subscribe((sectores) => {
+    //   this.sectores = sectores;
+    // });
   }
 
   obtenerIps() {
-    this.ipsService.getIps().subscribe((ips) => {
-      // Mapear los modelos de IP antes de asignarlos a la propiedad ips
-      this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
-    });
+    this.ips=this.ipsService.obtenerIps();
+    // this.ipsService.getIps().subscribe((ips) => {
+    //   this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
+    // });
   }
 
   esEditar(){
@@ -93,7 +93,6 @@ export class AgentesFormComponent {
   }
 
   cancelarEdicion() {
-    this.agenteData = { ...this.originalData };
     this.dialogRef.close();
   }
 

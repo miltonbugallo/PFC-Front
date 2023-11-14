@@ -17,14 +17,21 @@ export class SectoresComponent {
     private sectoresService: SectoresService) { }
 
   sectoresData: sectorModel[] = []
-  //this.sectoresService.getSectores()
 
   ngOnInit() {
+    this.obtenerSectores();
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#sectoresTable").DataTable(datatableConfig).buttons().container().appendTo('#sectoresTable_wrapper .col-md-6:eq(0)');
     });
   }
+
+  obtenerSectores() {
+    this.sectoresData = this.sectoresService.obtenerSectores();
+  // this.sectoresService.getSectores().subscribe((sectores) => {
+  //   this.sectores = sectores;
+  // });
+}
 
   deleteSector(sectorData: any) {
   }

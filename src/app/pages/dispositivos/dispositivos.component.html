@@ -10,7 +10,6 @@
                         <table id="dispositivosTable" class="table table-bordered table-striped centrado">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>IP</th>
                                     <th>Dispositivo</th>
                                     <th>Sistema Operativo</th>
@@ -22,7 +21,6 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let dispositivoData of dispositivosData">
-                                    <td>{{ dispositivoData.id }}</td>
                                     <td>{{ dispositivoData.ip }}</td>
                                     <td>{{ dispositivoData.dispositivo }}</td>
                                     <td [ngClass]="getClaseParaSistemaOperativo(dispositivoData.sistemaOperativo)">
@@ -42,7 +40,6 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
                                     <th>IP</th>
                                     <th>Dispositivo</th>
                                     <th>Sistema Operativo</th>

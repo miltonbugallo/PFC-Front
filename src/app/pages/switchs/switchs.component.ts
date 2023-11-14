@@ -25,7 +25,6 @@ export class SwitchsComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerSwitches()
-    console.log(this.switchesData)
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#switchTable").DataTable(datatableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');

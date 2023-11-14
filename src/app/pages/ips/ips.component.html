@@ -14,14 +14,12 @@
               <table id="ipsTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
-                    <th>ID</th>
                     <th>IP</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let ipData of ipsData">
-                    <td>{{ ipData.id }}</td>
                     <td>{{ ipData.direccion }}</td>
                     <td>
                       <div class="btn-actions">
@@ -35,7 +33,6 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>ID</th>
                     <th>IP</th>
                     <th>Acciones</th>
                   </tr>

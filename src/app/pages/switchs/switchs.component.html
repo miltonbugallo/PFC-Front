@@ -26,11 +26,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let switchData of switchesData">
-                  <td>{{ switchData.ip.direccion }}</td>
+                  <td>{{ switchData.ip.direccion || '-' }}</td>
                   <td>{{ switchData.marca }}</td>
                   <td>{{ switchData.modelo }}</td>
-                  <td>{{ switchData.sector.nombre }}</td>
-                  <td>{{ switchData.agente.nombre + ' ' + switchData.agente.apellido }}</td>
+                  <td>{{ switchData.sector.nombre || '-' }}</td>
+                  <td>{{ switchData.agente.nombre ? (switchData.agente.nombre + ' ' + switchData.agente.apellido) : '-' }}</td>
                   <td>{{ switchData.etiqueta }}</td>
                   <td
                     [ngClass]="{'condicionEncendido': switchData.conexion === conexionSwitch.Encendido, 'condicionApagado': switchData.conexion === conexionSwitch.Apagado}">

@@ -10,7 +10,6 @@
             <table id="ipsDuplicadasTable" class="table table-bordered table-striped centrado">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Agentes</th>
                   <th>Dispositivos</th>
@@ -19,7 +18,6 @@
               </thead>
               <tbody>
                 <tr *ngFor="let ipDuplicadaData of ipsDuplicadasData">
-                  <td>{{ ipDuplicadaData.id }}</td>
                   <td>{{ ipDuplicadaData.ip }}</td>
                   <td>{{ ipDuplicadaData.agentes.length > 0 ? ipDuplicadaData.agentes.join(', ') : '-' }}</td>
                   <td>{{ ipDuplicadaData.dispositivos.length > 0 ? ipDuplicadaData.dispositivos.join(', ') : '-' }}</td>
@@ -28,7 +26,6 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Agentes</th>
                   <th>Dispositivos</th>
@@ -48,21 +45,18 @@
             <table id="agentesSinEquipoTable" class="table table-bordered table-striped centrado">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Agente</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
-                  <td>{{ agenteSinEquipoData.id }}</td>
                   <td>{{ agenteSinEquipoData.ip }}</td>
                   <td>{{ agenteSinEquipoData.agente }}</td>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th>ID</th>
                   <th>IP</th>
                   <th>Agente</th>
                 </tr>

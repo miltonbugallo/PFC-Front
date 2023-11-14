@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { agenteModel } from '../models/agenteModel';
-import { Observable, forkJoin, map, of } from 'rxjs';
-import { sectorModel } from '../models/sectorModel';
-import { ipModel } from '../models/ipModel';
+import { Observable, map, of } from 'rxjs';
 import { LoginService } from './login.service';
 import { switchModel } from '../models/switchModel';
 import { ConexionSwitch } from '../models/conexionSwitch';
@@ -33,14 +30,56 @@ export class SwitchsService {
           },
           agente: {
             id: 1,
-            nombre: "Milton",
-            apellido: "Bugallo"
+            nombre: "Nombre1",
+            apellido: "Apellido1"
           },
           etiqueta: "SW01",
           ipadress: {
             id: 1,
             direccion: "IP 1"
           }
+        },
+        {
+          id: 3,
+          marca: "Marca3",
+          modelo: "Modelo1",
+          estadoConexion: true,
+          agente: {
+            id: 2,
+            nombre: "Nombre2",
+            apellido: "Apellido2"
+          },
+          etiqueta: "SW01",
+          ipadress: {
+            id: 2,
+            direccion: "IP 2"
+          }
+        },
+        {
+          id: 2,
+          marca: "Marca2",
+          modelo: "Modelo1",
+          estadoConexion: false,
+          sector: {
+            id: 1,
+            nombre: "Sector 1"
+          },
+          etiqueta: "SW01",
+          ipadress: {
+            id: 3,
+            direccion: "IP 3"
+          }
+        },
+        {
+          id: 4,
+          marca: "Marca4",
+          modelo: "Modelo1",
+          estadoConexion: false,
+          sector: {
+            id: 1,
+            nombre: "Sector 1"
+          },
+          etiqueta: "SW01",
         }
       
       ];
@@ -69,27 +108,13 @@ export class SwitchsService {
   private mapSwitch(switchs: any): switchModel {
     return {
       id: switchs.id,
-      ip: this.mapIP(switchs.ipadress),
+      ip: switchs.ipadress ? switchs.ipadress : {id:-1, direccion:''},
       marca: switchs.marca,
       modelo: switchs.modelo,
-      sector: this.mapSector(switchs.sector),
+      sector: switchs.sector ? switchs.sector : {id:-1, nombre:''},
       conexion: switchs.estadoConexion == true ? ConexionSwitch.Encendido : ConexionSwitch.Apagado,
-      agente: switchs.agente,
+      agente: switchs.agente ? switchs.agente : {id:-1, nombre:'', apellido: ''},
       etiqueta: switchs.etiqueta
-    };
-  }
-
-  private mapSector(sector: any): sectorModel {
-    return {
-      id: sector.id,
-      nombre: sector.nombre,
-    };
-  }
-
-  private mapIP(ipadress: any): ipModel {
-    return {
-      id: ipadress.id,
-      direccion: ipadress.direccion,
     };
   }
 

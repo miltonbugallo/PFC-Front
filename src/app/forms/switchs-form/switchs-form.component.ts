@@ -17,9 +17,9 @@ import { IpsService } from 'src/app/services/ips.service';
 export class SwitchsFormComponent {
 
   //Codigo prueba, eliminar cuando se conecte al backend
-  sectores: sectorModel[] = [{id: 1,nombre: 'Sector 1'}, {id:2, nombre: 'Sector 2'}, {id: 3, nombre: 'Sector 3'}];
-  ips: ipModel[] = [{id:1, direccion:'IP 1'}, {id:2, direccion:'IP 2'}, {id:3, direccion:'IP 3'}];
-  agentes: any[] = [{id:1, nombre: 'Milton', apellido: 'Bugallo'}];
+  sectores: sectorModel[] = [];
+  ips: ipModel[] = [];
+  agentes: any[] = [];
 
   //Codigo real
   switchForm: FormGroup;
@@ -51,29 +51,33 @@ export class SwitchsFormComponent {
     
   }
 
-  // Descomentar al conectar al back
-  // ngOnInit() {
-  //   this.obtenerSectores();
-  //   this.obtenerIps();
-  //   this.obtenerAgentes();
-  // }
+  ngOnInit() {
+    this.obtenerSectores();
+    this.obtenerIps();
+    this.obtenerAgentes();
+  }
 
-  obtenerAgentes() {
-    this.agentesService.getAgentes().subscribe((agentes) => {
+  obtenerAgentes(){
+    this.agentesService.getAgentesFicticios().subscribe((agentes) => {
       this.agentes = agentes;
     });
+    // this.agentesService.getAgentes().subscribe((agentes) => {
+    //   this.agentes = agentes;
+    // });
   }
 
   obtenerSectores() {
-    this.sectoresService.getSectores().subscribe((sectores) => {
-      this.sectores = sectores;
-    });
+      this.sectores = this.sectoresService.obtenerSectores();
+    // this.sectoresService.getSectores().subscribe((sectores) => {
+    //   this.sectores = sectores;
+    // });
   }
 
   obtenerIps() {
-    this.ipsService.getIps().subscribe((ips) => {
-      this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
-    });
+    this.ips=this.ipsService.obtenerIps();
+    // this.ipsService.getIps().subscribe((ips) => {
+    //   this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
+    // });
   }
 
   esEditar(){
@@ -112,7 +116,6 @@ export class SwitchsFormComponent {
   }
 
   cancelarEdicion() {
-    this.switchData = { ...this.originalData };
     this.dialogRef.close();
   }
 }
