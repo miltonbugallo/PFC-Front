@@ -16,55 +16,6 @@ export class AgentesService {
   private apiUrl = '/servidor/api/agentes';
   private token = this.loginService.getToken(); 
 
-  //Datos pruebas
-
-    getAgentesFicticios(): Observable<agenteModel[]> {
-      const agentesFicticiosData = [
-        {
-          id: 1,
-          nombre: 'Nombre1',
-          apellido: 'Apellido1',
-          sector: { id: 1,
-            nombre: 'Sector 1' },
-          ipadress: {id: 1,
-            direccion: 'IP 1',} 
-        },
-        {
-          id: 2,
-          nombre: 'Nombre2',
-          apellido: 'Apellido2',
-          sector: { id: 2,
-            nombre: 'Sector 2' },
-          ipadress: {id: 2,
-            direccion: 'IP 2',} 
-        },
-        {
-          id: 3,
-          nombre: 'Nombre3',
-          apellido: 'Apellido3',
-          ipadress: {id: 3,
-            direccion: 'IP 3',} 
-        },
-        {
-          id: 4,
-          nombre: 'Nombre4',
-          apellido: 'Apellido4',
-          sector: { id: 2,
-            nombre: 'Sector 2' }
-        },
-        {
-          id: 5,
-          nombre: 'Nombre5',
-          apellido: 'Apellido5',
-        },
-      ];
-  
-      // Aplicar el mapeo a cada elemento de la lista
-      const agentesFicticiosMapeados = agentesFicticiosData.map(agente => this.mapAgente(agente));
-  
-      return of(agentesFicticiosMapeados);
-    }
-
   getAgentes(): Observable<agenteModel[]> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,

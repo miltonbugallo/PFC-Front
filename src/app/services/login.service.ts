@@ -7,26 +7,18 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = 'http://localhost:250/api';
+  private apiUrl = '/login';
   private token:  string | null = null;
 
   constructor(private http: HttpClient) {}
 
-  loginFalso(user: string, pass: string): Observable<any> {
-    const fakeResponse = {
-      user: user,
-      token: ['123456','987654']
-    };
-    return of(fakeResponse);
-  }
-  
 
   login(user: string, pass: string): Observable<any> {
     const loginData = {
       email: user,
       password: pass
     };
-    return this.http.post(`${this.apiUrl}/login`, loginData);
+    return this.http.post(this.apiUrl, loginData);
   }
 
   setToken(token: string): void {
