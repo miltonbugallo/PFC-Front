@@ -14,27 +14,25 @@
                                     <th>Dispositivo</th>
                                     <th>Sistema Operativo</th>
                                     <th>RAM</th>
-                                    <th>Agente</th>
-                                    <th>Sector</th>
+                                    <th>MAC Address</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let dispositivoData of dispositivosData">
-                                    <td>{{ dispositivoData.ip }}</td>
-                                    <td>{{ dispositivoData.dispositivo }}</td>
-                                    <td [ngClass]="getClaseParaSistemaOperativo(dispositivoData.sistemaOperativo)">
+                                    <td>{{ dispositivoData.ipadress.direccion }}</td>
+                                    <td>{{ dispositivoData.nombreDispositivo }}</td>
+                                    <td>
                                         {{ dispositivoData.sistemaOperativo }}
                                     </td>
-                                    <td [ngClass]="getClaseParaRAM(dispositivoData.ram)">
-                                        {{ dispositivoData.ram }}
+                                    <td>
+                                        {{ dispositivoData.memoriaRam }}
                                     </td>
-                                    <td>{{ dispositivoData.agente }}</td>
-                                    <td>{{ dispositivoData.sector }}</td>
-                                    <td
-                                        [ngClass]="getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram)">
-                                        {{ getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.ram) ===
-                                        'condicionCorrecto' ? 'Correcto' : 'Alerta' }}
+                                    <td>
+                                        {{ dispositivoData.macaddress }}
+                                    </td>
+                                    <td>
+                                        Correcto
                                     </td>
                                 </tr>
                             </tbody>
@@ -44,8 +42,7 @@
                                     <th>Dispositivo</th>
                                     <th>Sistema Operativo</th>
                                     <th>RAM</th>
-                                    <th>Agente</th>
-                                    <th>Sector</th>
+                                    <th>MAC Address</th>
                                     <th>Estado</th>
                                 </tr>
                             </tfoot>
@@ -56,3 +53,8 @@
         </div>
     </div>
 </section>
+
+
+<!-- [ngClass]="getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.memoriaRam)">
+                                        {{ getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.memoriaRam) ===
+                                        'condicionCorrecto' ? 'Correcto' : 'Alerta' }} -->

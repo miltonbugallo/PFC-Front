@@ -36,7 +36,7 @@ login() {
       const password = this.loginForm.get('password')?.value;
 
       // Llama al servicio para autenticar al usuario
-      this.loginService.loginFalso(email, password).subscribe(
+      this.loginService.login(email, password).subscribe(
           response => {
               if (response.user && response.token) {
                 // Almacena el token utilizando el método setAuthToken

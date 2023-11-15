@@ -27,45 +27,44 @@ export class DispositivosComponent {
   }
 
   obtenerDispositivos() {
-    this.dispositivosData = this.dispositivosService.obtenerDispositivos()
-    // this.switchService.obtenerSwitch()
-    //   .subscribe((switches: any) => {
-    //     this.switchesData = switches;
-    //   });
+    this.dispositivosService.getEquipos()
+      .subscribe((dispositivos: any) => {
+        this.dispositivosData = dispositivos;
+      });
   }
 
 
-  getClaseParaSistemaOperativo(sistemaOperativo: string): string {
-    if (sistemaOperativo === 'Windows 10') {
-      return 'correcto';
-    } else {
-      return 'alerta';
-    }
+  getClaseParaSistemaOperativo(sistemaOperativo: string): void {
+    // if (sistemaOperativo === 'Windows 10') {
+    //   return 'correcto';
+    // } else {
+    //   return 'alerta';
+    // }
   }
 
-  getClaseParaRAM(ram: number): string {
-    if (ram >= 12) {
-      return 'correcto';
-    } 
-    else {
-      return 'alerta';
-    }
+  getClaseParaRAM(ram: number): void {
+    // if (ram >= 12) {
+    //   return 'correcto';
+    // } 
+    // else {
+    //   return 'alerta';
+    // }
   }
 
 
-  getClaseParaEstado(sistemaOperativo: string, ram: number): string {
-    let clase = [];
+  getClaseParaEstado(sistemaOperativo: string, ram: number): void {
+    // let clase = [];
   
-    const sistemaOperativoClass = this.getClaseParaSistemaOperativo(sistemaOperativo);
-    const ramClass = this.getClaseParaRAM(ram);
+    // const sistemaOperativoClass = this.getClaseParaSistemaOperativo(sistemaOperativo);
+    // const ramClass = this.getClaseParaRAM(ram);
   
-    if (sistemaOperativoClass === 'correcto' && ramClass === 'correcto') {
-      clase.push('condicionCorrecto');
-    } else {
-      clase.push('condicionAlerta');
-    }
+    // if (sistemaOperativoClass === 'correcto' && ramClass === 'correcto') {
+    //   clase.push('condicionCorrecto');
+    // } else {
+    //   clase.push('condicionAlerta');
+    // }
   
-    return clase.join(' ');
+    // return clase.join(' ');
   }
 
 }
