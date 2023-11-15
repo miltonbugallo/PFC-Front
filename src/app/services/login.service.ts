@@ -26,7 +26,7 @@ export class LoginService {
       email: user,
       password: pass
     };
-    return this.http.post(`${this.apiUrl}/login`, JSON.stringify(loginData));
+    return this.http.post(`${this.apiUrl}/login`, loginData);
   }
 
   setToken(token: string): void {

@@ -32,13 +32,9 @@ export class SwitchsComponent implements OnInit {
   }
 
   obtenerSwitches() {
-    this.switchService.getSwitchesFicticios().subscribe((switchs) => {
+    this.switchService.getSwitch().subscribe((switchs) => {
       this.switchesData = switchs;
     });
-
-    // this.switchService.getSwitches().subscribe((switchs) => {
-    //   this.switchesData = switchs;
-    // });
   }
 
   crearSwitch(nuevoSwitch: any) {

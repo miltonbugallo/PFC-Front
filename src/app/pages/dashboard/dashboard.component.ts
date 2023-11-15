@@ -48,22 +48,14 @@ export class DashboardComponent {
   }
 
   obtenerAgentes() {
-    this.agenteService.getAgentesFicticios().subscribe((agentes) => {
+    this.agenteService.getAgentes().subscribe((agentes) => {
       this.agentesData = agentes;
     });
-
-    // this.agenteService.getAgentes().subscribe((agentes) => {
-    //   this.agentesData = agentes;
-    // });
   }
 
   obtenerSwitches() {
-    this.switchService.getSwitchesFicticios().subscribe((switchs) => {
+    this.switchService.getSwitch().subscribe((switchs) => {
       this.switchesData = switchs;
     });
-
-    // this.switchService.getSwitches().subscribe((switchs) => {
-    //   this.switchesData = switchs;
-    // });
   }
 }

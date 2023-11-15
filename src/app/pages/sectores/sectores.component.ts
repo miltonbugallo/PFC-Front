@@ -27,44 +27,58 @@ export class SectoresComponent {
   }
 
   obtenerSectores() {
-    this.sectoresData = this.sectoresService.obtenerSectores();
-  // this.sectoresService.getSectores().subscribe((sectores) => {
-  //   this.sectores = sectores;
-  // });
+  this.sectoresService.getSectores().subscribe((sectores) => {
+    this.sectoresData = sectores;
+  });
 }
 
-  deleteSector(sectorData: any) {
-  }
+crearSector(nuevoSector: any) {
 
-  // Función para abrir el formulario de edición/agregado en un modal
-  abrirFormulario(sectorData?: any) {
-    const dialogConfig: MatDialogConfig = {
-      data: sectorData || null // Pasamos null cuando no hay datos para editar
-    };
+  this.sectoresService.crearSector(nuevoSector).subscribe((respuesta) => {
+    console.log('Sector creado:', respuesta);
+    // Puedes realizar acciones después de crear el agente
+    this.obtenerSectores(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
+  });
+}
 
-    const dialogRef = this.dialog.open(SectoresFormComponent, dialogConfig);
+actualizarSector(sector: any) {
+  this.sectoresService.actualizarSector(sector).subscribe((respuesta) => {
+    console.log('Sector actualizado:', respuesta);
+    // Puedes realizar acciones después de actualizar el agente
+    this.obtenerSectores(); // Por ejemplo, actualizar la lista de agentes después de la actualización
+  });
+}
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
-    dialogRef.afterClosed().subscribe((datosActualizados: any) => {
-      if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo switch
-        if (sectorData) {
-          // Se editó un switch existente
-          this.guardarCambios(datosActualizados); // Lógica para guardar los cambios
-        } else {
-          // Se agregó un nuevo switch
-          this.agregarNuevoSector(datosActualizados); // Lógica para agregar el nuevo switch
-        }
+deleteSector(id: number) {
+  this.sectoresService.eliminarSector(id).subscribe((respuesta) => {
+    console.log('Sector eliminado:', respuesta);
+    // Puedes realizar acciones después de eliminar el agente
+    this.obtenerSectores(); // Por ejemplo, actualizar la lista de agentes después de la eliminación
+  });
+}
+
+// Función para abrir el formulario de edición/agregado en un modal
+abrirFormulario(sectorData?: any) {
+  const dialogConfig: MatDialogConfig = {
+    data: sectorData || null // Pasamos null cuando no hay datos para editar
+  };
+
+  const dialogRef = this.dialog.open(SectoresFormComponent, dialogConfig);
+
+  // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
+  dialogRef.afterClosed().subscribe((datosActualizados: any) => {
+    if (datosActualizados) {
+      // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo sector
+      if (sectorData) {
+          // Se editó un sector existente
+        this.actualizarSector(datosActualizados); // Lógica para guardar los cambios
+        
+      } else {
+        // Se agregó un nuevo sector
+        this.crearSector(datosActualizados); // Lógica para agregar el nuevo sector
       }
-    });
-  }
-
-  guardarCambios(datosActualizados: sectorModel) {
-    
-  }
-
-  agregarNuevoSector(nuevoSector: any) {
-    
-  }
+    }
+  });
+}
 
 }

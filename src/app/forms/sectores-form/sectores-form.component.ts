@@ -49,7 +49,6 @@ export class SectoresFormComponent {
   }
 
   cancelarEdicion() {
-    this.sectorData = { ...this.originalData };
     this.dialogRef.close();
   }
 }

@@ -10,21 +10,11 @@ import { LoginService } from './login.service';
 })
 export class IpsService {
 
-  private apiUrl = 'http://localhost:250/api/ipaddress';
+  private apiUrl = '/servidor/api/ip_adresses';
   private token = this.loginService.getToken(); 
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
   
-  public ipsData: ipModel[]= [
-    { id: 1, direccion: 'IP 1'},
-    { id: 2, direccion: 'IP 2'},
-    { id: 3, direccion: 'IP 3'},
-  ];
-
-  obtenerIps() {
-    return this.ipsData
-  }
-
   getIps(): Observable<ipAddressModel[]> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
@@ -38,6 +28,45 @@ export class IpsService {
       id: ipModel.id,
       direccion: ipModel.direccion,
     };
+  }
+
+  crearIp(ip: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+    };
+    console.log(requestBody)
+
+    // Realizamos la solicitud POST
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+    return this.http.post(`${this.apiUrl}/agregar-ip`, requestBody, { headers });
+  }
+
+
+  eliminarIp(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.delete(`${this.apiUrl}/eliminar-ip/${id}`, { headers });
+  }
+
+  actualizarIp(ip: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+    };
+    console.log(requestBody)
+
+    // Realizamos la solicitud PATCH
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/merge-patch+json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.patch(`${this.apiUrl}/actualizar-ip/${ip.id}`, requestBody, { headers });
   }
 
 }

@@ -9,16 +9,10 @@ import { LoginService } from './login.service';
 })
 export class SectoresService {
 
-  private apiUrl = 'http://localhost:250/api/sectors'; 
+  private apiUrl = '/servidor/api/sectors'; 
   private token = this.loginService.getToken(); 
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
-
-  sectoresData = [{id: 1,nombre: 'Sector 1'}, {id:2, nombre: 'Sector 2'}, {id: 3, nombre: 'Sector 3'}];
-
-  obtenerSectores(){
-    return this.sectoresData;
-  }
 
   getSectores(): Observable<sectorModel[]> {
     const headers = new HttpHeaders({
@@ -26,6 +20,47 @@ export class SectoresService {
     });
 
     return this.http.get<any[]>(this.apiUrl, { headers })
+  }
+
+  crearSector(sector: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+      nombre: sector.nombre
+    };
+    console.log(requestBody)
+
+    // Realizamos la solicitud POST
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+    return this.http.post(`${this.apiUrl}/agregar-sector`, requestBody, { headers });
+  }
+
+
+  eliminarSector(id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.delete(`${this.apiUrl}/eliminar-sector/${id}`, { headers });
+  }
+
+  actualizarSector(sector: any): Observable<any> {
+    // Construimos el objeto para enviar en la solicitud POST
+    const requestBody = {
+      nombre: sector.nombre
+    };
+    console.log(requestBody)
+
+    // Realizamos la solicitud PATCH
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/merge-patch+json',
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.patch(`${this.apiUrl}/actualizar-sector/${sector.id}`, requestBody, { headers });
   }
 
 }

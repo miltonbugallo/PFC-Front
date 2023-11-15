@@ -51,7 +51,6 @@ export class IpsFormComponent {
   }
 
   cancelarEdicion() {
-    this.ipData = { ...this.originalData };
     this.dialogRef.close();
   }
 }

@@ -27,13 +27,9 @@ export class AgentesComponent implements OnInit{
   }
 
   obtenerAgentes() {
-    this.agenteService.getAgentesFicticios().subscribe((agentes) => {
+    this.agenteService.getAgentes().subscribe((agentes) => {
       this.agentesData = agentes;
     });
-
-    // this.agenteService.getAgentes().subscribe((agentes) => {
-    //   this.agentesData = agentes;
-    // });
   }
 
   crearAgente(nuevoAgente: any) {

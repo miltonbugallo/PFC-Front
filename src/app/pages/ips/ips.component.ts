@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
 import { IpsService } from 'src/app/services/ips.service';
 import { IpsFormComponent } from 'src/app/forms/ips-form/ips-form.component';
-import { ipModel } from 'src/app/models/ipModel';
+import { ipAddressModel } from 'src/app/models/ipAddressModel';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
@@ -16,57 +16,69 @@ export class IpsComponent implements OnInit{
   constructor(private datatableService: DataTableConfigService, private dialog: MatDialog,
     private ipsService: IpsService) { }
 
-  ipsData = this.ipsService.obtenerIps()
+  ipsData: ipAddressModel[] = [];
 
   ngOnInit() {
+    this.obtenerIps();
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#ipsTable").DataTable(datatableConfig).buttons().container().appendTo('#ipsTable_wrapper .col-md-6:eq(0)');
     });
   }
 
-  deleteIp(ipData: any) {
-    // Encuentra el índice del elemento en el array agentesData y elimínalo
-    const index = this.ipsData.indexOf(ipData);
-    if (index !== -1) {
-      this.ipsData.splice(index, 1);
-    }
-  }
+  obtenerIps() {
+  this.ipsService.getIps().subscribe((ips) => {
+    this.ipsData = ips;
+  });
+}
 
-  // Función para abrir el formulario de edición/agregado en un modal
-  abrirFormulario(ipData?: any) {
-    const dialogConfig: MatDialogConfig = {
-      data: ipData || null // Pasamos null cuando no hay datos para editar
-    };
+crearIp(nuevaIp: any) {
 
-    const dialogRef = this.dialog.open(IpsFormComponent, dialogConfig);
+  this.ipsService.crearIp(nuevaIp).subscribe((respuesta) => {
+    console.log('Ip creado:', respuesta);
+    // Puedes realizar acciones después de crear el agente
+    this.obtenerIps(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
+  });
+}
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
-    dialogRef.afterClosed().subscribe((datosActualizados: any) => {
-      if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo switch
-        if (ipData) {
-          // Se editó un switch existente
-          this.guardarCambios(datosActualizados); // Lógica para guardar los cambios
-        } else {
-          // Se agregó un nuevo switch
-          this.agregarNuevaIp(datosActualizados); // Lógica para agregar el nuevo switch
-        }
+actualizarIp(ip: any) {
+  this.ipsService.actualizarIp(ip).subscribe((respuesta) => {
+    console.log('Ip actualizado:', respuesta);
+    // Puedes realizar acciones después de actualizar el agente
+    this.obtenerIps(); // Por ejemplo, actualizar la lista de agentes después de la actualización
+  });
+}
+
+deleteIp(id: number) {
+  this.ipsService.eliminarIp(id).subscribe((respuesta) => {
+    console.log('Ip eliminado:', respuesta);
+    // Puedes realizar acciones después de eliminar el agente
+    this.obtenerIps(); // Por ejemplo, actualizar la lista de agentes después de la eliminación
+  });
+}
+
+// Función para abrir el formulario de edición/agregado en un modal
+abrirFormulario(ipData?: any) {
+  const dialogConfig: MatDialogConfig = {
+    data: ipData || null // Pasamos null cuando no hay datos para editar
+  };
+
+  const dialogRef = this.dialog.open(IpsFormComponent, dialogConfig);
+
+  // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
+  dialogRef.afterClosed().subscribe((datosActualizados: any) => {
+    if (datosActualizados) {
+      // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo sector
+      if (ipData) {
+          // Se editó un sector existente
+        this.actualizarIp(datosActualizados); // Lógica para guardar los cambios
+        
+      } else {
+        // Se agregó un nuevo sector
+        this.crearIp(datosActualizados); // Lógica para agregar el nuevo sector
       }
-    });
-  }
-
-  guardarCambios(datosActualizados: ipModel) {
-    // Lógica para guardar los cambios en el backend o actualizar los datos originales
-    const index = this.ipsData.findIndex((data) => data.id === datosActualizados.id);
-    if (index !== -1) {
-      this.ipsData[index] = datosActualizados;
     }
-  }
-
-  agregarNuevaIp(nuevaIp: any) {
-    // Lógica para agregar el nuevo switch al array switchesData
-    this.ipsData.push(nuevaIp)
-  }
+  });
+}
 
 }

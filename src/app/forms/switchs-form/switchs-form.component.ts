@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConexionSwitch } from 'src/app/models/conexionSwitch';
-import { switchModel } from 'src/app/models/switchModel';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { sectorModel } from 'src/app/models/sectorModel';
 import { ipModel } from 'src/app/models/ipModel';
@@ -16,16 +15,14 @@ import { IpsService } from 'src/app/services/ips.service';
 })
 export class SwitchsFormComponent {
 
-  //Codigo prueba, eliminar cuando se conecte al backend
   sectores: sectorModel[] = [];
   ips: ipModel[] = [];
   agentes: any[] = [];
-
-  //Codigo real
   switchForm: FormGroup;
   originalData: any;
   titulo = "Agregar switch";
   conexionSwitch: any = ConexionSwitch 
+
   constructor(
     public dialogRef: MatDialogRef<SwitchsFormComponent>,
     @Inject(MAT_DIALOG_DATA) public switchData: any,
@@ -37,7 +34,7 @@ export class SwitchsFormComponent {
       ip: [''],
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
-      agenteSwitch: ['', Validators.required],
+      agenteSwitch: [''],
       sector: [''],
       conexion: ['' , Validators.required],
       etiqueta: ['', Validators.required],
@@ -58,19 +55,15 @@ export class SwitchsFormComponent {
   }
 
   obtenerAgentes(){
-    this.agentesService.getAgentesFicticios().subscribe((agentes) => {
+    this.agentesService.getAgentes().subscribe((agentes) => {
       this.agentes = agentes;
     });
-    // this.agentesService.getAgentes().subscribe((agentes) => {
-    //   this.agentes = agentes;
-    // });
   }
 
   obtenerSectores() {
-      this.sectores = this.sectoresService.obtenerSectores();
-    // this.sectoresService.getSectores().subscribe((sectores) => {
-    //   this.sectores = sectores;
-    // });
+    this.sectoresService.getSectores().subscribe((sectores) => {
+      this.sectores = sectores;
+    });
   }
 
   obtenerIps() {
@@ -86,10 +79,10 @@ export class SwitchsFormComponent {
       ip: this.switchData.ip.direccion,
       marca: this.switchData.marca,
       modelo: this.switchData.modelo,
-      agenteSwitch: this.switchData.agente.id,
+      agenteSwitch: this.switchData.agente.id != -1 ? this.switchData.agente.id : '',
       etiqueta: this.switchData.etiqueta,
       conexion: this.switchData.conexion,
-      sector: this.switchData.sector.id,
+      sector: this.switchData.sector.id != -1 ? this.switchData.sector.id : '',
     });
   }
   
@@ -101,7 +94,7 @@ export class SwitchsFormComponent {
   
       const switchActualizado: any = {
         id: this.switchData.id,
-        ip: matchingOption ? matchingOption.id : null,
+        ip: matchingOption ? matchingOption.direccion : null,
         marca: this.switchForm.get('marca')?.value,
         modelo: this.switchForm.get('modelo')?.value,
         conexion: this.switchForm.get('conexion')?.value,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { agenteModel } from '../models/agenteModel';
-import { Observable, forkJoin, map, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { sectorModel } from '../models/sectorModel';
 import { ipModel } from '../models/ipModel';
 import { LoginService } from './login.service';
@@ -13,7 +13,7 @@ export class AgentesService {
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  private apiUrl = 'http://localhost:250/api/agentes';
+  private apiUrl = '/servidor/api/agentes';
   private token = this.loginService.getToken(); 
 
   //Datos pruebas
@@ -107,15 +107,14 @@ export class AgentesService {
       nombre: agente.nombre,
       apellido: agente.apellido,
       sector: agente.sector ? `/api/sectors/${agente.sector}` : null,
-      ipAdress: agente.ip ? { direccion: `/api/ip_adresses/${agente.ip}` } : null,
+      ipAdress: agente.ip ? { direccion: agente.ip } : null,
     };
-
     // Realizamos la solicitud POST
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-agente`, JSON.stringify(requestBody), { headers });
+    return this.http.post(`${this.apiUrl}/agregar-agente`, requestBody, { headers });
   }
 
 
@@ -134,7 +133,7 @@ export class AgentesService {
       nombre: agente.nombre,
       apellido: agente.apellido,
       sector: agente.sector ? `/api/sectors/${agente.sector}` : null,
-      ipAdress: agente.ip ? { direccion: `/api/ip_adresses/${agente.ip}` } : null,
+      ipAdress: agente.ip ? { direccion: agente.ip } : null,
     };
     // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
@@ -142,7 +141,7 @@ export class AgentesService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-agente/${agente.id}`, JSON.stringify(requestBody), { headers });
+    return this.http.patch(`${this.apiUrl}/actualizar-agente/${agente.id}`, requestBody, { headers });
   }
   
 

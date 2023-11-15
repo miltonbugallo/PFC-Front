@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { sectorModel } from 'src/app/models/sectorModel';
 import { AgentesService } from 'src/app/services/agentes.service';
 import { ipModel } from 'src/app/models/ipModel';
@@ -14,10 +14,8 @@ import { IpsService } from 'src/app/services/ips.service';
 })
 export class AgentesFormComponent {
   
-  //Codigo prueba, eliminar cuando se conecte al backend
   sectores: sectorModel[] = [];
   ips: ipModel[] = [];
-  //Codigo real
   agenteForm: FormGroup;
   originalData: any;
   titulo = "Agregar agente";
@@ -51,17 +49,15 @@ export class AgentesFormComponent {
   }
 
   obtenerSectores() {
-      this.sectores = this.sectoresService.obtenerSectores();
-    // this.sectoresService.getSectores().subscribe((sectores) => {
-    //   this.sectores = sectores;
-    // });
+    this.sectoresService.getSectores().subscribe((sectores) => {
+      this.sectores = sectores;
+    });
   }
 
   obtenerIps() {
-    this.ips=this.ipsService.obtenerIps();
-    // this.ipsService.getIps().subscribe((ips) => {
-    //   this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
-    // });
+    this.ipsService.getIps().subscribe((ips) => {
+      this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
+    });
   }
 
   esEditar(){
@@ -70,7 +66,7 @@ export class AgentesFormComponent {
       ip: this.agenteData.ip.direccion,
       nombre: this.agenteData.nombre,
       apellido: this.agenteData.apellido,
-      sector: this.agenteData.sector.id,
+      sector: this.agenteData.sector.id != -1 ? this.agenteData.sector.id : '',
     });
   }
   
@@ -82,7 +78,7 @@ export class AgentesFormComponent {
   
       const agenteActualizado: any = {
         id: this.agenteData.id,
-        ip: matchingOption ? matchingOption.id : null,
+        ip: matchingOption ? matchingOption.direccion : null,
         nombre: this.agenteForm.get('nombre')?.value,
         apellido: this.agenteForm.get('apellido')?.value,
         sector: this.agenteForm.get('sector')?.value === '' ? null : this.agenteForm.get('sector')?.value,
