@@ -1,25 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { dispositivoModel } from '../models/dispositivoModel';
+import { Observable } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DispositivosService {
-
-  public dispositivosData: dispositivoModel[] =
-  [
-    { id: "1", ip: '10.255.255', dispositivo: 'PC 1', sistemaOperativo: 'Windows 10', ram: 12, agente: 'Bugallo', sector: 'Secretaria' },
-    { id: "2", ip: '20.255.255', dispositivo: 'PC 2', sistemaOperativo: 'Linux 10', ram: 4, agente: 'Luengo', sector: 'IT' },
-    { id: "3", ip: '30.255.255', dispositivo: 'PC 3', sistemaOperativo: 'Windows 11', ram: 8, agente: 'Robledo', sector: 'Sectorial' },
-  ];
   
-  private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
+  private apiUrl = '/servidor/api/equipos';
+  private token = this.loginService.getToken();
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  obtenerDispositivos(){
-    return this.dispositivosData
+  getEquipos(): Observable<dispositivoModel[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers })
   }
 }

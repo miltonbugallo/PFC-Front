@@ -5,7 +5,7 @@ export interface ipAddressModel {
       nombre: string,
       apellido: string
     },
-    switches: {
+    switch: {
       marca: string,
       modelo: string,
       estadoConexion: boolean,

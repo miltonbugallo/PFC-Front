@@ -67,10 +67,9 @@ export class SwitchsFormComponent {
   }
 
   obtenerIps() {
-    this.ips=this.ipsService.obtenerIps();
-    // this.ipsService.getIps().subscribe((ips) => {
-    //   this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
-    // });
+    this.ipsService.getIps().subscribe((ips) => {
+      this.ips = ips.map((ipModel: ipModel) => this.ipsService.mapIPModel(ipModel));
+    });
   }
 
   esEditar(){

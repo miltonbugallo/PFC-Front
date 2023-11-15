@@ -1,10 +1,10 @@
+import { ipModel } from "./ipModel";
 
 export interface dispositivoModel {
     id: string;
-    ip: string;
-    dispositivo: string;
+    nombreDispositivo: string;
     sistemaOperativo: string;
-    ram: number;
-    agente: string;
-    sector: string
+    memoriaRam: number;
+    macaddress: string,
+    ipadress: ipModel
 }

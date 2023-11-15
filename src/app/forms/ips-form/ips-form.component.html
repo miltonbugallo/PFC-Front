@@ -7,7 +7,25 @@
     </div> -->
     <div class="form-group">
       <label for="ip">IP</label>
-      <input [ngClass]="ipsForm.get('ip')?.hasError('required') && ipsForm.get('ip')?.touched ? 'error' : ''" type="text" id="ip" name="ip" formControlName="ip" class="form-control" list="ipsList" autocomplete="off">
+      <input [ngClass]="ipsForm.get('ip')?.hasError('required') && ipsForm.get('ip')?.touched ? 'error' : ''" type="text" id="direccion" name="direccion" formControlName="direccion" class="form-control" list="ipsList" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="agenteIp">Agente</label>
+      <select [ngClass]="ipsForm.get('agenteIp')?.hasError('required') && ipsForm.get('agenteIp')?.touched ? 'error' : ''"  id="agenteIp" name="agenteIp" formControlName="agenteIp" class="form-control" autocomplete="off">
+        <option *ngFor="let agenteIp of agentes" [value]="agenteIp.id" [selected]="agenteIp.id === ipsForm.get('agenteIp')?.value">{{ agenteIp.nombre + ' ' + agenteIp.apellido }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="switch">Sector</label>
+      <select id="switch" name="switch" formControlName="switch" class="form-control" autocomplete="off">
+        <option *ngFor="let switch of switchs" [value]="switch.id" [selected]="switch.id === ipsForm.get('switch')?.value">{{ switch.nombre }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="equipo">Equipo</label>
+      <select id="equipo" name="equipo" formControlName="equipo" class="form-control" autocomplete="off">
+        <option *ngFor="let equipo of equipos" [value]="equipo.id" [selected]="equipo.id === ipsForm.get('equipo')?.value">{{ equipo.nombre }}</option>
+      </select>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary" [disabled]="ipsForm.invalid">Guardar</button>
