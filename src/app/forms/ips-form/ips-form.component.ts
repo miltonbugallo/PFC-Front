@@ -12,12 +12,12 @@ import { DispositivosService } from 'src/app/services/dispositivos.service';
   styleUrls: ['./ips-form.component.css']
 })
 export class IpsFormComponent {
+
+  editar: boolean = false;
   ipsForm: FormGroup;
   originalData: any;
   titulo = "Agregar ip";
-  agentes: any[] = [];
-  switchs: any[] = [];
-  equipos: any[] = [];
+  
   constructor(
     public dialogRef: MatDialogRef<IpsFormComponent>,
     @Inject(MAT_DIALOG_DATA) public ipData: any,
@@ -25,46 +25,28 @@ export class IpsFormComponent {
   ) {
     this.originalData = { ...ipData };
     this.ipsForm = this.fb.group({
-      id: ['', Validators.required],
       direccion: ['', Validators.required],
-      agenteIp: [''],
-      switch: [''],
-      equipo: [''],
+      agenteIp: [{value:'', disabled:true}],
+      switchIp: [{value:'', disabled:true}],
+      equipo: [{value:'', disabled:true}],
     });
     if(this.ipData != null){
       this.esEditar();
     }
     else {
-      this.ipData = {id: '', ip: '', agente: {nombre:'', apellido:''}, switch: {nombre:''}, equipo: {nombre: ''}} 
+      this.ipData = {id: null, ip: '', agente: {nombre:'', apellido:''}, switch: {etiqueta:''}, equipo: {nombre: ''}} 
     }
   }
 
-  obtenerAgentes(){
-    this.agentesService.getAgentes().subscribe((agentes) => {
-      this.agentes = agentes;
-    });
-  }
-
-  obtenerSwtichs() {
-    this.switchService.getSwitch().subscribe((switchs) => {
-      this.switchs = switchs;
-    });
-  }
-
-  obtenerEquipos() {
-    this.equipoService.getEquipos().subscribe((equipos) => {
-      this.equipos = equipos;
-    });
-  }
-
   esEditar(){
+    this.editar = true;
     this.titulo = "Editar ip";
     this.ipsForm.patchValue({
       id: this.ipData.id,
-      direccion: this.ipData.ip,
-      agenteIp: this.ipData.agente.id != -1 ? this.ipData.agente.id : '',
-      switch: this.ipData.switch.id != -1 ? this.ipData.switch.id : '',
-      equipo: this.ipData.equipo.id != -1 ? this.ipData.equipo.id : '',
+      direccion: this.ipData.direccion,
+      agenteIp: this.ipData.agente.id != -1 ? this.ipData.agente.nombre+' '+this.ipData.agente.apellido : '',
+      switchIp: this.ipData.switches.id != -1 ? this.ipData.switches.etiqueta : '',
+      equipo: this.ipData.equipo.id != -1 ? this.ipData.equipo.nombreDispositivo : '',
     });
   }
   
@@ -72,11 +54,11 @@ export class IpsFormComponent {
   guardarCambios() {
     if (this.ipsForm.valid) {
       const ipActualizada: ipAddressModel = {
-        id: this.ipsForm.get('id')?.value,
-        direccion: this.ipsForm.get('ip')?.value,
-        agente: this.ipsForm.get('agenteIp')?.value === '' ? null : this.ipsForm.get('agenteIp')?.value,
-        switch: this.ipsForm.get('switch')?.value === '' ? null : this.ipsForm.get('switch')?.value,
-        equipo: this.ipsForm.get('equipo')?.value === '' ? null : this.ipsForm.get('equipo')?.value,
+        id: this.ipData.id,
+        direccion: this.ipsForm.get('direccion')?.value,
+        agente: this.ipsForm.get('agenteIp')?.value === '' ? null : this.ipData.agente.id,
+        switches: this.ipsForm.get('switchIp')?.value === '' ? null : this.ipData.switches.id,
+        equipo: this.ipsForm.get('equipo')?.value === '' ? null : this.ipData.equipo.id,
       };
       this.dialogRef.close(ipActualizada);
     }

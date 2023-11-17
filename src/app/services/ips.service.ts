@@ -19,8 +19,27 @@ export class IpsService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
     });
-
     return this.http.get<any[]>(this.apiUrl, { headers })
+  }
+
+  mapIpAdress(ip: any): ipAddressModel {
+    return {
+  id: ip.id,
+  direccion: ip.direccion,
+  agente: ip.agente ? ip.agente :{
+    id: -1,
+    nombre: '',
+    apellido: ''
+  },
+  switches: ip.switches ? ip.switches :{
+    id: -1,
+    etiqueta: ''
+  },
+  equipo: ip.equipo ? ip.equipo :{
+    id: -1,
+    nombreDispositivo: '',
+  }
+}
   }
 
   mapIPModel(ipModel: any): ipModel {
@@ -33,8 +52,8 @@ export class IpsService {
   crearIp(ip: any): Observable<any> {
     // Construimos el objeto para enviar en la solicitud POST
     const requestBody = {
+      direccion: ip.direccion
     };
-    console.log(requestBody)
 
     // Realizamos la solicitud POST
     const headers = new HttpHeaders({
@@ -57,16 +76,19 @@ export class IpsService {
   actualizarIp(ip: any): Observable<any> {
     // Construimos el objeto para enviar en la solicitud POST
     const requestBody = {
+      direccion: ip.direccion,
+      agente: ip.agente ? `/api/agentes/${ip.agente}` : null,
+      switches: ip.switches ? `/api/switches/${ip.switches}` : null,
+      equipo: ip.equipo ? `/api/equipo/${ip.equipo}` : null,
     };
-    console.log(requestBody)
 
-    // Realizamos la solicitud PATCH
+    // Realizamos la solicitud PUT
     const headers = new HttpHeaders({
       'Content-Type': 'application/merge-patch+json',
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-ip/${ip.id}`, requestBody, { headers });
+    return this.http.put(`${this.apiUrl}/actualizar-ip/${ip.id}`, requestBody, { headers });
   }
 
 }

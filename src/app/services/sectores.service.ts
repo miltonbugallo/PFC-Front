@@ -60,7 +60,7 @@ export class SectoresService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-sector/${sector.id}`, requestBody, { headers });
+    return this.http.put(`${this.apiUrl}/actualizar-sector/${sector.id}`, requestBody, { headers });
   }
 
 }
