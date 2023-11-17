@@ -33,28 +33,45 @@ export class AgentesComponent implements OnInit{
   }
 
   crearAgente(nuevoAgente: any) {
-
-    this.agenteService.crearAgente(nuevoAgente).subscribe((respuesta) => {
-      console.log('Agente creado:', respuesta);
-      // Puedes realizar acciones después de crear el agente
-      this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
-    });
+    this.agenteService.crearAgente(nuevoAgente).subscribe(
+      (respuesta) => {
+        console.log('Agente creado:', respuesta);
+        // Puedes realizar acciones después de crear el agente
+        this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de crear uno nuevo
+      },
+      (error) => {
+        console.error('Error al crear el agente:', error);
+        // Puedes manejar el error aquí, mostrar un mensaje al usuario, realizar acciones específicas, etc.
+      }
+    );
   }
 
   actualizarAgente(agente: any) {
-    this.agenteService.actualizarAgente(agente).subscribe((respuesta) => {
+    this.agenteService.actualizarAgente(agente).subscribe(
+      (respuesta) => {
       console.log('Agente actualizado:', respuesta);
       // Puedes realizar acciones después de actualizar el agente
       this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de la actualización
-    });
+      },
+      (error) => {
+        console.error('Error al actualizar el agente:', error);
+        // Puedes manejar el error aquí, mostrar un mensaje al usuario, realizar acciones específicas, etc.
+      }
+    );
   }
 
   eliminarAgente(id: number) {
-    this.agenteService.eliminarAgente(id).subscribe((respuesta) => {
+    this.agenteService.eliminarAgente(id).subscribe(
+      (respuesta) => {
       console.log('Agente eliminado:', respuesta);
       // Puedes realizar acciones después de eliminar el agente
       this.obtenerAgentes(); // Por ejemplo, actualizar la lista de agentes después de la eliminación
-    });
+    },
+      (error) => {
+        console.error('Error al eliminar el agente:', error);
+        // Puedes manejar el error aquí, mostrar un mensaje al usuario, realizar acciones específicas, etc.
+      }
+    );
   }
 
   // Función para abrir el formulario de edición/agregado en un modal

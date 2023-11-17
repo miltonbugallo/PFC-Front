@@ -58,7 +58,7 @@ export class SwitchsService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-switch`, requestBody, { headers });
+    return this.http.post(`servidor/agregar-switch`, requestBody, { headers });
   }
 
 
@@ -68,7 +68,7 @@ export class SwitchsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`${this.apiUrl}/eliminar-switch/${id}`, { headers });
+    return this.http.post(`servidor/eliminar-switch/${id}`, { headers });
   }
 
   actualizarSwitch(switchs: any): Observable<any> {
@@ -90,7 +90,7 @@ export class SwitchsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-switch/${switchs.id}`, requestBody, { headers });
+    return this.http.post(`servidor/actualizar-switch/${switchs.id}`, requestBody, { headers });
   }
   
 

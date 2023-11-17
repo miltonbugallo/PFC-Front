@@ -60,7 +60,7 @@ export class IpsService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-ip`, requestBody, { headers });
+    return this.http.post(`servidor/agregar-ip`, requestBody, { headers });
   }
 
 
@@ -70,7 +70,7 @@ export class IpsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`${this.apiUrl}/eliminar-ip/${id}`, { headers });
+    return this.http.delete(`servidor/eliminar-ip/${id}`, { headers });
   }
 
   actualizarIp(ip: any): Observable<any> {
@@ -88,7 +88,7 @@ export class IpsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.put(`${this.apiUrl}/actualizar-ip/${ip.id}`, requestBody, { headers });
+    return this.http.put(`servidor/actualizar-ip/${ip.id}`, requestBody, { headers });
   }
 
 }

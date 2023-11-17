@@ -65,7 +65,7 @@ export class AgentesService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-agente`, requestBody, { headers });
+    return this.http.post(`servidor/agregar-agente`, requestBody, { headers });
   }
 
 
@@ -75,11 +75,11 @@ export class AgentesService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`${this.apiUrl}/eliminar-agente/${id}`, { headers });
+    return this.http.post(`servidor/eliminar-agente/${id}`, { headers });
   }
 
   actualizarAgente(agente: any): Observable<any> {
-    // Construimos el objeto para enviar en la solicitud PUT
+    // Construimos el objeto para enviar en la solicitud POST
     const requestBody = {
       nombre: agente.nombre,
       apellido: agente.apellido,
@@ -92,7 +92,7 @@ export class AgentesService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-agente/${agente.id}`, requestBody, { headers });
+    return this.http.post(`${this.apiUrl}/actualizar-agente/${agente.id}`, requestBody, { headers });
   }
   
 
