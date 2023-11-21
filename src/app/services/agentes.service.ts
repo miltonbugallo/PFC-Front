@@ -92,7 +92,7 @@ export class AgentesService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.post(`${this.apiUrl}/actualizar-agente/${agente.id}`, requestBody, { headers });
+    return this.http.post(`servidor/actualizar-agente/${agente.id}`, requestBody, { headers });
   }
   
 
