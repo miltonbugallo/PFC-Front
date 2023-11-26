@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -9,9 +10,7 @@ export class LoginService {
 
   private apiUrl = '/login';
   private token:  string | null = null;
-
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(user: string, pass: string): Observable<any> {
     const loginData = {
@@ -24,6 +23,11 @@ export class LoginService {
   setToken(token: string): void {
     this.token = token;
     localStorage.setItem('auth_token', token);
+
+    setTimeout(() => {
+      this.deleteToken();
+      this.router.navigate(['/login']);
+    }, 10000);
   }
 
   getToken(): string | null {
