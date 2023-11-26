@@ -1,0 +1,7 @@
+<div [ngClass]="show ? ' msg success' : 'msg danger'">
+    {{message}}
+    <div class="button">
+        <button [ngClass]="show ? 'boton btn btn-success' : 'boton btn btn-danger'" mat-raised-button
+            [mat-dialog-close]="true">Ok</button>
+    </div>
+</div>

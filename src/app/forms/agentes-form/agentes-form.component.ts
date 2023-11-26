@@ -1,11 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { sectorModel } from 'src/app/models/sectorModel';
 import { AgentesService } from 'src/app/services/agentes.service';
 import { ipModel } from 'src/app/models/ipModel';
 import { SectoresService } from 'src/app/services/sectores.service';
 import { IpsService } from 'src/app/services/ips.service';
+import { DialogMsgComponent } from 'src/app/pages/dialog-msg/dialog-msg.component';
+import { DialogConfirmComponent } from 'src/app/pages/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-agentes-form',
@@ -24,7 +26,7 @@ export class AgentesFormComponent {
     public dialogRef: MatDialogRef<AgentesFormComponent>,
     @Inject(MAT_DIALOG_DATA) public agenteData: any,
     private fb: FormBuilder, public agentesService: AgentesService, public sectoresService: SectoresService,
-    public ipsService: IpsService
+    public ipsService: IpsService, private dialog: MatDialog
   ) {
     this.originalData = { ...agenteData };
     this.agenteForm = this.fb.group({
@@ -73,23 +75,43 @@ export class AgentesFormComponent {
 
   guardarCambios() {
     if (this.agenteForm.valid) {
-      const inputValue = this.agenteForm.get('ip')?.value;
-      const matchingOption = this.ips.find(ip => ip.direccion === inputValue);
-  
-      const agenteActualizado: any = {
-        id: this.agenteData.id,
-        ip: matchingOption ? matchingOption.direccion : null,
-        nombre: this.agenteForm.get('nombre')?.value,
-        apellido: this.agenteForm.get('apellido')?.value,
-        sector: this.agenteForm.get('sector')?.value === '' ? null : this.agenteForm.get('sector')?.value,
-      };
-  
-      this.dialogRef.close(agenteActualizado);
-    }
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = "400"
+      dialogConfig.disableClose = true;
+      dialogConfig.data = { mensaje: '¿Seguro que deseas guardar estos datos?' }
+      const dialogRef = this.dialog.open(DialogConfirmComponent, dialogConfig);
+      
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+        const inputValue = this.agenteForm.get('ip')?.value;
+        const matchingOption = this.ips.find(ip => ip.direccion === inputValue);
+    
+        const agenteActualizado: any = {
+          id: this.agenteData.id,
+          ip: matchingOption ? matchingOption.direccion : null,
+          nombre: this.agenteForm.get('nombre')?.value,
+          apellido: this.agenteForm.get('apellido')?.value,
+          sector: this.agenteForm.get('sector')?.value === '' ? null : this.agenteForm.get('sector')?.value,
+        };
+    
+        this.dialogRef.close(agenteActualizado);
+      }
+    });
   }
+}
+  
 
   cancelarEdicion() {
     this.dialogRef.close();
+  }
+
+  openDialog(success: boolean, message: string) {
+    this.dialog.open(DialogMsgComponent,{
+      data: {
+        boleanData: success,
+        messageData: message
+      }
+    })
   }
 
 }

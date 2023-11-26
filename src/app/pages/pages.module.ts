@@ -26,6 +26,8 @@ import { SistemasOperativosComponent } from './sistemas-operativos/sistemas-oper
 import { SectoresComponent } from './sectores/sectores.component';
 import { SistemasOperativosFormComponent } from '../forms/sistemas-operativos-form/sistemas-operativos-form.component';
 import { SectoresFormComponent } from '../forms/sectores-form/sectores-form.component';
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
+import { DialogMsgComponent } from './dialog-msg/dialog-msg.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { SectoresFormComponent } from '../forms/sectores-form/sectores-form.comp
     SistemasOperativosFormComponent,
     SectoresComponent,
     SectoresFormComponent,
+    DialogConfirmComponent,
+    DialogMsgComponent,
   ],
   imports: [
     CommonModule,

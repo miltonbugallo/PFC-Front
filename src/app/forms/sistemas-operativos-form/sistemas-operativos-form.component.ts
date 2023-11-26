@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { sistemaOperativoModel } from 'src/app/models/sistemaOperativoModel';
+import { DialogConfirmComponent } from 'src/app/pages/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-sistemas-operativos-form',
@@ -16,7 +17,7 @@ export class SistemasOperativosFormComponent {
   constructor(
     public dialogRef: MatDialogRef<SistemasOperativosFormComponent>,
     @Inject(MAT_DIALOG_DATA) public soData: any,
-    private fb: FormBuilder
+    private fb: FormBuilder, private dialog: MatDialog
   ) {
     this.originalData = { ...soData };
     this.sistemasOperativosForm = this.fb.group({
@@ -42,12 +43,22 @@ export class SistemasOperativosFormComponent {
 
   guardarCambios() {
     if (this.sistemasOperativosForm.valid) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = "400"
+      dialogConfig.disableClose = true;
+      dialogConfig.data = { mensaje: '¿Seguro que deseas guardar estos datos?' }
+      const dialogRef = this.dialog.open(DialogConfirmComponent, dialogConfig);
+      
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
       const soActualizado: sistemaOperativoModel = {
         id: this.soData.id,
         nombre: this.sistemasOperativosForm.get('nombre')?.value,
         version: this.sistemasOperativosForm.get('version')?.value,
       };
       this.dialogRef.close(soActualizado);
+    }
+  });
     }
   }
 

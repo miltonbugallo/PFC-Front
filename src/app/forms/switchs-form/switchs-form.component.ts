@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ConexionSwitch } from 'src/app/models/conexionSwitch';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { sectorModel } from 'src/app/models/sectorModel';
@@ -7,6 +7,7 @@ import { ipModel } from 'src/app/models/ipModel';
 import { AgentesService } from 'src/app/services/agentes.service';
 import { SectoresService } from 'src/app/services/sectores.service';
 import { IpsService } from 'src/app/services/ips.service';
+import { DialogConfirmComponent } from 'src/app/pages/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-switchs-form',
@@ -27,7 +28,7 @@ export class SwitchsFormComponent {
     public dialogRef: MatDialogRef<SwitchsFormComponent>,
     @Inject(MAT_DIALOG_DATA) public switchData: any,
     private fb: FormBuilder, public agentesService: AgentesService, public sectoresService: SectoresService,
-    public ipsService: IpsService
+    public ipsService: IpsService, private dialog: MatDialog
   ) {
     this.originalData = { ...switchData };
     this.switchForm = this.fb.group({
@@ -88,6 +89,14 @@ export class SwitchsFormComponent {
 
   guardarCambios() {
     if (this.switchForm.valid) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = "400"
+      dialogConfig.disableClose = true;
+      dialogConfig.data = { mensaje: '¿Seguro que deseas guardar estos datos?' }
+      const dialogRef = this.dialog.open(DialogConfirmComponent, dialogConfig);
+      
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
       const inputValue = this.switchForm.get('ip')?.value;
       const matchingOption = this.ips.find(ip => ip.direccion === inputValue);
   
@@ -102,8 +111,9 @@ export class SwitchsFormComponent {
         agente: this.switchForm.get('agenteSwitch')?.value === '' ? null : this.switchForm.get('agenteSwitch')?.value,
       };
   
-      console.log(switchActualizado)
       this.dialogRef.close(switchActualizado);
+    }
+  });
     }
   }
 

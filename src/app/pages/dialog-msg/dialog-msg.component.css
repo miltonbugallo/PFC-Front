@@ -1,0 +1,19 @@
+.boton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.msg {
+  padding-top: 5px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: large;
+}
+
+.success {
+  background-color: rgb(96, 206, 96);
+}
+
+.danger {
+  background-color: rgb(214, 90, 90);
+}

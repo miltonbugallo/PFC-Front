@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ipModel } from '../models/ipModel';
-import { Observable } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ipAddressModel } from '../models/ipAddressModel';
 import { LoginService } from './login.service';
@@ -19,7 +19,10 @@ export class IpsService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.get<any[]>(this.apiUrl, { headers })
+  
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+      map(data => data.map(item => this.mapIpAdress(item)))
+    );
   }
 
   mapIpAdress(ip: any): ipAddressModel {

@@ -3,11 +3,11 @@
   <form [formGroup]="sectoresForm" (ngSubmit)="guardarCambios()">
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input [ngClass]="sectoresForm.get('nombre')?.hasError('required') && sectoresForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control">
+      <input [ngClass]="sectoresForm.get('nombre')?.hasError('required') && sectoresForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control" autocomplete="off">
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary" [disabled]="sectoresForm.invalid">Guardar</button>
-      <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+      <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
     </div>
   </form>
 </div>

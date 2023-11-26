@@ -51,7 +51,6 @@ export class SwitchsService {
       agente: switchs.agente ? `/api/agentes/${switchs.agente}` : null,
       ipAdress: switchs.ip ? { direccion: switchs.ip } : null,
     };
-    console.log(requestBody)
 
     // Realizamos la solicitud POST
     const headers = new HttpHeaders({
@@ -82,7 +81,6 @@ export class SwitchsService {
       agente: switchs.agente ? `/api/agentes/${switchs.agente}` : null,
       ipAdress: switchs.ip ? { direccion: switchs.ip } : null,
     };
-    console.log(requestBody)
 
     // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
