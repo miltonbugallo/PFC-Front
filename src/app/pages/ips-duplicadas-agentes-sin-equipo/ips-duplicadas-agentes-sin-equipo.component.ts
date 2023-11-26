@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { AgentesSinEquipoService } from '../../services/agentes-sin-equipo.service';
 import { DataTableConfigService } from '../../services/data-table-config.service';
-import { IpsDuplicadasService } from '../../services/ips-duplicadas.service';
+import { IpsDuplicadasAgentesSinEquipoService } from 'src/app/services/ips-duplicadas-agentes-sin-equipo.service';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
 @Component({
@@ -11,14 +10,22 @@ declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 })
 export class IpsDuplicadasAgentesSinEquipoComponent {
 
-  constructor(private datatableService: DataTableConfigService, private agentesSinEquipoService: AgentesSinEquipoService,
-    private ipsDuplicadasService: IpsDuplicadasService) { }
+  constructor(private datatableService: DataTableConfigService, private ipsDuplicadasAgentesSinEquipoService: IpsDuplicadasAgentesSinEquipoService ) { }
 
-  ipsDuplicadasData = this.ipsDuplicadasService.obtenerIpsDuplicadas()
-  agentesSinEquipoData = this.agentesSinEquipoService.obtenerAgentesSinEquipo()
+  ipsDuplicadasData: any[] = [];
+  agentesSinEquipoData:  any[] = [];
+
+  obtenerDatos() {
+    this.ipsDuplicadasAgentesSinEquipoService.getData().subscribe((datos) => {
+      this.ipsDuplicadasData = datos.ipsDuplicadas;
+      this.agentesSinEquipoData = datos.agentesSinEquipo;
+    });
+    console.log(this.agentesSinEquipoData);
+    console.log(this.ipsDuplicadasData);
+  }
 
   ngOnInit() {
-
+    this.obtenerDatos();
     // Obtén la configuración base del servicio
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
     // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"

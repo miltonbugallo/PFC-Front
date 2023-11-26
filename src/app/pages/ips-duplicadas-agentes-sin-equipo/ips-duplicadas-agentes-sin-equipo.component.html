@@ -18,10 +18,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let ipDuplicadaData of ipsDuplicadasData">
-                  <td>{{ ipDuplicadaData.ip }}</td>
-                  <td>{{ ipDuplicadaData.agentes.length > 0 ? ipDuplicadaData.agentes.join(', ') : '-' }}</td>
-                  <td>{{ ipDuplicadaData.dispositivos.length > 0 ? ipDuplicadaData.dispositivos.join(', ') : '-' }}</td>
-                  <td>{{ ipDuplicadaData.switches.length > 0 ? ipDuplicadaData.switches.join(', ') : '-' }}</td>
+                  <td>{{ ipDuplicadaData.direccion }}</td>
+                  <td>{{ ipDuplicadaData.agente?.nombre !== '' && ipDuplicadaData.agente?.apellido !== '' ? ipDuplicadaData.agente.nombre + ' ' + ipDuplicadaData.agente.apellido : '-' }}</td>
+                  <td>{{ ipDuplicadaData.equipo?.nombreDispositivo !== '' ? ipDuplicadaData.equipo.nombreDispositivo : '-' }}</td>
+                  <td>{{ ipDuplicadaData.switch?.etiqueta !== '' ? ipDuplicadaData.switch.etiqueta : '-' }}</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -51,8 +51,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
-                  <td>{{ agenteSinEquipoData.ip }}</td>
-                  <td>{{ agenteSinEquipoData.agente }}</td>
+                  <td>{{ agenteSinEquipoData.direccion }}</td>
+                  <td>{{ agenteSinEquipoData.agente.nombre + ' ' + agenteSinEquipoData.agente.apellido }}</td>
                 </tr>
               </tbody>
               <tfoot>
