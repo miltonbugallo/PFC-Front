@@ -1,47 +1,101 @@
 import { Injectable } from '@angular/core';
+import { LoginService } from './login.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstadisticasService {
 
-  constructor() { }
+  private apiUrl = '/servidor/estadisticas';
+  private token = this.loginService.getToken();
+  public agentesEstadistica: any = [];
+  public sistemasOperativosEstadistica: any = [];
+  public memoriasRamEstadistica: any = [];
+  public ipDuplicadasEstadistica: any = [];
+
+  constructor(private http: HttpClient, public loginService: LoginService) { }
+
+  // getEstadisticas(): Observable<void> {
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${this.token}`,
+  //   });
+  
+  //   return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+  //     map((response: any) => {
+  //       this.sistemasOperativosEstadistica = response.sistemas_operativos ? response.sistemas_operativos : [];
+  //       this.memoriasRamEstadistica = response.memorias_ram ? response.memorias_ram : [];
+  //       this.agentesEstadistica = response.agentes ? response.agentes : [];
+  //       this.ipDuplicadasEstadistica = response.ip_duplicadas ? response.ip_duplicadas : [];
+  //     })
+  //   );
+  // }
+
+  getEstadisticas(): Observable<any> {
+    // Datos simulados que quieres retornar
+    const datosSimulados = {
+      sistemas_operativos: {
+        "Windows 7": 1.2658227848101267,
+        "Windows 10": 0.31645569620253167
+      },
+      memorias_ram: {
+        "Mayor_a_8000": 30.37974683544304,
+        "Menor_a_4000": 57.91139240506329,
+        "Entre_4000_y_8000": 11.708860759493671
+      },
+      agentes: {
+        "con_equipo": 0.8347245409015025,
+        "sin_equipo": 99.1652754590985
+      },
+      ip_duplicadas: {
+        "porcentaje": 0.3448275862068966,
+        "caso1": 0,
+        "caso2": 1,
+        "caso3": 0,
+        "total": 290
+      }
+    };
+  
+    // Separar y asignar los datos simulados a las variables específicas
+    this.sistemasOperativosEstadistica = datosSimulados.sistemas_operativos ? datosSimulados.sistemas_operativos : [];
+    this.memoriasRamEstadistica = datosSimulados.memorias_ram ? datosSimulados.memorias_ram : [];
+    this.agentesEstadistica = datosSimulados.agentes ? datosSimulados.agentes : [];
+    this.ipDuplicadasEstadistica = datosSimulados.ip_duplicadas ? datosSimulados.ip_duplicadas : [];
+    console.log(datosSimulados)
+  
+    // Retornar un observable con los datos simulados
+    return of();
+  }
+
+  
 
   cargarGraficoAgentes(){
     return [
       {
-        "name": "Area IT",
-        "value": 250
+        "name": "Con Equipo asignado",
+        "value": this.agentesEstadistica.con_equipo
       },
       {
-        "name": "Secreatria",
-        "value": 100
-      },
-      {
-        "name": "Sectorial",
-        "value": 25
-      },
-  
+        "name": "Sin equipo asignado",
+        "value": this.agentesEstadistica.sin_equipo
+      }
     ];
   }
 
   cargarGraficoRAM(){
     return [
       {
-        "name": "4 GB",
-        "value": 20
+        "name": "Mayor a 8 GB",
+        "value": this.memoriasRamEstadistica.Mayor_a_8000
       },
       {
-        "name": "8GB",
-        "value": 50
+        "name": "Menor a 4GB",
+        "value":  this.memoriasRamEstadistica.Menor_a_4000
       },
       {
-        "name": "10GB",
-        "value": 15
-      },
-      {
-        "name": "12GB",
-        "value": 7
+        "name": "Entre 4 y 8GB",
+        "value":  this.memoriasRamEstadistica.Entre_4000_y_8000
       }
     ];
   }
@@ -50,34 +104,26 @@ export class EstadisticasService {
     return [
       {
         "name": "Ips duplicadas",
-        "value": 250
+        "value": this.ipDuplicadasEstadistica.porcentaje
       },
       {
         "name": "Ips correctas",
-        "value": 100
+        "value": 100-this.ipDuplicadasEstadistica.porcentaje
       },  
     ];
   }
 
-  cargarGraficoSO(){
-    return [
-      {
-        "name": "Windows 10",
-        "value": 20
-      },
-      {
-        "name": "Windows 11",
-        "value": 50
-      },
-      {
-        "name": "Linux 10",
-        "value": 15
-      },
-      {
-        "name": "Linux 20",
-        "value": 7
-      }
-    ];
+  cargarGraficoSO() {
+    const sistemasOperativos = this.sistemasOperativosEstadistica;
+    const resultado = Object.keys(sistemasOperativos).map(key => {
+      return {
+        name: key,
+        value: sistemasOperativos[key]
+      };
+    });
+    resultado.sort((a, b) => b.value - a.value);
+
+    return resultado;
   }
 
 }

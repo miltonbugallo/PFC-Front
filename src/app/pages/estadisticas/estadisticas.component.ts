@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
   selector: 'app-estadisticas',
@@ -6,6 +7,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./estadisticas.component.css']
 })
 export class EstadisticasComponent {
+
+  constructor(private estadisticasService: EstadisticasService) { }
+
+  ngOnInit() {
+    this.estadisticasService.getEstadisticas().subscribe(() => {});
+  }
 
   mostrarGraficoAgentes1: boolean = false;
   mostrarGraficoAgentes2: boolean = false;
@@ -33,7 +40,6 @@ export class EstadisticasComponent {
 
 
   actualizarEstadistica(selectId: string) {
-    console.log(selectId)
     const select = document.getElementById(selectId) as HTMLSelectElement;
     const selectedOption = select.options[select.selectedIndex].value;
     if(selectId === 'estadisticas1'){
@@ -41,7 +47,7 @@ export class EstadisticasComponent {
         case 'graficoAgentes1':
           this.ocultarEstadisticas1();
           this.mostrarGraficoAgentes1 = true;
-          this.titulo1 = "Cantidad de agentes por sector";
+          this.titulo1 = "Cantidad de agentes";
           break;
         case 'graficoRAM1':
           this.ocultarEstadisticas1();
@@ -65,7 +71,7 @@ export class EstadisticasComponent {
         case 'graficoAgentes2':
           this.ocultarEstadisticas2();
           this.mostrarGraficoAgentes2 = true;
-          this.titulo2 = "Cantidad de agentes por sector";
+          this.titulo2 = "Cantidad de agentes";
           break;
         case 'graficoRAM2':
           this.ocultarEstadisticas2();

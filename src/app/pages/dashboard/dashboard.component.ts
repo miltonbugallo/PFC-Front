@@ -4,6 +4,7 @@ import { ConexionSwitch } from 'src/app/models/conexionSwitch';
 import { switchModel } from 'src/app/models/switchModel';
 import { AgentesService } from 'src/app/services/agentes.service';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
+import { EstadisticasService } from 'src/app/services/estadisticas.service';
 import { SwitchsService } from 'src/app/services/switchs.service';
 declare var $: any; // Declara jQuery para que TypeScript lo reconozca
 
@@ -18,13 +19,13 @@ export class DashboardComponent {
   constructor(
     private datatableService: DataTableConfigService,
     private switchService: SwitchsService,
-    private agenteService: AgentesService
+    private agenteService: AgentesService, private estadisticasService: EstadisticasService
   ) { }
 
   public agentesData: agenteModel[] = []
   public switchesData: switchModel[] = []
   conexionSwitch: any = ConexionSwitch
-  titulo1 = "Cantidad de agentes por sector";
+  titulo1 = "Cantidad de agentes";
   titulo2 = "Cantidad ips conflictivas y correctas";
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class DashboardComponent {
     });
     this.obtenerSwitches()
     this.obtenerAgentes()
+    this.estadisticasService.getEstadisticas().subscribe(() => {});
   }
 
   obtenerAgentes() {
