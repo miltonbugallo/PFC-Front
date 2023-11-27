@@ -12,6 +12,24 @@ export class LoginService {
   private token:  string | null = null;
   constructor(private http: HttpClient, private router: Router) {}
 
+  // login(user: string, pass: string): Observable<any> {
+  //   const loginData = {
+  //     email: user,
+  //     password: pass
+  //   };
+  
+  //   // Simulación de un login falso con datos simulados
+  //   // Puedes ajustar estos datos según tus necesidades de prueba
+  //   const fakeLoginResponse = {
+  //     user: 'Login successful',
+  //     token: 'fakeToken123'
+  //   };
+  
+  //   // Devuelve un Observable que emite los datos simulados
+  //   return of(fakeLoginResponse);
+  // }
+
+
   login(user: string, pass: string): Observable<any> {
     const loginData = {
       email: user,
@@ -27,7 +45,7 @@ export class LoginService {
     setTimeout(() => {
       this.deleteToken();
       this.router.navigate(['/login']);
-    }, 10000);
+    }, 2000*3600); // Se ejecuta luego de 2Hs
   }
 
   getToken(): string | null {

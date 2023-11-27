@@ -1,34 +1,33 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map, of } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertasService {
 
-  constructor(private http: HttpClient) { }
+  private apiUrl = '/servidor/Ip-conflictivas';
+  private token = this.loginService.getToken();
 
+  constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  public alertasData: any[]= [
-    { alerta: "Switch 1 desconectado"},
-    { alerta: "PC 1 Ram obsoleta"},
-    { alerta: "PC 1 SO obsoleto"},
-    { alerta: "Switch 2 desconectado"},
-    { alerta: "PC 2 Ram obsoleta"},
-    { alerta: "PC 3 SO obsoleto"},
-    { alerta: "Switch 3 desconectado"},
-    { alerta: "PC 3 Ram obsoleta"},
-    { alerta: "PC 4 SO obsoleto"},
-  ];
-
-  private url = 'URL_DE_TU_BACKEND'; // Reemplaza con la URL de tu servicio backend
-
-  obtenerAlertas() {
-    return this.alertasData
+  getAlertas(): Observable<{ equiposObsoletos: any[]; switchSinConexion: any[] }> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
+  
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+      map((response: any) => {
+        return {
+          equiposObsoletos: response.EquiposObsoletos ? response.EquiposObsoletos : [],
+          switchSinConexion: response.SwitchesSinConexion ? response.SwitchesSinConexion : []
+        };
+      })
+    );
   }
 
-  // obtenerAlertas(): Observable<any[]> {
-  //   return this.http.get<any[]>(this.url);
-  // }
 
 }
+

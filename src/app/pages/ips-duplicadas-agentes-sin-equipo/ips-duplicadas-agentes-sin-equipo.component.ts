@@ -20,8 +20,6 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
       this.ipsDuplicadasData = datos.ipsDuplicadas;
       this.agentesSinEquipoData = datos.agentesSinEquipo;
     });
-    console.log(this.agentesSinEquipoData);
-    console.log(this.ipsDuplicadasData);
   }
 
   ngOnInit() {

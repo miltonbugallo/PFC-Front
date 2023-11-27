@@ -14,10 +14,21 @@ export class AlertasComponent implements OnInit{
   constructor(private datatableService: DataTableConfigService, private dialog: MatDialog,
     private alertasService: AlertasService) { }
 
-    alertasData = this.alertasService.obtenerAlertas()
-  
+    alertasEquipos: any[] = [];
+    alertasSwitch: any[] = [];
+    alertasData: any[] = [];
+
+    obtenerDatos() {
+      this.alertasService.getAlertas().subscribe((datos) => {
+        this.alertasEquipos = datos.equiposObsoletos;
+        this.alertasSwitch = datos.switchSinConexion;
+        this.alertasData = [...this.alertasEquipos, ...this.alertasSwitch];
+        console.log(this.alertasData)
+      });
+    }
 
   ngOnInit() {
+    this.obtenerDatos();
     // Obtén la configuración base del servicio
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
     // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"

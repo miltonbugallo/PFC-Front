@@ -15,11 +15,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let alertaData of alertasData; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ alertaData.alerta }}</td>
-                    </tr>
-                  </tbody>
+                  <tr *ngFor="let alertaData of alertasData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      {{ alertaData.nombre ? ("El equipo " + alertaData.nombre + " con Sistema Operativo " + alertaData.SO +  " y RAM de " + alertaData.RAM + " está obsoleto. ") : alertaData.etiqueta ? "El switch: " + alertaData.etiqueta + " está desconectado." : "" }}
+                    </td>
+                  </tr>
+                </tbody>
                 <tfoot>
                   <tr>
                     <th>#</th>

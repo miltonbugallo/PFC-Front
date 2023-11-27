@@ -26,21 +26,20 @@ export class IpsDuplicadasAgentesSinEquipoService {
     };
   }
 
-  getData(): Observable<{ ipsDuplicadas: ipDuplicadaModel[]; agentesSinEquipo: agenteSinEquipoModel[] }> {
+  getData(): Observable<{ ipsDuplicadas: any[]; agentesSinEquipo: any[] }> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
     });
 
     return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
-      map((response: any[]) => {
-        const ipsDuplicadasData = response.find((item) => item.nombre === 'ipsDuplicadas');
-        const agentesSinEquipoData = response.find((item) => item.nombre === 'agenteSinEquipo');
-
+      map((response: any) => {
         return {
-          ipsDuplicadas: ipsDuplicadasData ? ipsDuplicadasData.map((ipDuplicada: ipDuplicadaModel) => this.mapIpDuplicada(ipDuplicada)) : [],
-          agentesSinEquipo: agentesSinEquipoData ? agentesSinEquipoData : [],
+          ipsDuplicadas: response.ipsDuplicadas ? response.ipDuplicadas.map((ipDuplicada: ipDuplicadaModel) => this.mapIpDuplicada(ipDuplicada)) : [],
+          agentesSinEquipo: response.agenteSinEquipo ? response.agenteSinEquipo : [],
         };
       })
     );
   }
+
 }
+             
