@@ -7,6 +7,7 @@ export class DataTableConfigService {
   
   getDatatableConfig() {
     const options = {
+      serveSide: false,
       responsive: true,
       lengthChange: false,
       paging: true,

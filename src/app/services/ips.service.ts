@@ -24,7 +24,7 @@ export class IpsService {
       map(data => data.map(item => this.mapIpAdress(item)))
     );
   }
-
+  
   mapIpAdress(ip: any): ipAddressModel {
     return {
   id: ip.id,
@@ -63,7 +63,7 @@ export class IpsService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`servidor/agregar-ipadress`, requestBody, { headers });
+    return this.http.post(`${this.apiUrl}`, requestBody, { headers });
   }
 
 
@@ -73,25 +73,22 @@ export class IpsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`servidor/eliminar-ipadress/${id}`, { headers });
+    return this.http.delete(`servidor/eliminar-ip/${id}`, { headers });
   }
 
   actualizarIp(ip: any): Observable<any> {
     // Construimos el objeto para enviar en la solicitud POST
     const requestBody = {
-      direccion: ip.direccion,
-      agente: ip.agente ? `/api/agentes/${ip.agente}` : null,
-      switches: ip.switches ? `/api/switches/${ip.switches}` : null,
-      equipo: ip.equipo ? `/api/equipo/${ip.equipo}` : null,
+      direccion: ip.direccion
     };
 
     // Realizamos la solicitud PUT
     const headers = new HttpHeaders({
-      'Content-Type': 'application/merge-patch+json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.put(`servidor/actualizar-ipadress/${ip.id}`, requestBody, { headers });
+    return this.http.put(`${this.apiUrl}/${ip.id}`, requestBody, { headers });
   }
 
 }
