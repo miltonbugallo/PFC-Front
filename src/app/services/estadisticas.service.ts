@@ -40,9 +40,9 @@ export class EstadisticasService {
         "Windows 10": 0.31645569620253167
       },
       memorias_ram: {
-        "Mayor_a_8000": 30.37974683544304,
-        "Menor_a_4000": 57.91139240506329,
-        "Entre_4000_y_8000": 11.708860759493671
+        "Mayor_a_7800": 30.37974683544304,
+        "Menor_a_3700": 57.91139240506329,
+        "Entre_3700_y_7800": 11.708860759493671
       },
       agentes: {
         "con_equipo": 0.8347245409015025,
@@ -86,16 +86,16 @@ export class EstadisticasService {
   cargarGraficoRAM(){
     return [
       {
-        "name": "Mayor a 8 GB",
-        "value": this.memoriasRamEstadistica.Mayor_a_8000
+        "name": "Mayor a 7.8GB",
+        "value": this.memoriasRamEstadistica.Mayor_a_7800
       },
       {
-        "name": "Menor a 4GB",
-        "value":  this.memoriasRamEstadistica.Menor_a_4000
+        "name": "Menor a 3.7GB",
+        "value":  this.memoriasRamEstadistica.Menor_a_3700
       },
       {
-        "name": "Entre 4 y 8GB",
-        "value":  this.memoriasRamEstadistica.Entre_4000_y_8000
+        "name": "Entre 3.7 y 7.8GB",
+        "value":  this.memoriasRamEstadistica.Entre_3700_y_7800
       }
     ];
   }
