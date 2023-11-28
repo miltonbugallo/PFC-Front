@@ -34,7 +34,7 @@ export class SectoresService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-sector`, requestBody, { headers });
+    return this.http.post(`${this.apiUrl}`, requestBody, { headers });
   }
 
 
@@ -44,7 +44,7 @@ export class SectoresService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`${this.apiUrl}/eliminar-sector/${id}`, { headers });
+    return this.http.delete(`servidor/eliminar-sector/${id}`, { headers });
   }
 
   actualizarSector(sector: any): Observable<any> {
@@ -56,11 +56,11 @@ export class SectoresService {
 
     // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
-      'Content-Type': 'application/merge-patch+json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.put(`${this.apiUrl}/actualizar-sector/${sector.id}`, requestBody, { headers });
+    return this.http.put(`${this.apiUrl}/${sector.id}`, requestBody, { headers });
   }
 
 }
