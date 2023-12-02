@@ -17,56 +17,56 @@ export class EstadisticasService {
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  // getEstadisticas(): Observable<void> {
-  //   const headers = new HttpHeaders({
-  //     Authorization: `Bearer ${this.token}`,
-  //   });
+  getEstadisticas(): Observable<void> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+    });
   
-  //   return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
-  //     map((response: any) => {
-  //       this.sistemasOperativosEstadistica = response.sistemas_operativos ? response.sistemas_operativos : [];
-  //       this.memoriasRamEstadistica = response.memorias_ram ? response.memorias_ram : [];
-  //       this.agentesEstadistica = response.agentes ? response.agentes : [];
-  //       this.ipDuplicadasEstadistica = response.ip_duplicadas ? response.ip_duplicadas : [];
-  //     })
-  //   );
-  // }
-
-  getEstadisticas(): Observable<any> {
-    // Datos simulados que quieres retornar
-    const datosSimulados = {
-      sistemas_operativos: {
-        "Windows 7": 1.2658227848101267,
-        "Windows 10": 0.31645569620253167
-      },
-      memorias_ram: {
-        "Mayor_a_7800": 30.37974683544304,
-        "Menor_a_3700": 57.91139240506329,
-        "Entre_3700_y_7800": 11.708860759493671
-      },
-      agentes: {
-        "con_equipo": 80,
-        "sin_equipo": 20
-      },
-      ip_duplicadas: {
-        "porcentaje": 84,
-        "caso1": 0,
-        "caso2": 1,
-        "caso3": 0,
-        "total": 290
-      }
-    };
-  
-    // Separar y asignar los datos simulados a las variables específicas
-    this.sistemasOperativosEstadistica = datosSimulados.sistemas_operativos ? datosSimulados.sistemas_operativos : [];
-    this.memoriasRamEstadistica = datosSimulados.memorias_ram ? datosSimulados.memorias_ram : [];
-    this.agentesEstadistica = datosSimulados.agentes ? datosSimulados.agentes : [];
-    this.ipDuplicadasEstadistica = datosSimulados.ip_duplicadas ? datosSimulados.ip_duplicadas : [];
-    console.log(datosSimulados)
-  
-    // Retornar un observable con los datos simulados
-    return of();
+    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+      map((response: any) => {
+        this.sistemasOperativosEstadistica = response.sistemas_operativos ? response.sistemas_operativos : [];
+        this.memoriasRamEstadistica = response.memorias_ram ? response.memorias_ram : [];
+        this.agentesEstadistica = response.agentes ? response.agentes : [];
+        this.ipDuplicadasEstadistica = response.ip_duplicadas ? response.ip_duplicadas : [];
+      })
+    );
   }
+
+  // getEstadisticas(): Observable<any> {
+  //   // Datos simulados que quieres retornar
+  //   const datosSimulados = {
+  //     sistemas_operativos: {
+  //       "Windows 7": 1.2658227848101267,
+  //       "Windows 10": 0.31645569620253167
+  //     },
+  //     memorias_ram: {
+  //       "Mayor_a_7800": 30.37974683544304,
+  //       "Menor_a_3700": 57.91139240506329,
+  //       "Entre_3700_y_7800": 11.708860759493671
+  //     },
+  //     agentes: {
+  //       "con_equipo": 80,
+  //       "sin_equipo": 20
+  //     },
+  //     ip_duplicadas: {
+  //       "porcentaje": 84,
+  //       "caso1": 0,
+  //       "caso2": 1,
+  //       "caso3": 0,
+  //       "total": 290
+  //     }
+  //   };
+  
+  //   // Separar y asignar los datos simulados a las variables específicas
+  //   this.sistemasOperativosEstadistica = datosSimulados.sistemas_operativos ? datosSimulados.sistemas_operativos : [];
+  //   this.memoriasRamEstadistica = datosSimulados.memorias_ram ? datosSimulados.memorias_ram : [];
+  //   this.agentesEstadistica = datosSimulados.agentes ? datosSimulados.agentes : [];
+  //   this.ipDuplicadasEstadistica = datosSimulados.ip_duplicadas ? datosSimulados.ip_duplicadas : [];
+  //   console.log(datosSimulados)
+  
+  //   // Retornar un observable con los datos simulados
+  //   return of();
+  // }
 
   
 
