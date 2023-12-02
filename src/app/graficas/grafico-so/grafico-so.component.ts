@@ -10,16 +10,12 @@ export class GraficoSOComponent {
 
   single: any = []
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = false;
-  showXAxisLabel = true;
-  xAxisLabel = 'Sistema Operativo';
-  showYAxisLabel = true;
-  yAxisLabel = 'Cantidad de equipos';
+  view: [number, number] = [500, 400];
 
+  // options
+  showLegend = true;
+  showLabels = true;
+  doughnut = false;
 
   constructor(private estadisticasService: EstadisticasService) {
   }

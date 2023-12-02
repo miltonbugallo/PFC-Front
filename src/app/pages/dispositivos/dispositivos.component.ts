@@ -30,41 +30,11 @@ export class DispositivosComponent {
     this.dispositivosService.getEquipos()
       .subscribe((dispositivos: any) => {
         this.dispositivosData = dispositivos;
+        const datatableConfig = this.datatableService.getDatatableConfig();
+        $(function () {
+          $("#dispositivosTable").DataTable(datatableConfig).buttons().container().appendTo('#dispositivosTable_wrapper .col-md-6:eq(0)');
+        });
       });
-  }
-
-
-  getClaseParaSistemaOperativo(sistemaOperativo: string): void {
-    // if (sistemaOperativo === 'Windows 10') {
-    //   return 'correcto';
-    // } else {
-    //   return 'alerta';
-    // }
-  }
-
-  getClaseParaRAM(ram: number): void {
-    // if (ram >= 12) {
-    //   return 'correcto';
-    // } 
-    // else {
-    //   return 'alerta';
-    // }
-  }
-
-
-  getClaseParaEstado(sistemaOperativo: string, ram: number): void {
-    // let clase = [];
-  
-    // const sistemaOperativoClass = this.getClaseParaSistemaOperativo(sistemaOperativo);
-    // const ramClass = this.getClaseParaRAM(ram);
-  
-    // if (sistemaOperativoClass === 'correcto' && ramClass === 'correcto') {
-    //   clase.push('condicionCorrecto');
-    // } else {
-    //   clase.push('condicionAlerta');
-    // }
-  
-    // return clase.join(' ');
   }
 
 }

@@ -19,11 +19,24 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
     this.ipsDuplicadasAgentesSinEquipoService.getData().subscribe((datos) => {
       this.ipsDuplicadasData = datos.ipsDuplicadas;
       this.agentesSinEquipoData = datos.agentesSinEquipo;
+        // Obtén la configuración base del servicio
+      const baseDatatableConfig = this.datatableService.getDatatableConfig();
+      // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
+      const customConfig = {
+        buttons: ["excel", "pdf", "print"], // Personaliza los botones según tus necesidades
+      };
+      // Fusiona la configuración base con la configuración personalizada
+      const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
+  
+      // Inicializa la tabla de "Agentes Sin Equipo" con la nueva configuración
+      $(function () {
+        $("#agentesSinEquipoTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesSinEquipoTable_wrapper .col-md-6:eq(0)');
+        $("#ipsDuplicadasTable").DataTable(customtableConfig).buttons().container().appendTo('#ipsDuplicadasTable_wrapper .col-md-6:eq(0)');
+      });
     });
   }
 
   ngOnInit() {
-    this.obtenerDatos();
     // Obtén la configuración base del servicio
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
     // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
@@ -38,5 +51,7 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
       $("#agentesSinEquipoTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesSinEquipoTable_wrapper .col-md-6:eq(0)');
       $("#ipsDuplicadasTable").DataTable(customtableConfig).buttons().container().appendTo('#ipsDuplicadasTable_wrapper .col-md-6:eq(0)');
     });
+    this.obtenerDatos();
   }
+    
 }

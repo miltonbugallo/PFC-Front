@@ -20,22 +20,22 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let dispositivoData of dispositivosData">
-                                    <td>{{ dispositivoData.ipadress.direccion }}</td>
-                                    <td>{{ dispositivoData.nombreDispositivo }}</td>
-                                    <td>
-                                        {{ dispositivoData.sistemaOperativo }}
-                                    </td>
-                                    <td>
-                                        {{ dispositivoData.memoriaRam }}
-                                    </td>
-                                    <td>
-                                        {{ dispositivoData.macaddress }}
-                                    </td>
-                                    <td>
-                                        Correcto
-                                    </td>
+                                  <td>{{ dispositivoData.ip }}</td>
+                                  <td>{{ dispositivoData.nombreDispositivo }}</td>
+                                  <td [ngClass]="{ 'correcto': dispositivoData.sogood, 'alerta': !dispositivoData.sogood }">
+                                    {{ dispositivoData.sistemaOperativo }}
+                                  </td>
+                                  <td [ngClass]="{ 'correcto': dispositivoData.ramgood, 'alerta': !dispositivoData.ramgood }">
+                                    {{ dispositivoData.memoriaRam }}
+                                  </td>
+                                  <td>
+                                    {{ dispositivoData.macaddress ? dispositivoData.macaddress : '-' }}
+                                  </td>
+                                  <td [ngClass]="{ 'condicionCorrecto': dispositivoData.sogood && dispositivoData.ramgood, 'condicionAlerta': !(dispositivoData.sogood && dispositivoData.ramgood) }">
+                                    {{ dispositivoData.sogood && dispositivoData.ramgood ? 'Correcto' : 'Alerta' }}
+                                  </td>
                                 </tr>
-                            </tbody>
+                              </tbody>
                             <tfoot>
                                 <tr>
                                     <th>IP</th>
@@ -53,8 +53,3 @@
         </div>
     </div>
 </section>
-
-
-<!-- [ngClass]="getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.memoriaRam)">
-                                        {{ getClaseParaEstado(dispositivoData.sistemaOperativo, dispositivoData.memoriaRam) ===
-                                        'condicionCorrecto' ? 'Correcto' : 'Alerta' }} -->

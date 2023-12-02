@@ -8,7 +8,7 @@ import { LoginService } from './login.service';
 })
 export class AlertasService {
 
-  private apiUrl = '/servidor/Ip-conflictivas';
+  private apiUrl = '/servidor/alert'; 
   private token = this.loginService.getToken();
 
   constructor(private http: HttpClient, public loginService: LoginService) { }

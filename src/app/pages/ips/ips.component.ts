@@ -21,18 +21,22 @@ export class IpsComponent implements OnInit{
   ipsData: ipAddressModel[] = [];
 
   ngOnInit() {
-    this.obtenerIps();
     const datatableConfig = this.datatableService.getDatatableConfig();
     $(function () {
       $("#ipsTable").DataTable(datatableConfig).buttons().container().appendTo('#ipsTable_wrapper .col-md-6:eq(0)');
     });
+    this.obtenerIps();    
   }
-
+  
   obtenerIps() {
-  this.ipsService.getIps().subscribe((ips) => {
-    this.ipsData = ips;
-  });
-}
+    this.ipsService.getIps().subscribe((ips) => {
+      this.ipsData = ips;
+      const datatableConfig = this.datatableService.getDatatableConfig();
+      $(function () {
+        $("#ipsTable").DataTable(datatableConfig).buttons().container().appendTo('#ipsTable_wrapper .col-md-6:eq(0)');
+      });
+    });
+  }
 
 crearIp(nuevaIp: any) {
 

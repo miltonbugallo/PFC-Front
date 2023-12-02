@@ -27,15 +27,6 @@
     font-weight: bold; /* Puedes aplicar negrita al texto para hacerlo más visible */
     display: inline-block; /* Hace que el elemento sea en línea para que se ajuste automáticamente al contenido */
   } 
-
-  .condicionVerificar{
-    background-color: rgba(183, 116, 0, 0.744);
-    border-radius: 10px; /* Controla el radio de los bordes para crear un rectángulo redondeado */
-    padding: 10px; /* Agrega espaciado interno para que el texto no quede pegado a los bordes */
-    color: rgb(0, 0, 0); /* Color del texto */
-    font-weight: bold; /* Puedes aplicar negrita al texto para hacerlo más visible */
-    display: inline-block; /* Hace que el elemento sea en línea para que se ajuste automáticamente al contenido */
-  }
   
   .correcto{
     color: green;

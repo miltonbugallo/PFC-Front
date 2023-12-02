@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { dispositivoModel } from '../models/dispositivoModel';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { LoginService } from './login.service';
 })
 export class DispositivosService {
   
-  private apiUrl = '/servidor/api/equipos';
+  private apiUrl = '/servidor/obtener-equipos';
   private token = this.loginService.getToken();
 
 

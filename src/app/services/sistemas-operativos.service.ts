@@ -11,7 +11,7 @@ export class SistemasOperativosService {
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  private apiUrl = '/servidor/api/sistemas-operativos';
+  private apiUrl = '/servidor/api/sistema_operativos';
   private token = this.loginService.getToken(); 
 
 
@@ -36,7 +36,7 @@ export class SistemasOperativosService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${this.apiUrl}/agregar-sistema-operativo`, requestBody, { headers });
+    return this.http.post(`${this.apiUrl}`, requestBody, { headers });
   }
 
 
@@ -46,7 +46,7 @@ export class SistemasOperativosService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`${this.apiUrl}/eliminar-sistema-operativo/${id}`, { headers });
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
 
   actualizarSO(so: any): Observable<any> {
@@ -63,7 +63,7 @@ export class SistemasOperativosService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.patch(`${this.apiUrl}/actualizar-sistema-operativo/${so.id}`, requestBody, { headers });
+    return this.http.put(`${this.apiUrl}/${so.id}`, requestBody, { headers });
   }
 
 }

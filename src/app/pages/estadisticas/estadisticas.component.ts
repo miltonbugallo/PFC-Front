@@ -47,7 +47,7 @@ export class EstadisticasComponent {
         case 'graficoAgentes1':
           this.ocultarEstadisticas1();
           this.mostrarGraficoAgentes1 = true;
-          this.titulo1 = "Cantidad de agentes";
+          this.titulo1 = "Cantidad de agentes con/sin equipo";
           break;
         case 'graficoRAM1':
           this.ocultarEstadisticas1();
@@ -62,7 +62,7 @@ export class EstadisticasComponent {
         case 'graficoIpsConflictivas1':
           this.ocultarEstadisticas1();
           this.mostrarGraficoIpsConflictivas1 = true;
-          this.titulo1 = "Cantidad Ips conflictivas";
+          this.titulo1 = "Porcentaje Ips correctas/conflictivas";
           break;
       }
     }
@@ -71,7 +71,7 @@ export class EstadisticasComponent {
         case 'graficoAgentes2':
           this.ocultarEstadisticas2();
           this.mostrarGraficoAgentes2 = true;
-          this.titulo2 = "Cantidad de agentes";
+          this.titulo2 = "Cantidad de agentes con/sin equipo";
           break;
         case 'graficoRAM2':
           this.ocultarEstadisticas2();
@@ -86,7 +86,7 @@ export class EstadisticasComponent {
         case 'graficoIpsConflictivas2':
           this.ocultarEstadisticas2();
           this.mostrarGraficoIpsConflictivas2 = true;
-          this.titulo2 = "Cantidad Ips conflictivas";
+          this.titulo2 = "Porcentaje Ips correctas/conflictivas";
           break;
       }
     }

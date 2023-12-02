@@ -21,16 +21,20 @@ export class AgentesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.obtenerAgentes()
     const datatableConfig = this.datatableService.getDatatableConfig();
-    $(function () {
-      $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
-    });
+      $(function () {
+        $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
+      });
+    this.obtenerAgentes()
   }
 
   obtenerAgentes() {
     this.agenteService.getAgentes().subscribe((agentes) => {
       this.agentesData = agentes;
+      const datatableConfig = this.datatableService.getDatatableConfig();
+      $(function () {
+        $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
+      });
     });
   }
 

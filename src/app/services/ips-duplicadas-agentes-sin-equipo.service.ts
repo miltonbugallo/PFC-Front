@@ -34,7 +34,7 @@ export class IpsDuplicadasAgentesSinEquipoService {
     return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
       map((response: any) => {
         return {
-          ipsDuplicadas: response.ipsDuplicadas ? response.ipDuplicadas.map((ipDuplicada: ipDuplicadaModel) => this.mapIpDuplicada(ipDuplicada)) : [],
+          ipsDuplicadas: response.ipsDuplicadas ? response.ipsDuplicadas.map((ipDuplicada: ipDuplicadaModel) => this.mapIpDuplicada(ipDuplicada)) : [],
           agentesSinEquipo: response.agenteSinEquipo ? response.agenteSinEquipo : [],
         };
       })

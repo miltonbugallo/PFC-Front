@@ -9,7 +9,7 @@ import { EstadisticasService } from '../../services/estadisticas.service';
 export class GraficoAgentesComponent {
 
   single: any = [];
-  view: [number, number] = [1100, 400];
+  view: [number, number] = [900, 400];
 
   // options
   gradient: boolean = true;

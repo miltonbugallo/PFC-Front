@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { EstadisticasService } from 'src/app/services/estadisticas.service';
 
 @Component({
@@ -9,10 +9,11 @@ import { EstadisticasService } from 'src/app/services/estadisticas.service';
 export class GraficoIpsConflictivasComponent {
   single: any = []
 
+  view: [number, number] = [900, 400];
+
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
+  showLegend: boolean = false;
   isDoughnut: boolean = false;
 
   constructor(private estadisticasService: EstadisticasService) {
@@ -21,5 +22,6 @@ export class GraficoIpsConflictivasComponent {
   ngOnInit(): void {
     this.single = this.estadisticasService.cargarGraficoIpsConflictivas();
   }
+  
 
 }
