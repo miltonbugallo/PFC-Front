@@ -11,6 +11,7 @@
                 <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
                   Nuevo</button>
               </div>
+              <ng-container *ngIf="sosData.length > 0; else noData">
               <table id="soTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
@@ -41,6 +42,30 @@
                   </tr>
                 </tfoot>
               </table>
+            </ng-container>
+
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="soTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Version</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Version</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
             </div>
           </div>
         </div>

@@ -1,16 +1,17 @@
 <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Listado de Ips</h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Listado de Ips</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-actions">
+              <button class="btn btn-success btn-sm" (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
+                Nueva</button>
             </div>
-            <div class="card-body">
-              <div class="table-actions">
-                <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
-                  Nueva</button>
-              </div>
+            <ng-container *ngIf="ipsData.length > 0; else noData">
               <table id="ipsTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
@@ -38,9 +39,30 @@
                   </tr>
                 </tfoot>
               </table>
-            </div>
+            </ng-container>
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="ipsTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

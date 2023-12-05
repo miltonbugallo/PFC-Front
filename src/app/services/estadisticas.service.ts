@@ -88,11 +88,11 @@ export class EstadisticasService {
     return [
       {
         "name": "Con Equipo asignado",
-        "value": this.agentesEstadistica.con_equipo
+        "value": this.agentesEstadistica.con_equipo ? this.agentesEstadistica.con_equipo : 0
       },
       {
         "name": "Sin equipo asignado",
-        "value": this.agentesEstadistica.sin_equipo
+        "value": this.agentesEstadistica.sin_equipo ? this.agentesEstadistica.sin_equipo : 0
       }
     ];
   }
@@ -101,15 +101,15 @@ export class EstadisticasService {
     return [
       {
         "name": "Mayor a 7.8GB",
-        "value": this.memoriasRamEstadistica.Mayor_a_7800
+        "value": this.memoriasRamEstadistica.Mayor_a_7800 ? this.memoriasRamEstadistica.Mayor_a_7800 : 0
       },
       {
         "name": "Menor a 3.7GB",
-        "value":  this.memoriasRamEstadistica.Menor_a_3700
+        "value":  this.memoriasRamEstadistica.Menor_a_3700 ? this.memoriasRamEstadistica.Menor_a_3700 : 0
       },
       {
         "name": "Entre 3.7 y 7.8GB",
-        "value":  this.memoriasRamEstadistica.Entre_3700_y_7800
+        "value":  this.memoriasRamEstadistica.Entre_3700_y_7800 ? this.memoriasRamEstadistica.Entre_3700_y_7800 : 0
       }
     ];
   }
@@ -118,11 +118,11 @@ export class EstadisticasService {
     return [
       {
         "name": "Ips duplicadas",
-        "value": this.ipDuplicadasEstadistica.porcentaje
+        "value": this.ipDuplicadasEstadistica.porcentaje ? this.ipDuplicadasEstadistica.porcentaje : 0
       },
       {
         "name": "Ips correctas",
-        "value": 100-this.ipDuplicadasEstadistica.porcentaje
+        "value": this.ipDuplicadasEstadistica.porcentaje ? 100-this.ipDuplicadasEstadistica.porcentaje : 0
       },  
     ];
   }
@@ -131,12 +131,12 @@ export class EstadisticasService {
     const sistemasOperativos = this.sistemasOperativosEstadistica;
     const resultado = Object.keys(sistemasOperativos).map(key => {
       return {
-        name: key,
+        name: key === "" ? "Sin SO" : key,
         value: sistemasOperativos[key]
       };
     });
     resultado.sort((a, b) => b.value - a.value);
-
+  
     return resultado;
   }
 

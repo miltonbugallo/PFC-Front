@@ -27,20 +27,24 @@ export class SwitchsComponent implements OnInit {
   conexionSwitch: any = ConexionSwitch
 
   ngOnInit() {
-    const datatableConfig = this.datatableService.getDatatableConfig();
-    $(function () {
-      $("#switchTable").DataTable(datatableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
-    });
     this.obtenerSwitches();
   }
-
+  
   obtenerSwitches() {
     this.switchService.getSwitch().subscribe((switchs) => {
       this.switchesData = switchs;
-      const datatableConfig = this.datatableService.getDatatableConfig();
-      $(function () {
-        $("#switchTable").DataTable(datatableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
-      });
+      this.initializeDataTable();
+    });
+  }
+  
+  private initializeDataTable() {
+    const datatableConfig = this.datatableService.getDatatableConfig();
+    if ($.fn.DataTable.isDataTable("#switchTable")) {
+      $("#switchTable").DataTable().destroy();
+    }
+    
+    $(function () {
+      $("#switchTable").DataTable(datatableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
     });
   }
 

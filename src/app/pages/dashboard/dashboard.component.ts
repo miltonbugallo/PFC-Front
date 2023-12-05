@@ -28,36 +28,63 @@ export class DashboardComponent {
   titulo1 = "Cantidad de agentes";
   titulo2 = "Cantidad ips conflictivas y correctas";
 
+
   ngOnInit() {
+    this.obtenerSwitches(),
+    this.obtenerAgentes(),
+    this.estadisticasService.getEstadisticas().subscribe(() => {});
+  }
+  
+  
+  private initializeDataTableAgentes() {
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
     
     const customConfig = {
       buttons: [],
       searching: false,
+      ordering: false,
       paging: false,
     };
   
     const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
-    $(function () {
-      $("#switchTable").DataTable(customtableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
-    });
+    if ($.fn.DataTable.isDataTable("#agentesTable")) {
+      $("#agentesTable").DataTable().destroy();
+    }
     $(function () {
       $("#agentesTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
-    this.obtenerSwitches()
-    this.obtenerAgentes()
-    this.estadisticasService.getEstadisticas().subscribe(() => {});
   }
 
+  private initializeDataTableSwitchs() {
+    const baseDatatableConfig = this.datatableService.getDatatableConfig();
+    
+    const customConfig = {
+      buttons: [],
+      searching: false,
+      ordering: false,
+      paging: false,
+    };
+  
+    const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
+    if ($.fn.DataTable.isDataTable("#switchTable")) {
+      $("#switchTable").DataTable().destroy();
+    }
+    $(function () {
+      $("#switchTable").DataTable(customtableConfig).buttons().container().appendTo('#switchTable_wrapper .col-md-6:eq(0)');
+    });
+  }
+  
   obtenerAgentes() {
     this.agenteService.getAgentes().subscribe((agentes) => {
       this.agentesData = agentes;
+      this.initializeDataTableAgentes();
     });
   }
 
   obtenerSwitches() {
     this.switchService.getSwitch().subscribe((switchs) => {
       this.switchesData = switchs;
+      this.initializeDataTableSwitchs();
     });
   }
 }

@@ -7,32 +7,65 @@
             <h3 class="card-title">Listado de IPs Duplicadas</h3>
           </div>
           <div class="card-body">
-            <table id="ipsDuplicadasTable" class="table table-bordered table-striped centrado">
-              <thead>
-                <tr>
-                  <th>IP</th>
-                  <th>Agentes</th>
-                  <th>Dispositivos</th>
-                  <th>Switches</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let ipDuplicadaData of ipsDuplicadasData">
-                  <td>{{ ipDuplicadaData.direccion }}</td>
-                  <td>{{ ipDuplicadaData.agente?.nombre !== '' && ipDuplicadaData.agente?.apellido !== '' ? ipDuplicadaData.agente.nombre + ' ' + ipDuplicadaData.agente.apellido : '-' }}</td>
-                  <td>{{ ipDuplicadaData.equipo?.nombreDispositivo !== '' ? ipDuplicadaData.equipo.nombreDispositivo : '-' }}</td>
-                  <td>{{ ipDuplicadaData.switch?.etiqueta !== '' ? ipDuplicadaData.switch.etiqueta : '-' }}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>IP</th>
-                  <th>Agentes</th>
-                  <th>Dispositivos</th>
-                  <th>Switches</th>
-                </tr>
-              </tfoot>
-            </table>
+
+            <ng-container *ngIf="ipsDuplicadasData.length > 0; else noData">
+              <table id="ipsDuplicadasTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agentes</th>
+                    <th>Dispositivos</th>
+                    <th>Switches</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ipDuplicadaData of ipsDuplicadasData">
+                    <td>{{ ipDuplicadaData.direccion }}</td>
+                    <td>{{ ipDuplicadaData.agente?.nombre !== '' && ipDuplicadaData.agente?.apellido !== '' ?
+                      ipDuplicadaData.agente.nombre + ' ' + ipDuplicadaData.agente.apellido : '-' }}</td>
+                    <td>{{ ipDuplicadaData.equipo?.nombreDispositivo !== '' ? ipDuplicadaData.equipo.nombreDispositivo :
+                      '-' }}</td>
+                    <td>{{ ipDuplicadaData.switch?.etiqueta !== '' ? ipDuplicadaData.switch.etiqueta : '-' }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agentes</th>
+                    <th>Dispositivos</th>
+                    <th>Switches</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-container>
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="ipsDuplicadasTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agentes</th>
+                    <th>Dispositivos</th>
+                    <th>Switches</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agentes</th>
+                    <th>Dispositivos</th>
+                    <th>Switches</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
+
+
           </div>
         </div>
       </div>
@@ -42,26 +75,51 @@
             <h3 class="card-title">Listado de Agentes Sin Equipo</h3>
           </div>
           <div class="card-body">
-            <table id="agentesSinEquipoTable" class="table table-bordered table-striped centrado">
-              <thead>
-                <tr>
-                  <th>IP</th>
-                  <th>Agente</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
-                  <td>{{ agenteSinEquipoData.direccion }}</td>
-                  <td>{{ agenteSinEquipoData.agente.nombre + ' ' + agenteSinEquipoData.agente.apellido }}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th>IP</th>
-                  <th>Agente</th>
-                </tr>
-              </tfoot>
-            </table>
+            <ng-container *ngIf="agentesSinEquipoData.length > 0; else noData">
+              <table id="agentesSinEquipoTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let agenteSinEquipoData of agentesSinEquipoData">
+                    <td>{{ agenteSinEquipoData.direccion }}</td>
+                    <td>{{ agenteSinEquipoData.agente.nombre + ' ' + agenteSinEquipoData.agente.apellido }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agente</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-container>
+
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="agentesSinEquipoTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                    <th>Agente</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
           </div>
         </div>
       </div>

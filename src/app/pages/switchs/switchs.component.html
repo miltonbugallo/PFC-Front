@@ -8,9 +8,10 @@
           </div>
           <div class="card-body">
             <div class="table-actions">
-              <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
+              <button class="btn btn-success btn-sm" (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
                 Nuevo</button>
             </div>
+            <ng-container *ngIf="switchesData.length > 0; else noData">
             <table id="switchTable" class="table table-bordered table-striped centrado">
               <thead>
                 <tr>
@@ -30,7 +31,8 @@
                   <td>{{ switchData.marca }}</td>
                   <td>{{ switchData.modelo }}</td>
                   <td>{{ switchData.sector.nombre || '-' }}</td>
-                  <td>{{ switchData.agente.nombre ? (switchData.agente.nombre + ' ' + switchData.agente.apellido) : '-' }}</td>
+                  <td>{{ switchData.agente.nombre ? (switchData.agente.nombre + ' ' + switchData.agente.apellido) : '-'
+                    }}</td>
                   <td>{{ switchData.etiqueta }}</td>
                   <td
                     [ngClass]="{'condicionEncendido': switchData.conexion === conexionSwitch.Encendido, 'condicionApagado': switchData.conexion === conexionSwitch.Apagado}">
@@ -59,6 +61,41 @@
                 </tr>
               </tfoot>
             </table>
+            </ng-container>
+
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="switchTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Sector</th>
+                    <th>Agente</th>
+                    <th>Etiqueta</th>
+                    <th>Conexión</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>IP</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Sector</th>
+                    <th>Agente</th>
+                    <th>Etiqueta</th>
+                    <th>Conexión</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
+
           </div>
         </div>
       </div>

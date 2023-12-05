@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = '/login';
+  private apiUrl = 'servidor/login';
   private token:  string | null = null;
   constructor(private http: HttpClient, private router: Router) {}
 

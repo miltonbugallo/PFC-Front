@@ -20,20 +20,24 @@ export class SistemasOperativosComponent {
   sosData: sistemaOperativoModel[] = []
 
   ngOnInit() {
-    const datatableConfig = this.datatableService.getDatatableConfig();
-    $(function () {
-      $("#soTable").DataTable(datatableConfig).buttons().container().appendTo('#soTable_wrapper .col-md-6:eq(0)');
-    });
     this.obtenerSO();
   }
-
+  
   obtenerSO() {
     this.sistemasOperativosService.getSO().subscribe((sos) => {
       this.sosData = sos;
-      const datatableConfig = this.datatableService.getDatatableConfig();
-      $(function () {
-        $("#soTable").DataTable(datatableConfig).buttons().container().appendTo('#soTable_wrapper .col-md-6:eq(0)');
-      });
+      this.initializeDataTable();
+    });
+  }
+  
+  private initializeDataTable() {
+    const datatableConfig = this.datatableService.getDatatableConfig();
+    if ($.fn.DataTable.isDataTable("#soTable")) {
+      $("#soTable").DataTable().destroy();
+    }
+    
+    $(function () {
+      $("#soTable").DataTable(datatableConfig).buttons().container().appendTo('#soTable_wrapper .col-md-6:eq(0)');
     });
   }
 

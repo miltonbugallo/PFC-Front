@@ -18,18 +18,13 @@ export class AlertasComponent implements OnInit{
     alertasSwitch: any[] = [];
     alertasData: any[] = [];
 
-    obtenerDatos() {
-      this.alertasService.getAlertas().subscribe((datos) => {
-        this.alertasEquipos = datos.equiposObsoletos;
-        this.alertasSwitch = datos.switchSinConexion;
-        this.alertasData = [...this.alertasEquipos, ...this.alertasSwitch];
-        console.log(this.alertasData)
-      });
-    }
 
-  ngOnInit() {
-    this.obtenerDatos();
-    // Obtén la configuración base del servicio
+    ngOnInit() {
+      this.obtenerDatos();
+    }
+    
+    private initializeDataTable() {
+      // Obtén la configuración base del servicio
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
     // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
     const customConfig = {
@@ -39,10 +34,22 @@ export class AlertasComponent implements OnInit{
     };
     // Fusiona la configuración base con la configuración personalizada
     const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
+      if ($.fn.DataTable.isDataTable("#alertasTable")) {
+        $("#alertasTable").DataTable().destroy();
+      }
+      
+      $(function () {
+        $("#alertasTable").DataTable(customtableConfig).buttons().container().appendTo('#alertasTable_wrapper .col-md-6:eq(0)');
+      });
+    }
 
-    $(function () {
-      $("#alertasTable").DataTable(customtableConfig).buttons().container().appendTo('#alertasTable_wrapper .col-md-6:eq(0)');
-    });
-  }
+    obtenerDatos() {
+      this.alertasService.getAlertas().subscribe((datos) => {
+        this.alertasEquipos = datos.equiposObsoletos;
+        this.alertasSwitch = datos.switchSinConexion;
+        this.alertasData = [...this.alertasEquipos, ...this.alertasSwitch];
+        this.initializeDataTable();
+      });
+    }
 
 }

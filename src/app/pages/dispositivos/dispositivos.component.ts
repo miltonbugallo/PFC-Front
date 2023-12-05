@@ -18,23 +18,27 @@ export class DispositivosComponent {
 
   public dispositivosData: dispositivoModel[] = []
 
+
   ngOnInit() {
+    this.obtenerDispositivos();
+  }
+  
+  obtenerDispositivos() {
+    this.dispositivosService.getEquipos().subscribe((dispositivos) => {
+      this.dispositivosData = dispositivos;
+      this.initializeDataTable();
+    });
+  }
+  
+  private initializeDataTable() {
     const datatableConfig = this.datatableService.getDatatableConfig();
+    if ($.fn.DataTable.isDataTable("#dispositivosTable")) {
+      $("#dispositivosTable").DataTable().destroy();
+    }
+    
     $(function () {
       $("#dispositivosTable").DataTable(datatableConfig).buttons().container().appendTo('#dispositivosTable_wrapper .col-md-6:eq(0)');
     });
-    this.obtenerDispositivos()
-  }
-
-  obtenerDispositivos() {
-    this.dispositivosService.getEquipos()
-      .subscribe((dispositivos: any) => {
-        this.dispositivosData = dispositivos;
-        const datatableConfig = this.datatableService.getDatatableConfig();
-        $(function () {
-          $("#dispositivosTable").DataTable(datatableConfig).buttons().container().appendTo('#dispositivosTable_wrapper .col-md-6:eq(0)');
-        });
-      });
   }
 
 }

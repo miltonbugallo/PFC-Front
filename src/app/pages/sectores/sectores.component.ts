@@ -21,20 +21,24 @@ export class SectoresComponent {
   sectoresData: sectorModel[] = []
 
   ngOnInit() {
-    const datatableConfig = this.datatableService.getDatatableConfig();
-    $(function () {
-      $("#sectoresTable").DataTable(datatableConfig).buttons().container().appendTo('#sectoresTable_wrapper .col-md-6:eq(0)');
-    });
-    this.obtenerSectores();    
+    this.obtenerSectores();
   }
-
+  
   obtenerSectores() {
     this.sectoresService.getSectores().subscribe((sectores) => {
       this.sectoresData = sectores;
-      const datatableConfig = this.datatableService.getDatatableConfig();
-      $(function () {
-        $("#sectoresTable").DataTable(datatableConfig).buttons().container().appendTo('#sectoresTable_wrapper .col-md-6:eq(0)');
-      });
+      this.initializeDataTable();
+    });
+  }
+  
+  private initializeDataTable() {
+    const datatableConfig = this.datatableService.getDatatableConfig();
+    if ($.fn.DataTable.isDataTable("#sectoresTable")) {
+      $("#sectoresTable").DataTable().destroy();
+    }
+    
+    $(function () {
+      $("#sectoresTable").DataTable(datatableConfig).buttons().container().appendTo('#sectoresTable_wrapper .col-md-6:eq(0)');
     });
   }
 

@@ -1,12 +1,13 @@
 <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Listado de Alertas</h3>
-            </div>
-            <div class="card-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Listado de Alertas</h3>
+          </div>
+          <div class="card-body">
+            <ng-container *ngIf="alertasData.length > 0; else noData">
               <table id="alertasTable" class="table table-bordered table-striped centrado">
                 <thead>
                   <tr>
@@ -18,7 +19,9 @@
                   <tr *ngFor="let alertaData of alertasData; let i = index">
                     <td>{{ i + 1 }}</td>
                     <td>
-                      {{ alertaData.nombre ? ("El equipo " + alertaData.nombre + " con Sistema Operativo " + alertaData.SO +  " y RAM de " + alertaData.RAM + " está obsoleto. ") : alertaData.etiqueta ? "El switch: " + alertaData.etiqueta + " está desconectado." : "" }}
+                      {{ alertaData.nombre ? ("El equipo " + alertaData.nombre + " con Sistema Operativo " +
+                      alertaData.SO + " y RAM de " + alertaData.RAM + " está obsoleto. ") : alertaData.etiqueta ? "El
+                      switch: " + alertaData.etiqueta + " está desconectado." : "" }}
                     </td>
                   </tr>
                 </tbody>
@@ -29,9 +32,32 @@
                   </tr>
                 </tfoot>
               </table>
-            </div>
+            </ng-container>
+            <!-- Mensaje en caso de que no haya datos -->
+            <ng-template #noData>
+              <table id="alertasTable" class="table table-bordered table-striped centrado">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Alerta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>#</th>
+                    <th>Alerta</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </ng-template>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

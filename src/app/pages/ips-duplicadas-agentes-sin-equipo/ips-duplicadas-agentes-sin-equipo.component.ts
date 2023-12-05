@@ -15,11 +15,13 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
   ipsDuplicadasData: any[] = [];
   agentesSinEquipoData:  any[] = [];
 
-  obtenerDatos() {
-    this.ipsDuplicadasAgentesSinEquipoService.getData().subscribe((datos) => {
-      this.ipsDuplicadasData = datos.ipsDuplicadas;
-      this.agentesSinEquipoData = datos.agentesSinEquipo;
-        // Obtén la configuración base del servicio
+
+  ngOnInit() {
+    this.obtenerDatos();
+  }
+  
+  private initializeDataTable() {
+      // Obtén la configuración base del servicio
       const baseDatatableConfig = this.datatableService.getDatatableConfig();
       // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
       const customConfig = {
@@ -27,31 +29,25 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
       };
       // Fusiona la configuración base con la configuración personalizada
       const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
-  
-      // Inicializa la tabla de "Agentes Sin Equipo" con la nueva configuración
-      $(function () {
-        $("#agentesSinEquipoTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesSinEquipoTable_wrapper .col-md-6:eq(0)');
-        $("#ipsDuplicadasTable").DataTable(customtableConfig).buttons().container().appendTo('#ipsDuplicadasTable_wrapper .col-md-6:eq(0)');
-      });
-    });
-  }
-
-  ngOnInit() {
-    // Obtén la configuración base del servicio
-    const baseDatatableConfig = this.datatableService.getDatatableConfig();
-    // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
-    const customConfig = {
-      buttons: ["excel", "pdf", "print"], // Personaliza los botones según tus necesidades
-    };
-    // Fusiona la configuración base con la configuración personalizada
-    const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
-
-    // Inicializa la tabla de "Agentes Sin Equipo" con la nueva configuración
+    if ($.fn.DataTable.isDataTable("#ipsDuplicadasTable")) {
+      $("#ipsDuplicadasTable").DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable("#agentesSinEquipoTable")) {
+      $("#agentesSinEquipoTable").DataTable().destroy();
+    }
+    
     $(function () {
       $("#agentesSinEquipoTable").DataTable(customtableConfig).buttons().container().appendTo('#agentesSinEquipoTable_wrapper .col-md-6:eq(0)');
       $("#ipsDuplicadasTable").DataTable(customtableConfig).buttons().container().appendTo('#ipsDuplicadasTable_wrapper .col-md-6:eq(0)');
     });
-    this.obtenerDatos();
+  }
+
+  obtenerDatos() {
+    this.ipsDuplicadasAgentesSinEquipoService.getData().subscribe((datos) => {
+      this.ipsDuplicadasData = datos.ipsDuplicadas;
+      this.agentesSinEquipoData = datos.agentesSinEquipo;
+      this.initializeDataTable();
+    });
   }
     
 }
