@@ -8,14 +8,8 @@ import { EstadisticasService } from 'src/app/services/estadisticas.service';
 })
 export class GraficoSOComponent {
 
-  single: any = []
-
-  view: [number, number] = [500, 400];
-
-  // options
-  showLegend = true;
-  showLabels = true;
-  doughnut = false;
+  single: any;
+  view: [number, number] = [550, 400];
 
   constructor(private estadisticasService: EstadisticasService) {
   }

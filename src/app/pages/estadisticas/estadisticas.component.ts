@@ -57,7 +57,7 @@ export class EstadisticasComponent {
         case 'graficoSO1':
           this.ocultarEstadisticas1();
           this.mostrarGraficoSO1 = true;
-          this.titulo1 = "Sistemas Operativos";
+          this.titulo1 = "Porcentaje Sistemas Operativos";
           break;
         case 'graficoIpsConflictivas1':
           this.ocultarEstadisticas1();
@@ -81,7 +81,7 @@ export class EstadisticasComponent {
         case 'graficoSO2':
           this.ocultarEstadisticas2();
           this.mostrarGraficoSO2 = true;
-          this.titulo2 = "Sistemas Operativos";
+          this.titulo2 = "Porcentaje Sistemas Operativos";
           break;
         case 'graficoIpsConflictivas2':
           this.ocultarEstadisticas2();
