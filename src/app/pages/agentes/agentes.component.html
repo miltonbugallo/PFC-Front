@@ -11,42 +11,75 @@
                 <button class="btn btn-success btn-sm"  (click)="abrirFormulario()"><i class="fa fa-plus"></i> Agregar
                   Nuevo</button>
               </div>
-              <table id="agentesTable" class="table table-bordered table-striped centrado">
-                <thead>
-                  <tr>
-                    <th>IP</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Sector</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let agenteData of agentesData">
-                    <td>{{ agenteData.ip.direccion || '-' }}</td>
-                    <td>{{ agenteData.nombre }}</td>
-                    <td>{{ agenteData.apellido }}</td>
-                    <td>{{ agenteData.sector.nombre || '-' }}</td>
-                    <td>
-                      <div class="btn-actions">
-                        <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)"><i
-                            class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminarAgente(agenteData.id)"><i
-                            class="fas fa-trash"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>IP</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Sector</th>
-                    <th>Acciones</th>
-                  </tr>
-                </tfoot>
-              </table>
+              <ng-container *ngIf="agentesData.length > 0; else noData">
+                <table id="agentesTable" class="table table-bordered table-striped centrado">
+                  <thead>
+                    <tr>
+                      <th>IP</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sector</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let agenteData of agentesData">
+                      <td>{{ agenteData.ip.direccion || '-' }}</td>
+                      <td>{{ agenteData.nombre }}</td>
+                      <td>{{ agenteData.apellido }}</td>
+                      <td>{{ agenteData.sector.nombre || '-' }}</td>
+                      <td>
+                        <div class="btn-actions">
+                          <button type="button" class="btn btn-primary btn-sm" (click)="abrirFormulario(agenteData)">
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarAgente(agenteData.id)">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>IP</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sector</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </ng-container>
+              
+              <!-- Mensaje en caso de que no haya datos -->
+              <ng-template #noData>
+                <table id="agentesTable" class="table table-bordered table-striped centrado">
+                  <thead>
+                    <tr>
+                      <th>IP</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sector</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="5" class="text-center">No hay datos para mostrar.</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>IP</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Sector</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </ng-template>
             </div>
           </div>
         </div>
