@@ -19,22 +19,25 @@ export class AgentesComponent implements OnInit {
 
   agentesData: any[] = []
 
-
   ngOnInit() {
-    const datatableConfig = this.datatableService.getDatatableConfig();
-      $(function () {
-        $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
-      });
-    this.obtenerAgentes()
+    this.obtenerAgentes();
   }
-
+  
   obtenerAgentes() {
     this.agenteService.getAgentes().subscribe((agentes) => {
       this.agentesData = agentes;
-      const datatableConfig = this.datatableService.getDatatableConfig();
-      $(function () {
-        $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
-      });
+      this.initializeDataTable();
+    });
+  }
+  
+  private initializeDataTable() {
+    const datatableConfig = this.datatableService.getDatatableConfig();
+    if ($.fn.DataTable.isDataTable("#agentesTable")) {
+      $("#agentesTable").DataTable().destroy();
+    }
+    
+    $(function () {
+      $("#agentesTable").DataTable(datatableConfig).buttons().container().appendTo('#agentesTable_wrapper .col-md-6:eq(0)');
     });
   }
 

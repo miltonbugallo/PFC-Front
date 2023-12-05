@@ -16,6 +16,26 @@ export class AgentesService {
   private apiUrl = '/servidor/api/agentes';
   private token = this.loginService.getToken(); 
 
+  // getAgentes(): Observable<agenteModel[]> {
+  //   // Datos falsos para la prueba
+  //   const datosFalsos = [
+  //     {
+  //       id: 1,
+  //       ipadress: {id: 1, direccion: '192.168.0.1'},
+  //       nombre: 'NombreFalso',
+  //       apellido: 'ApellidoFalso',
+  //       sector: { id: 1, nombre: 'SectorFalso' },
+  //     },
+  //     // Agrega más objetos de datos falsos según sea necesario
+  //   ];
+  
+  //   // Mapea los datos falsos utilizando la función mapAgente
+  //   const agentesFalsos = datosFalsos.map((agente) => this.mapAgente(agente));
+  
+  //   // Devuelve un observable que emite los datos falsos
+  //   return of(agentesFalsos);
+  // }
+
   getAgentes(): Observable<agenteModel[]> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
