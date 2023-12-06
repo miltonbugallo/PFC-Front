@@ -25,14 +25,14 @@ export class DashboardComponent {
   public agentesData: agenteModel[] = []
   public switchesData: switchModel[] = []
   conexionSwitch: any = ConexionSwitch
-  titulo1 = "Cantidad de agentes";
-  titulo2 = "Cantidad ips conflictivas y correctas";
+  titulo1 = "Cantidad de Agentes con/sin equipos";
+  titulo2 = "Porcentaje IPs conflictivas/correctas";
 
 
   ngOnInit() {
-    this.obtenerSwitches(),
-    this.obtenerAgentes(),
     this.estadisticasService.getEstadisticas().subscribe(() => {});
+    this.obtenerSwitches();
+    this.obtenerAgentes();
   }
   
   
