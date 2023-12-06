@@ -9,9 +9,11 @@
         <label for="version">Version</label>
         <input [ngClass]="sistemasOperativosForm.get('version')?.hasError('required') && sistemasOperativosForm.get('version')?.touched ? 'error' : ''" type="text" id="version" name="version" formControlName="version" class="form-control" autocomplete="off">
       </div>
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" [disabled]="sistemasOperativosForm.invalid">Guardar</button>
-      <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
-    </div>
-  </form>
-</div>
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <button type="submit" class="btn btn-primary" [disabled]="sistemasOperativosForm.invalid">Guardar</button>
+          <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
+        </div>
+      </div>
+    </form>
+  </div>

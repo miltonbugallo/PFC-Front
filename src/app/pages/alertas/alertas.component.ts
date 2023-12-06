@@ -47,7 +47,7 @@ export class AlertasComponent implements OnInit{
       this.alertasService.getAlertas().subscribe((datos) => {
         this.alertasEquipos = datos.equiposObsoletos;
         this.alertasSwitch = datos.switchSinConexion;
-        this.alertasData = [...this.alertasEquipos, ...this.alertasSwitch];
+        this.alertasData = [...this.alertasSwitch, ...this.alertasEquipos];
         this.initializeDataTable();
       });
     }

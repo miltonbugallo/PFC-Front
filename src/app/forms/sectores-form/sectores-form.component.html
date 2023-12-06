@@ -6,8 +6,10 @@
       <input [ngClass]="sectoresForm.get('nombre')?.hasError('required') && sectoresForm.get('nombre')?.touched ? 'error' : ''" type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control" autocomplete="off">
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" [disabled]="sectoresForm.invalid">Guardar</button>
-      <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <button type="submit" class="btn btn-primary" [disabled]="sectoresForm.invalid">Guardar</button>
+        <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
+      </div>
     </div>
   </form>
 </div>

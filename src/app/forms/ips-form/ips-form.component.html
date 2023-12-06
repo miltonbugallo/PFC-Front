@@ -45,8 +45,10 @@
     </textarea>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" [disabled]="ipsForm.invalid">Guardar</button>
-      <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <button type="submit" class="btn btn-primary" [disabled]="ipsForm.invalid">Guardar</button>
+        <button type="button" class="btn btn-dark" (click)="cancelarEdicion()">Cancelar</button>
+      </div>
     </div>
   </form>
 </div>
