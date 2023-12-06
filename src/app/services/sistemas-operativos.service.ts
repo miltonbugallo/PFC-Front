@@ -55,11 +55,10 @@ export class SistemasOperativosService {
       nombre: so.nombre,
       version: so.version,
     };
-    console.log(requestBody)
 
     // Realizamos la solicitud PATCH
     const headers = new HttpHeaders({
-      'Content-Type': 'application/merge-patch+json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
 
