@@ -17,7 +17,7 @@ export class GraficoRamComponent {
   showXAxisLabel = true;
   xAxisLabel = 'Rango Memoria RAM';
   showYAxisLabel = true;
-  yAxisLabel = 'Cantidad equipos';
+  yAxisLabel = 'Porcentaje de equipos';
 
 
   constructor(private estadisticasService: EstadisticasService) {

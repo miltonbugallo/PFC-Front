@@ -27,10 +27,13 @@ export class DashboardComponent {
   conexionSwitch: any = ConexionSwitch
   titulo1 = "Cantidad de Agentes con/sin equipos";
   titulo2 = "Porcentaje IPs conflictivas/correctas";
+  isEstadisticasLoaded = false;
 
-
-  ngOnInit() {
-    this.estadisticasService.getEstadisticas().subscribe(() => {});
+  ngOnInit() {  
+    this.estadisticasService.getEstadisticas().subscribe(() => {
+      this.isEstadisticasLoaded = true;
+    });
+  
     this.obtenerSwitches();
     this.obtenerAgentes();
   }

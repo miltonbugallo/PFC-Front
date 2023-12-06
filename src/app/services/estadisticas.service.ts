@@ -71,15 +71,14 @@ export class EstadisticasService {
   //     }
   //   };
   
-  //   // Separar y asignar los datos simulados a las variables específicas
-  //   this.sistemasOperativosEstadistica = datosSimulados.sistemas_operativos ? datosSimulados.sistemas_operativos : [];
-  //   this.memoriasRamEstadistica = datosSimulados.memorias_ram ? datosSimulados.memorias_ram : [];
-  //   this.agentesEstadistica = datosSimulados.agentes ? datosSimulados.agentes : [];
-  //   this.ipDuplicadasEstadistica = datosSimulados.ip_duplicadas ? datosSimulados.ip_duplicadas : [];
-  //   console.log(datosSimulados)
+    
   
   //   // Retornar un observable con los datos simulados
-  //   return of();
+  //   return of(// Separar y asignar los datos simulados a las variables específicas
+  //   this.sistemasOperativosEstadistica = datosSimulados.sistemas_operativos ? datosSimulados.sistemas_operativos : [],
+  //   this.memoriasRamEstadistica = datosSimulados.memorias_ram ? datosSimulados.memorias_ram : [],
+  //   this.agentesEstadistica = datosSimulados.agentes ? datosSimulados.agentes : [],
+  //   this.ipDuplicadasEstadistica = datosSimulados.ip_duplicadas ? datosSimulados.ip_duplicadas : []);
   // }
 
   

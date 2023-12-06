@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
 import { Observable, map, of } from 'rxjs';
 import { ipDuplicadaModel } from '../models/ipDuplicadaModel';
-import { agenteSinEquipoModel } from '../models/agenteSinEquipoModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IpsDuplicadasAgentesSinEquipoService {
 
-  private apiUrl = '/servidor/Ip-conflictivas';
+  private apiUrl = '/servidor/ip-conflictivas';
   private token = this.loginService.getToken();
 
 

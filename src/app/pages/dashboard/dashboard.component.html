@@ -7,17 +7,21 @@
                         <h3 class="card-title">{{titulo1}}</h3>
                     </div>
                     <div class="card-body">
-                        <app-grafico-agentes></app-grafico-agentes>
+                        <app-grafico-agentes *ngIf="isEstadisticasLoaded"></app-grafico-agentes>
+                        <p *ngIf="!isEstadisticasLoaded" style="text-align: center;">Cargando datos estadísticos...</p>
                     </div>
+
                 </div>
             </div>
+
             <div class="col-md-6">
-                <div class="card card-success" style="margin-top: 20px;">
+                <div class="card card-danger" style="margin-top: 20px;">
                     <div class="card-header">
                         <h3 class="card-title">{{titulo2}}</h3>
                     </div>
                     <div class="card-body">
-                        <app-grafico-ips-conflictivas></app-grafico-ips-conflictivas>
+                        <app-grafico-ips-conflictivas *ngIf="isEstadisticasLoaded"></app-grafico-ips-conflictivas>
+                        <p *ngIf="!isEstadisticasLoaded" style="text-align: center;">Cargando datos estadísticos...</p>
                     </div>
                 </div>
             </div>
