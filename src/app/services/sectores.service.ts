@@ -27,7 +27,6 @@ export class SectoresService {
     const requestBody = {
       nombre: sector.nombre
     };
-    console.log(requestBody)
 
     // Realizamos la solicitud POST
     const headers = new HttpHeaders({

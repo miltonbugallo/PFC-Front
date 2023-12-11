@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit {
         { titulo: 'Estadísticas', url: 'estadisticas', icono: 'fa-solid fa-chart-line' },
         { titulo: 'Sectores', url: 'sectores', icono: 'fa-solid fa-landmark-flag' },
         { titulo: 'Sistemas Operativos', url: 'sistemasOperativos', icono: 'fa-brands fa-windows'},
+        { titulo: 'Agentes - Dispositivos', url: 'agentes-dispositivos', icono: 'fa-solid fa-person-chalkboard'},
       ]
   }
 

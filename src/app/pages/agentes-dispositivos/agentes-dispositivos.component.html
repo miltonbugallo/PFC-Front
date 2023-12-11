@@ -1,0 +1,69 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Listado de Agentes-Dispositivos</h3>
+                    </div>
+                    <div class="card-body">
+                        <ng-container *ngIf="agentesDispositivosData.length > 0; else noData">
+                            <table id="agenteDispositivoTable" class="table table-bordered table-striped centrado">
+                                <thead>
+                                    <tr>
+                                        <th>IP</th>
+                                        <th>Agentes</th>
+                                        <th>Dispositivos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let agenteDispositivoData of agentesDispositivosData">
+                                        <td>{{ agenteDispositivoData.direccion }}</td>
+                                        <td>{{ agenteDispositivoData.agente?.nombre !== '' &&
+                                            agenteDispositivoData.agente?.apellido !== '' ?
+                                            agenteDispositivoData.agente.nombre + ' ' +
+                                            agenteDispositivoData.agente.apellido : '-' }}</td>
+                                        <td>{{ agenteDispositivoData.equipo?.nombreDispositivo !== '' ?
+                                            agenteDispositivoData.equipo.nombreDispositivo :
+                                            '-' }}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>IP</th>
+                                        <th>Agentes</th>
+                                        <th>Dispositivos</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </ng-container>
+                        <!-- Mensaje en caso de que no haya datos -->
+                        <ng-template #noData>
+                            <table id="agenteDispositivoTable" class="table table-bordered table-striped centrado">
+                                <thead>
+                                    <tr>
+                                        <th>IP</th>
+                                        <th>Agentes</th>
+                                        <th>Dispositivos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="text-center">No hay datos para mostrar</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>IP</th>
+                                        <th>Agentes</th>
+                                        <th>Dispositivos</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

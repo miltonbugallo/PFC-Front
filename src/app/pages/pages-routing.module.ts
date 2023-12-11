@@ -13,6 +13,7 @@ import { AlertasComponent } from './alertas/alertas.component';
 import { SistemasOperativosComponent } from './sistemas-operativos/sistemas-operativos.component';
 import { SectoresComponent } from './sectores/sectores.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { AgentesDispositivosComponent } from './agentes-dispositivos/agentes-dispositivos.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
       { path: 'sistemasOperativos', component: SistemasOperativosComponent, data: { titulo: 'Sistemas Operativos' } },
       { path: 'sectores', component: SectoresComponent, data: { titulo: 'Sectores' } },
       { path: 'alertas', component: AlertasComponent, data: { titulo: 'Alertas' } },
-
+      { path: 'agentes-dispositivos', component: AgentesDispositivosComponent, data: { titulo: 'Agentes - Dispositivos' } },
     ], canActivate: [AuthGuard]
   }
 ]
