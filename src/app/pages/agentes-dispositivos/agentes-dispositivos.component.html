@@ -14,17 +14,21 @@
                                         <th>IP</th>
                                         <th>Agentes</th>
                                         <th>Dispositivos</th>
+                                        <th>MAC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let agenteDispositivoData of agentesDispositivosData">
                                         <td>{{ agenteDispositivoData.direccion }}</td>
-                                        <td>{{ agenteDispositivoData.agente?.nombre !== '' &&
-                                            agenteDispositivoData.agente?.apellido !== '' ?
-                                            agenteDispositivoData.agente.nombre + ' ' +
-                                            agenteDispositivoData.agente.apellido : '-' }}</td>
-                                        <td>{{ agenteDispositivoData.equipo?.nombreDispositivo !== '' ?
-                                            agenteDispositivoData.equipo.nombreDispositivo :
+                                        <td>{{ agenteDispositivoData.nombre_agente  &&
+                                            agenteDispositivoData.apellido_agente ?
+                                            agenteDispositivoData.nombre_agente + ' ' +
+                                            agenteDispositivoData.apellido_agente : '-' }}</td>
+                                        <td>{{ agenteDispositivoData.nombre_dispositivo ?
+                                            agenteDispositivoData.nombre_dispositivo :
+                                            '-' }}</td>
+                                        <td>{{ agenteDispositivoData.mac_dispositivo ?
+                                            agenteDispositivoData.mac_dispositivo :
                                             '-' }}</td>
                                     </tr>
                                 </tbody>
@@ -33,6 +37,7 @@
                                         <th>IP</th>
                                         <th>Agentes</th>
                                         <th>Dispositivos</th>
+                                        <th>MAC</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -45,6 +50,7 @@
                                         <th>IP</th>
                                         <th>Agentes</th>
                                         <th>Dispositivos</th>
+                                        <th>MAC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +63,7 @@
                                         <th>IP</th>
                                         <th>Agentes</th>
                                         <th>Dispositivos</th>
+                                        <th>MAC</th>
                                     </tr>
                                 </tfoot>
                             </table>
