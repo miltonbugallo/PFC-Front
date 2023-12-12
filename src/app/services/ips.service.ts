@@ -73,7 +73,7 @@ export class IpsService {
       Authorization: `Bearer ${this.token}`,
     });
 
-    return this.http.delete(`servidor/eliminar-ip/${id}`, { headers });
+    return this.http.delete(`servidor/eliminar-ipadress/${id}`, { headers });
   }
 
   actualizarIp(ip: any): Observable<any> {
