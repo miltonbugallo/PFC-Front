@@ -16,37 +16,50 @@ export class AgentesService {
   private apiUrl = '/servidor/api/agentes';
   private token = this.loginService.getToken(); 
 
-  // getAgentes(): Observable<agenteModel[]> {
-  //   // Datos falsos para la prueba
-  //   const datosFalsos = [
-  //     {
-  //       id: 1,
-  //       ipadress: {id: 1, direccion: '192.168.0.1'},
-  //       nombre: 'NombreFalso',
-  //       apellido: 'ApellidoFalso',
-  //       sector: { id: 1, nombre: 'SectorFalso' },
-  //     },
-  //     // Agrega más objetos de datos falsos según sea necesario
-  //   ];
-  
-  //   // Mapea los datos falsos utilizando la función mapAgente
-  //   const agentesFalsos = datosFalsos.map((agente) => this.mapAgente(agente));
-  
-  //   // Devuelve un observable que emite los datos falsos
-  //   return of(agentesFalsos);
-  // }
-
   getAgentes(): Observable<agenteModel[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
-      map((data) => {
-        return data.map((agente) => this.mapAgente(agente));
-      })
-    );
+    // Datos falsos para la prueba
+    const datosFalsos = [
+      {
+        id: 1,
+        ipadress: {id: 1, direccion: '192.168.0.1'},
+        nombre: 'Nombre 1',
+        apellido: 'Apellido 1',
+        sector: { id: 1, nombre: 'Sector 1' },
+      },
+      {
+        id: 2,
+        ipadress: {id: 2, direccion: '255.255.0.1'},
+        nombre: 'Nombre 2',
+        apellido: 'Apellido 2',
+        sector: { id: 2, nombre: 'Sector 2' },
+      },
+      {
+        id: 3,
+        ipadress: {id: 3, direccion: '10.10.0.1'},
+        nombre: 'Nombre 3',
+        apellido: 'Apellido 3',
+        sector: { id: 1, nombre: 'Sector 1' },
+      },
+    ];
+  
+    // Mapea los datos falsos utilizando la función mapAgente
+    const agentesFalsos = datosFalsos.map((agente) => this.mapAgente(agente));
+  
+    // Devuelve un observable que emite los datos falsos
+    return of(agentesFalsos);
   }
+
+  // getAgentes(): Observable<agenteModel[]> {
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${this.token}`,
+  //   });
+
+  //   return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+  //     map((data) => {
+  //       return data.map((agente) => this.mapAgente(agente));
+  //     })
+  //   );
+  // }
 
   private mapAgente(agente: any): agenteModel {
     return {

@@ -16,16 +16,58 @@ export class SwitchsService {
   private token = this.loginService.getToken(); 
 
   getSwitch(): Observable<switchModel[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
-      map((data) => {
-        return data.map((switchs) => this.mapSwitch(switchs));
-      })
-    );
+    const mockData = [
+      {
+        id: 1,
+        ipadress: { id: 1, direccion: '192.168.1.1' },
+        marca: 'Marca 1',
+        modelo: 'Modelo 1',
+        sector: { id: 1, nombre: 'Sector 1' },
+        estadoConexion: true,
+        agente: { id: 1, nombre: 'Nombre 1', apellido: 'Apellido 1' },
+        etiqueta: 'Etiqueta 1',
+      },
+      {
+        id: 2,
+        ipadress: { id: 2, direccion: '192.122.1.1' },
+        marca: 'Marca 2',
+        modelo: 'Modelo 2',
+        sector: { id: 2, nombre: 'Sector 2' },
+        estadoConexion: true,
+        agente: { id: 2, nombre: 'Nombre 2', apellido: 'Apellido 2' },
+        etiqueta: 'Etiqueta 2',
+      },
+      {
+        id: 3,
+        ipadress: { id: 3, direccion: '192.111.1.1' },
+        marca: 'Marca 3',
+        modelo: 'Modelo 3',
+        sector: { id: 1, nombre: 'Sector 1' },
+        estadoConexion: false,
+        agente: { id: 3, nombre: 'Nombre 3', apellido: 'Apellido 3' },
+        etiqueta: 'Etiqueta 3',
+      },
+      // Add more sample data as needed
+    ];
+  
+    // Mapping the mock data using the mapSwitch method
+    const mappedData = mockData.map((switchs) => this.mapSwitch(switchs));
+  
+    // Returning the mock data as an observable
+    return of(mappedData);
   }
+
+  // getSwitch(): Observable<switchModel[]> {
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${this.token}`,
+  //   });
+
+  //   return this.http.get<any[]>(this.apiUrl, { headers }).pipe(
+  //     map((data) => {
+  //       return data.map((switchs) => this.mapSwitch(switchs));
+  //     })
+  //   );
+  // }
 
   private mapSwitch(switchs: any): switchModel {
     return {

@@ -15,11 +15,38 @@ export class DispositivosService {
 
   constructor(private http: HttpClient, public loginService: LoginService) { }
 
-  getEquipos(): Observable<dispositivoModel[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
+  // getEquipos(): Observable<dispositivoModel[]> {
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${this.token}`,
+  //   });
 
-    return this.http.get<any[]>(this.apiUrl, { headers })
+  //   return this.http.get<any[]>(this.apiUrl, { headers })
+  // }
+
+  getEquipos(): Observable<any[]> {
+    // Mock data for testing
+    const mockData = [
+      {
+        nombreDispositivo: 'PC 1',
+        sistemaOperativo: 'Windows 7',
+        memoriaRam: 4000,
+        macaddress: '1324',
+        sogood: false,
+        ramgood: true,
+        ip: '10.1.1.1',
+      },
+      {
+        nombreDispositivo: 'PC 2',
+        sistemaOperativo: 'Windows 10',
+        memoriaRam: 16000,
+        macaddress: null,
+        sogood: true,
+        ramgood: true,
+        ip: '10.10.33.1',
+      },
+    ];
+  
+    // Returning the mock data as an observable
+    return of(mockData);
   }
 }
