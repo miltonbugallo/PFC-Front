@@ -51,10 +51,25 @@ export class IpsDuplicadasAgentesSinEquipoService {
           switch: { etiqueta: 'Switch 1' },
           equipo: { nombreDispositivo: 'Equipo 1' },
         },
+        {
+          id: 2,
+          direccion: '255.255.0.1',
+          agente: { nombre: 'Nombre 2', apellido: 'Apellido 2' },
+          switch: { etiqueta: 'Switch 2' },
+          equipo: { nombreDispositivo: 'Equipo 1' },
+        },
+        {
+          id: 3,
+          direccion: '192.200.0.1',
+          agente: { nombre: 'Nombre 1', apellido: 'Apellido 1' },
+          equipo: { nombreDispositivo: 'Equipo 1' },
+        },
       ],
       agentesSinEquipo: [
         // Fake data for agentesSinEquipo
         { id: 1, direccion: '100.10.0.1', agente: {nombre: 'Nombre 1 ', apellido: 'Apellido 1' }},
+        { id: 2, direccion: '200.10.0.1', agente: {nombre: 'Nombre 2 ', apellido: 'Apellido 2' }},
+        { id: 3, direccion: '300.10.0.1', agente: {nombre: 'Nombre 3 ', apellido: 'Apellido 3' }},
         // Add more fake data as needed
       ],
     };

@@ -46,7 +46,7 @@ export class SistemasOperativosComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "400"
     dialogConfig.disableClose = true;
-    dialogConfig.data = { mensaje: '¿Seguro que deseas eliminar este agente?' }
+    dialogConfig.data = { mensaje: '¿Seguro que deseas eliminar este sistema operativo?' }
     const dialogRef = this.dialog.open(DialogConfirmComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {

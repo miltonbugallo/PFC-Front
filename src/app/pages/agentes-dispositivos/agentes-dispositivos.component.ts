@@ -39,7 +39,7 @@ export class AgentesDispositivosComponent {
 
   obtenerDatos() {
     this.agentesDispositivosService.getData().subscribe((datos) => {
-      this.agentesDispositivosData = datos.Relacion[0];
+      this.agentesDispositivosData = datos.Relacion;
       this.initializeDataTable();
     });
   }
