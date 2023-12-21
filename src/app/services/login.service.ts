@@ -17,26 +17,8 @@ export class LoginService {
       email: user,
       password: pass
     };
-  
-    // Simulación de un login falso con datos simulados
-    // Puedes ajustar estos datos según tus necesidades de prueba
-    const fakeLoginResponse = {
-      user: 'Login successful',
-      token: 'fakeToken123'
-    };
-  
-    // Devuelve un Observable que emite los datos simulados
-    return of(fakeLoginResponse);
+    return this.http.post(this.apiUrl, loginData);
   }
-
-
-  // login(user: string, pass: string): Observable<any> {
-  //   const loginData = {
-  //     email: user,
-  //     password: pass
-  //   };
-  //   return this.http.post(this.apiUrl, loginData);
-  // }
 
   setToken(token: string): void {
     this.token = token;
@@ -45,7 +27,7 @@ export class LoginService {
     setTimeout(() => {
       this.deleteToken();
       this.router.navigate(['/login']);
-    }, 2000*3600); // Se ejecuta luego de 2Hs
+    }, 2000*3600);
   }
 
   getToken(): string | null {

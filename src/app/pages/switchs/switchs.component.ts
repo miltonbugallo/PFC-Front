@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SwitchsFormComponent } from 'src/app/forms/switchs-form/switchs-form.component';
 import { ConexionSwitch } from 'src/app/models/conexionSwitch';
-import { switchModel } from 'src/app/models/switchModel';
 import { DataTableConfigService } from 'src/app/services/data-table-config.service';
 import { SwitchsService } from 'src/app/services/switchs.service';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
@@ -101,25 +100,20 @@ export class SwitchsComponent implements OnInit {
     });
   }
 
-  // Función para abrir el formulario de edición/agregado en un modal
   abrirFormulario(switchData?: any) {
     const dialogConfig: MatDialogConfig = {
-      data: switchData || null // Pasamos null cuando no hay datos para editar
+      data: switchData || null
     };
 
     const dialogRef = this.dialog.open(SwitchsFormComponent, dialogConfig);
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
     dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo Switch
         if (switchData) {
-          // Se editó un Switch existente
-          this.actualizarSwitch(datosActualizados); // Lógica para guardar los cambios
+          this.actualizarSwitch(datosActualizados);
 
         } else {
-          // Se agregó un nuevo Switch
-          this.crearSwitch(datosActualizados); // Lógica para agregar el nuevo Switch
+          this.crearSwitch(datosActualizados);
         }
       }
     });

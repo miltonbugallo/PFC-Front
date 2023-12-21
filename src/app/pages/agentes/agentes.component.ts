@@ -66,7 +66,6 @@ export class AgentesComponent implements OnInit {
       (error) => {
         this.openDialog(false, 'Error en el servidor. Intente nuevamente')
         console.error('Error al actualizar el agente:', error);
-        // Puedes manejar el error aquí, mostrar un mensaje al usuario, realizar acciones específicas, etc.
       }
     );
   }
@@ -96,25 +95,20 @@ export class AgentesComponent implements OnInit {
     });
   }
 
-  // Función para abrir el formulario de edición/agregado en un modal
   abrirFormulario(agenteData?: any) {
     const dialogConfig: MatDialogConfig = {
-      data: agenteData || null // Pasamos null cuando no hay datos para editar
+      data: agenteData || null
     };
     dialogConfig.disableClose = true;
     const dialogRef = this.dialog.open(AgentesFormComponent, dialogConfig);
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
     dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo agente
         if (agenteData) {
-          // Se editó un agente existente
-          this.actualizarAgente(datosActualizados); // Lógica para guardar los cambios
+          this.actualizarAgente(datosActualizados);
 
         } else {
-          // Se agregó un nuevo agente
-          this.crearAgente(datosActualizados); // Lógica para agregar el nuevo agente
+          this.crearAgente(datosActualizados);
         }
       }
     });

@@ -66,24 +66,19 @@ export class SistemasOperativosComponent {
     });
   }
 
-  // Función para abrir el formulario de edición/agregado en un modal
   abrirFormulario(soData?: any) {
     const dialogConfig: MatDialogConfig = {
-      data: soData || null // Pasamos null cuando no hay datos para editar
+      data: soData || null
     };
 
     const dialogRef = this.dialog.open(SistemasOperativosFormComponent, dialogConfig);
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
     dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo so
         if (soData) {
-          // Se editó un so existente
-          this.actualizarSO(datosActualizados); // Lógica para guardar los cambios
+          this.actualizarSO(datosActualizados);
         } else {
-          // Se agregó un nuevo so
-          this.agregarNuevoSO(datosActualizados); // Lógica para agregar el nuevo so
+          this.agregarNuevoSO(datosActualizados);
         }
       }
     });

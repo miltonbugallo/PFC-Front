@@ -24,15 +24,12 @@ export class AlertasComponent implements OnInit{
     }
     
     private initializeDataTable() {
-      // Obtén la configuración base del servicio
     const baseDatatableConfig = this.datatableService.getDatatableConfig();
-    // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
     const customConfig = {
       searching: false,
       ordering: false,
       buttons: [],
     };
-    // Fusiona la configuración base con la configuración personalizada
     const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
       if ($.fn.DataTable.isDataTable("#alertasTable")) {
         $("#alertasTable").DataTable().destroy();

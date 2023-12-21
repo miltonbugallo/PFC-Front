@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate {
     if (this.loginService.isAuthenticated()) {
       return true;
     } else {
-      // Redirigir al usuario a la página de inicio de sesión si no está autenticado
       return this.router.createUrlTree(['/login'], { queryParams: { returnUrl: url } });
     }
   }

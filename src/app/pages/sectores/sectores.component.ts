@@ -97,25 +97,20 @@ export class SectoresComponent {
     });
   }
 
-  // Función para abrir el formulario de edición/agregado en un modal
   abrirFormulario(sectorData?: any) {
     const dialogConfig: MatDialogConfig = {
-      data: sectorData || null // Pasamos null cuando no hay datos para editar
+      data: sectorData || null
     };
 
     const dialogRef = this.dialog.open(SectoresFormComponent, dialogConfig);
 
-    // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
     dialogRef.afterClosed().subscribe((datosActualizados: any) => {
       if (datosActualizados) {
-        // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo sector
         if (sectorData) {
-          // Se editó un sector existente
-          this.actualizarSector(datosActualizados); // Lógica para guardar los cambios
+          this.actualizarSector(datosActualizados);
 
         } else {
-          // Se agregó un nuevo sector
-          this.crearSector(datosActualizados); // Lógica para agregar el nuevo sector
+          this.crearSector(datosActualizados); 
         }
       }
     });

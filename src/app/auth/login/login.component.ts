@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { AuthGuard } from '../auth.guard';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,9 +21,7 @@ export class LoginComponent {
 }
 
 ngOnInit() {
-  // Verifica si el usuario ya está autenticado
   if (this.loginService.isAuthenticated()) {
-    // Redirige al dashboard si está autenticado
     this.router.navigate(['/dashboard']);
   }
 }
@@ -35,11 +32,9 @@ login() {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
 
-      // Llama al servicio para autenticar al usuario
       this.loginService.login(email, password).subscribe(
           response => {
               if (response.user && response.token) {
-                // Almacena el token utilizando el método setAuthToken
                   this.loginService.setToken(response.token[0]);
                   this.router.navigate(['/dashboard']);
               } else {

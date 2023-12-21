@@ -96,25 +96,21 @@ deleteIp(id: number) {
       });
 }
 
-// Función para abrir el formulario de edición/agregado en un modal
 abrirFormulario(ipData?: any) {
   const dialogConfig: MatDialogConfig = {
-    data: ipData || null // Pasamos null cuando no hay datos para editar
+    data: ipData || null
   };
 
   const dialogRef = this.dialog.open(IpsFormComponent, dialogConfig);
 
-  // Suscríbete al evento 'afterClosed' del modal para obtener los datos del formulario al cerrarse
+  
   dialogRef.afterClosed().subscribe((datosActualizados: any) => {
     if (datosActualizados) {
-      // Si datosActualizados es true, significa que se han guardado los cambios o agregado un nuevo ip
       if (ipData) {
-          // Se editó un ip existente
-        this.actualizarIp(datosActualizados); // Lógica para guardar los cambios
-        
-      } else {
-        // Se agregó un nuevo ip
-        this.crearIp(datosActualizados); // Lógica para agregar el nuevo ip
+        this.actualizarIp(datosActualizados); 
+      } 
+      else {
+        this.crearIp(datosActualizados);
       }
     }
   });

@@ -21,13 +21,10 @@ export class IpsDuplicadasAgentesSinEquipoComponent {
   }
   
   private initializeDataTable() {
-      // Obtén la configuración base del servicio
       const baseDatatableConfig = this.datatableService.getDatatableConfig();
-      // Define una configuración personalizada para la tabla de "Agentes Sin Equipo"
       const customConfig = {
-        buttons: ["excel", "pdf", "print"], // Personaliza los botones según tus necesidades
+        buttons: ["excel", "pdf", "print"],
       };
-      // Fusiona la configuración base con la configuración personalizada
       const customtableConfig = Object.assign({}, baseDatatableConfig, customConfig);
     if ($.fn.DataTable.isDataTable("#ipsDuplicadasTable")) {
       $("#ipsDuplicadasTable").DataTable().destroy();

@@ -1,17 +1,15 @@
-/* Estilos para los botones de acciones */
 .btn-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Ajusta este valor para la separación deseada entre los botones */
+    gap: 10px; 
   }
   
-  /* Estilos para la fila de acciones de la tabla */
   .table-actions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 10px; /* Ajustar este valor según el espacio deseado entre el botón y la tabla */
+    margin-bottom: 10px;
   }
 
   .centrado{

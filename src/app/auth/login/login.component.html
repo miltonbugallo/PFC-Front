@@ -1,6 +1,5 @@
 <div class="hold-transition login-page">
     <div class="login-box animate__animated animate__backInLeft">
-        <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Ingrese su datos para entrar al sistema</p>
@@ -27,19 +26,15 @@
                     <div class="row">
                         <div class="col-8">
                         </div>
-                        <!-- /.col -->
                         <div class="col-4">
                             <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Ingresar</button>
                         </div>
-                        <!-- /.col -->
                         <div *ngIf="incorrectCredentials" class="text-danger mt-2">
                             {{error}}
                         </div>
                     </div>
                 </form>
             </div>
-            <!-- /.login-card-body -->
         </div>
     </div>
-    <!-- /.login-box -->
 </div>

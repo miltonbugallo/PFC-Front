@@ -26,13 +26,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Ejecutar obtenerDatos cada 2 minutos
-    interval(2 * 60 * 1000)  // 2 minutos en milisegundos
+    interval(2 * 60 * 1000)
       .subscribe(() => {
         this.obtenerDatos();
       });
-    
-    // También ejecutar obtenerDatos al inicio
     this.obtenerDatos();
   }
 }
